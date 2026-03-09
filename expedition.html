@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оқушы: Қадам баптаулары | BioQadam</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Montserrat', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+    <header class="bg-white shadow-sm py-4">
+        <div class="container mx-auto px-6">
+            <a href="index.html" class="text-emerald-600 font-bold hover:text-emerald-700">
+                <i class="fa-solid fa-arrow-left mr-2"></i> Басты бетке қайту
+            </a>
+        </div>
+    </header>
+
+    <main class="flex-grow flex items-center justify-center p-6">
+        <div class="bg-white p-8 rounded-3xl shadow-xl max-w-lg w-full border-t-4 border-emerald-500">
+            <div class="text-center mb-8">
+                <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
+                    <i class="fa-solid fa-user-graduate"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-slate-800">Оқушы параметрлері</h2>
+                <p class="text-slate-500 mt-2">Экспедицияны бастамас бұрын тақырыпты таңдаңыз.</p>
+            </div>
+
+            <form action="#" class="space-y-6">
+                <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-2">Сыныбыңыз:</label>
+                    <select class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-slate-50">
+                        <option>7-сынып</option>
+                        <option>8-сынып</option>
+                        <option>9-сынып</option>
+                        <option>10-сынып</option>
+                        <option>11-сынып</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-2">Сабақ тақырыбы:</label>
+                    <select class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-slate-50">
+                        <option>Жасуша құрылысы және қызметі</option>
+                        <option>Адам ағзасының жүйелері</option>
+                        <option>Генетика заңдылықтары</option>
+                        <option>Экология және қоршаған орта</option>
+                        <option>Эволюция ілімі</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-2">Қиындық деңгейі:</label>
+                    <div class="grid grid-cols-3 gap-3">
+                        <label class="cursor-pointer">
+                            <input type="radio" name="difficulty" class="peer sr-only" checked>
+                            <div class="text-center p-3 rounded-xl border border-slate-200 peer-checked:bg-emerald-50 peer-checked:border-emerald-500 peer-checked:text-emerald-700 transition">
+                                Оңай
+                            </div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="difficulty" class="peer sr-only">
+                            <div class="text-center p-3 rounded-xl border border-slate-200 peer-checked:bg-amber-50 peer-checked:border-amber-500 peer-checked:text-amber-700 transition">
+                                Орташа
+                            </div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="difficulty" class="peer sr-only">
+                            <div class="text-center p-3 rounded-xl border border-slate-200 peer-checked:bg-red-50 peer-checked:border-red-500 peer-checked:text-red-700 transition">
+                                Қиын
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="button" class="w-full bg-emerald-600 text-white font-bold py-4 rounded-xl hover:bg-emerald-500 transition shadow-lg shadow-emerald-500/30">
+                    Экспедицияны бастау 🚀
+                </button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>
