@@ -30,9 +30,7 @@
         }
     </script>
     <style>
-        /* Плавная прокрутка */
         html { scroll-behavior: smooth; }
-        /* Эффект параллакса для главного экрана */
         .hero-bg {
             background-image: linear-gradient(rgba(6, 78, 59, 0.7), rgba(6, 78, 59, 0.8)), url('https://images.unsplash.com/photo-1530213786676-41224f8d29b1?q=80&w=2000&auto=format&fit=crop');
             background-size: cover;
@@ -49,7 +47,7 @@
                 <i class="fa-solid fa-leaf text-bio-500"></i> BioQadam <span class="text-bio-500 text-sm align-top">AI</span>
             </a>
             <nav class="hidden md:flex gap-8 font-semibold text-slate-600">
-                <a href="#features" class="hover:text-bio-600 transition">Ерекшеліктер</a>
+                <a href="#features" class="hover:text-bio-600 transition">Мүмкіндіктер</a>
                 <a href="#how-it-works" class="hover:text-bio-600 transition">Қалай жұмыс істейді?</a>
             </nav>
             <div class="hidden md:flex gap-4">
@@ -69,14 +67,16 @@
                     Қош келдіңіз, <span class="text-bio-400">жас биолог!</span>
                 </h1>
                 <p class="text-xl md:text-2xl text-slate-200 mb-10 max-w-3xl mx-auto font-light">
-                    BioQadam платформасында биологияны қызықты жолмен зерттеуге дайын болыңыз. Al тапсырмаларымен білімді тәжірибеге айналдырыңыз, видеосабақтар арқылы тақырыптарды терең түсініңіз және әр қадамыңызды BioQadam-пен бірге жасаңыз!
+                    BioQadam платформасында биологияны қызықты жолмен зерттеуге дайын болыңыз. AI тапсырмаларымен білімді тәжірибеге айналдырыңыз, видеосабақтар арқылы тақырыптарды терең түсініңіз және әр қадамыңызды BioQadam-пен бірге жасаңыз!
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center gap-6">
-                    <a href="expedition.html" class="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-bio-600 rounded-full overflow-hidden transition-all hover:bg-bio-500 hover:scale-105 shadow-xl shadow-bio-900/50">
-                        <i class="fa-solid fa-compass mr-3 group-hover:animate-spin"></i> Қадам басу
+                    <a href="expedition.html" class="group relative flex flex-col items-center justify-center px-8 py-3 text-white bg-bio-600 rounded-2xl overflow-hidden transition-all hover:bg-bio-500 hover:scale-105 shadow-xl shadow-bio-900/50">
+                        <span class="text-xl font-bold"><i class="fa-solid fa-compass mr-2 group-hover:animate-spin"></i> Қадам басу</span>
+                        <span class="text-sm text-bio-100 mt-1 font-medium">оқушыларға арналған</span>
                     </a>
-                    <a href="teacher.html" class="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-bio-900 bg-white rounded-full overflow-hidden transition-all hover:bg-slate-100 hover:scale-105 shadow-xl">
-                        <i class="fa-solid fa-chalkboard-user mr-3"></i> Қадамды құрастыру
+                    <a href="teacher.html" class="group relative flex flex-col items-center justify-center px-8 py-3 text-bio-900 bg-white rounded-2xl overflow-hidden transition-all hover:bg-slate-100 hover:scale-105 shadow-xl">
+                        <span class="text-xl font-bold"><i class="fa-solid fa-chalkboard-user mr-2"></i> Қадамды құрастыру</span>
+                        <span class="text-sm text-slate-500 mt-1 font-medium">ұстаздарға арналған</span>
                     </a>
                 </div>
             </div>
@@ -85,36 +85,36 @@
         <section id="features" class="py-24 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-extrabold text-slate-800 mb-4">Неге бұл қарапайым чат емес?</h2>
-                    <p class="text-lg text-slate-500 max-w-2xl mx-auto">BioQadam – тек сұраққа жауап беретін чат емес. Мұнда сіздерге биологияны терең түсіндіретін интерактивті тапсырмалар, видеосабақтар және Al құралдары ұсынылады. Бұл платформа оқытушы мен оқушыны бірге оқытуға, зерттеуге және тәжірибе жасауға мүмкіндік береді.</p>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-slate-800 mb-4">BioQadam мүмкіндіктері</h2>
+                    <p class="text-lg text-slate-500 max-w-2xl mx-auto">BioQadam – тек сұраққа жауап беретін чат емес. Мұнда сіздерге биологияны терең түсіндіретін интерактивті тапсырмалар, видеосабақтар және AI құралдары ұсынылады.</p>
                 </div>
                 
                 <div class="grid md:grid-cols-3 gap-10">
-                    <div class="p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
-                        <div class="w-16 h-16 bg-bio-100 text-bio-600 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-inner">
-                            <i class="fa-solid fa-microscope"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-slate-800 mb-3">Сюжеттік Кейстер</h3>
-                        <p class="text-slate-600 leading-relaxed">
-                            Әр тақырып (жасуша, генетика, экология) қызықты детективтік немесе зерттеу форматында беріледі. Сен жай жауап бермейсің, сен мәселені шешесің.
-                        </p>
-                    </div>
                     <div class="p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
                         <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-inner">
                             <i class="fa-solid fa-robot"></i>
                         </div>
                         <h3 class="text-2xl font-bold text-slate-800 mb-3">ИИ Тексеруші</h3>
                         <p class="text-slate-600 leading-relaxed">
-                            Жасанды интеллект сенің жауабыңды оқып, қателеріңді түсіндіреді. "Дұрыс/Бұрыс" емес, нақты "Неге?" деген сұраққа жауап береді.
+                            Жасанды интеллект сенің жауабыңды оқып, қателеріңді түсіндіреді. "Дұрыс/Бұрыс" емес, нақты "Неге?" деген сұраққа жауап беріп, бағыт көрсетеді.
+                        </p>
+                    </div>
+                    <div class="p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                        <div class="w-16 h-16 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-inner">
+                            <i class="fa-solid fa-video"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-3">ИИ Бейнесабақтар</h3>
+                        <p class="text-slate-600 leading-relaxed">
+                            Күрделі биологиялық процестерді визуалды түрде түсінуге арналған интерактивті видеосабақтар. AI әр оқушының деңгейіне қарай бейнематериал ұсынады.
                         </p>
                     </div>
                     <div class="p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
                         <div class="w-16 h-16 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-inner">
-                            <i class="fa-solid fa-book-journal-whills"></i>
+                            <i class="fa-solid fa-list-check"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-slate-800 mb-3">Далалық Күнделік</h3>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-3">Тест сұрақтары</h3>
                         <p class="text-slate-600 leading-relaxed">
-                            Экспедиция барысында сенің бақылауларың мен гипотезаларың "Field Journal"-ға жиналып, соңында дайын есеп ретінде шығады.
+                            Алған біліміңді бекітуге арналған интеллектуалды тесттер. Жүйе сенің әлсіз тұстарыңды анықтап, соған сәйкес жеке сұрақтар жинағын құрастырады.
                         </p>
                     </div>
                 </div>
@@ -125,9 +125,6 @@
             <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
             <div class="container mx-auto px-6 relative z-10 text-center">
                 <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">Ғылыми саяхатыңызды бастауға дайынсыз ба?</h2>
-                <p class="text-bio-100 text-lg md:text-xl mb-10 max-w-2xl mx-auto">
-                    Оқушыларға арналған 4 түрлі биологиялық станция және мұғалімдерге арналған ИИ генераторы сізді күтуде.
-                </p>
                 <a href="expedition.html" class="inline-block bg-amber-400 text-amber-900 px-10 py-4 rounded-full text-xl font-bold hover:bg-amber-300 transition-all shadow-[0_0_30px_rgba(251,191,36,0.3)]">
                     Алға, Экспедицияға! 🚀
                 </a>
@@ -138,10 +135,10 @@
     <footer class="bg-slate-900 text-slate-400 py-12">
         <div class="container mx-auto px-6 text-center md:text-left grid md:grid-cols-3 gap-8 items-center">
             <div>
-                <a href="#" class="text-2xl font-extrabold text-white flex items-center justify-center md:justify-start gap-2 mb-4">
-                    <i class="fa-solid fa-leaf text-bio-500"></i> BioExpedition AI
+                <a href="index.html" class="text-2xl font-extrabold text-white flex items-center justify-center md:justify-start gap-2 mb-4">
+                    <i class="fa-solid fa-leaf text-bio-500"></i> BioQadam AI
                 </a>
-                <p class="text-sm">Жасанды интеллект күшімен биологияны үйренудің жаңа форматы. Конкурсқа арналған концепт.</p>
+                <p class="text-sm">Жасанды интеллект күшімен биологияны үйренудің жаңа форматы.</p>
             </div>
             <div class="flex justify-center gap-6 text-lg">
                 <a href="#" class="hover:text-white transition"><i class="fa-brands fa-github"></i></a>
@@ -153,8 +150,6 @@
             </div>
         </div>
     </footer>
-
 </body>
-
 </html>
 
