@@ -1,1 +1,219 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ультра Генератор | BioQadam AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Montserrat', 'sans-serif'] },
+                    animation: {
+                        'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Montserrat', sans-serif; background-color: #0f172a; }
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .hidden-view { display: none !important; }
+        /* Әдемі торлы фон */
+        .grid-bg {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        }
+    </style>
+</head>
+<body class="text-slate-200 min-h-screen flex flex-col relative overflow-x-hidden grid-bg">
 
+    <div class="absolute top-20 left-10 w-96 h-96 bg-purple-600 rounded-full mix-blend-screen filter blur-[100px] opacity-30 animate-pulse"></div>
+    <div class="absolute bottom-10 right-10 w-96 h-96 bg-pink-600 rounded-full mix-blend-screen filter blur-[100px] opacity-30 animate-pulse" style="animation-delay: 1s;"></div>
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-600 rounded-full mix-blend-screen filter blur-[120px] opacity-20"></div>
+
+    <header class="relative z-50 py-6">
+        <div class="container mx-auto px-6">
+            <a href="index.html" class="inline-flex items-center text-slate-400 hover:text-white transition font-semibold bg-slate-800/50 px-4 py-2 rounded-full border border-slate-700 backdrop-blur-md">
+                <i class="fa-solid fa-arrow-left mr-2"></i> Басты бетке
+            </a>
+        </div>
+    </header>
+
+    <main class="flex-grow flex items-center justify-center p-6 relative z-10">
+        <div class="glass-panel p-8 md:p-10 rounded-[2rem] shadow-2xl max-w-2xl w-full">
+            
+            <div class="text-center mb-10">
+                <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-purple-600 to-pink-500 text-white text-3xl mb-6 shadow-[0_0_30px_rgba(168,85,247,0.5)]">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <h2 class="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-300 mb-2">Ультра Генератор</h2>
+                <p class="text-slate-400">Тақырыпты жазыңыз, ИИ 1 минут ішінде 3D форматындағы интерактивті сабақ жасап береді.</p>
+            </div>
+
+            <div id="generator-form" class="space-y-6">
+                <div>
+                    <label class="block text-sm font-bold text-slate-300 mb-2">Биологиялық тақырыпты жазыңыз:</label>
+                    <div class="relative">
+                        <input type="text" id="topic-input" placeholder="Мысалы: Адам жүрегінің құрылысы 3D..." class="w-full bg-slate-900/80 border border-slate-700 rounded-xl p-4 pl-12 text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition">
+                        <i class="fa-solid fa-dna absolute left-4 top-4.5 text-slate-500 text-lg" style="top: 17px;"></i>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-bold text-slate-300 mb-2">Сынып:</label>
+                        <select class="w-full bg-slate-900/80 border border-slate-700 rounded-xl p-4 text-white focus:outline-none focus:border-purple-500 transition appearance-none">
+                            <option>Барлық сыныптар</option>
+                            <option>8-сынып</option>
+                            <option>9-сынып</option>
+                            <option>10-сынып</option>
+                            <option>11-сынып</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-300 mb-2">Формат:</label>
+                        <select class="w-full bg-slate-900/80 border border-slate-700 rounded-xl p-4 text-white focus:outline-none focus:border-purple-500 transition appearance-none">
+                            <option>Интерактивті 3D модель</option>
+                            <option>VR / AR сабақ</option>
+                            <option>Анимациялық видео</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="button" onclick="startGeneration()" class="w-full relative group overflow-hidden rounded-xl mt-4">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-500 to-purple-600 bg-[length:200%_auto] animate-pulse-fast group-hover:bg-right transition-all duration-500"></div>
+                    <div class="relative px-6 py-4 font-bold text-white text-lg flex items-center justify-center">
+                        <i class="fa-solid fa-wand-magic-sparkles mr-3"></i> 3D Сабақты Генерациялау
+                    </div>
+                </button>
+            </div>
+
+            <div id="loading-area" class="hidden-view text-center py-10">
+                <div class="relative w-24 h-24 mx-auto mb-6">
+                    <div class="absolute inset-0 border-4 border-slate-700 rounded-full"></div>
+                    <div class="absolute inset-0 border-4 border-t-purple-500 border-r-pink-500 border-b-transparent border-l-transparent rounded-full animate-spin"></div>
+                    <i class="fa-solid fa-microchip absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-3xl text-purple-400"></i>
+                </div>
+                <h3 id="loading-text" class="text-2xl font-bold text-white mb-2">Мәліметтер талдануда...</h3>
+                <p class="text-slate-400 text-sm">BioQadam AI нейрожелісі жұмыс істеп жатыр</p>
+                
+                <div class="w-full bg-slate-800 rounded-full h-2.5 mt-8 overflow-hidden">
+                    <div id="progress-bar" class="bg-gradient-to-r from-purple-500 to-pink-500 h-2.5 rounded-full transition-all duration-300" style="width: 5%"></div>
+                </div>
+            </div>
+
+            <div id="result-area" class="hidden-view mt-4 animate-fade-in">
+                <div class="bg-slate-900/80 rounded-2xl border border-slate-700 overflow-hidden mb-6 relative group">
+                    <img src="https://images.unsplash.com/photo-1614935151651-0bea6508ab6b?q=80&w=1000&auto=format&fit=crop" alt="3D Model" class="w-full h-56 object-cover opacity-80 group-hover:opacity-100 transition duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent flex flex-col justify-end p-5">
+                        <div class="flex items-center gap-3">
+                            <div class="bg-pink-500 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition">
+                                <i class="fa-solid fa-play ml-1"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold" id="result-title">Адам жүрегінің құрылысы</h4>
+                                <p class="text-pink-300 text-xs font-semibold">Интерактивті 3D форматы • 100% Дайын</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-purple-900/30 border border-purple-500/30 rounded-xl p-5 mb-6">
+                    <h4 class="text-purple-300 font-bold mb-2 text-sm uppercase tracking-wide"><i class="fa-solid fa-robot mr-2"></i> ИИ Қорытындысы:</h4>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Модель сәтті генерацияланды! Оқушылар жүректі 360 градусқа бұрып, қарыншалар мен жүрекшелердің жұмысын виртуалды түрде көре алады. Әр бөлікке ИИ түсіндірмелері қосылды.
+                    </p>
+                </div>
+
+                <label class="block text-sm font-bold text-slate-300 mb-2">Оқушыларға жіберетін сілтеме:</label>
+                <div class="flex items-center gap-2">
+                    <input type="text" id="ultra-link" readonly value="https://bioqadam.kz/3d-lesson/X9V2M1" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-4 text-pink-400 font-mono text-sm focus:outline-none shadow-inner">
+                    <button id="copy-btn" onclick="copyUltraLink()" class="bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-500 hover:to-pink-400 text-white w-14 h-[54px] rounded-xl transition flex items-center justify-center shrink-0 shadow-lg">
+                        <i class="fa-regular fa-copy text-xl"></i>
+                    </button>
+                </div>
+                
+                <button onclick="resetGenerator()" class="w-full mt-6 text-slate-400 hover:text-white text-sm font-semibold transition">
+                    <i class="fa-solid fa-rotate-right mr-1"></i> Жаңа сабақ генерациялау
+                </button>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        function startGeneration() {
+            const topic = document.getElementById('topic-input').value;
+            if(!topic.trim()) {
+                alert('Өтінемін, генерациялау үшін тақырыпты жазыңыз!');
+                return;
+            }
+
+            document.getElementById('result-title').innerText = topic;
+
+            // Форманы жасырып, жүктелуді көрсету
+            document.getElementById('generator-form').classList.add('hidden-view');
+            const loadingArea = document.getElementById('loading-area');
+            loadingArea.classList.remove('hidden-view');
+
+            const loadingText = document.getElementById('loading-text');
+            const progressBar = document.getElementById('progress-bar');
+
+            // Анимация кезеңдері
+            setTimeout(() => { loadingText.innerText = 'Мәтіндік деректер жиналуда...'; progressBar.style.width = '30%'; }, 1500);
+            setTimeout(() => { loadingText.innerText = '3D объектілер құрастырылуда...'; progressBar.style.width = '60%'; }, 3500);
+            setTimeout(() => { loadingText.innerText = 'Интерактивті элементтер қосылуда...'; progressBar.style.width = '85%'; }, 5500);
+            
+            setTimeout(() => { 
+                progressBar.style.width = '100%'; 
+                loadingText.innerText = 'Дайын!';
+                
+                // Нәтижені көрсету
+                setTimeout(() => {
+                    loadingArea.classList.add('hidden-view');
+                    document.getElementById('result-area').classList.remove('hidden-view');
+                    
+                    // Кездейсоқ код жасау
+                    const randomCode = Math.random().toString(36).substring(2, 8).toUpperCase();
+                    document.getElementById('ultra-link').value = `https://bioqadam.kz/3d-lesson/${randomCode}`;
+                }, 500);
+
+            }, 7000); // Толық генерация уақыты (7 секунд)
+        }
+
+        function copyUltraLink() {
+            const linkInput = document.getElementById('ultra-link');
+            const copyBtn = document.getElementById('copy-btn');
+            
+            linkInput.select();
+            document.execCommand('copy');
+
+            copyBtn.innerHTML = '<i class="fa-solid fa-check text-xl"></i>';
+            
+            setTimeout(() => {
+                copyBtn.innerHTML = '<i class="fa-regular fa-copy text-xl"></i>';
+            }, 2000);
+        }
+
+        function resetGenerator() {
+            document.getElementById('result-area').classList.add('hidden-view');
+            document.getElementById('topic-input').value = '';
+            document.getElementById('progress-bar').style.width = '5%';
+            document.getElementById('loading-text').innerText = 'Мәліметтер талдануда...';
+            document.getElementById('generator-form').classList.remove('hidden-view');
+        }
+    </script>
+</body>
+</html>
