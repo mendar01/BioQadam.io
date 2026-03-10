@@ -6,7 +6,7 @@
     <title>BioQadam AI | Интерактивті Биология</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
@@ -53,7 +53,7 @@
             </nav>
 
             <div class="flex items-center gap-4">
-                <select id="lang-switch" class="bg-transparent text-slate-700 font-bold focus:outline-none cursor-pointer border-b-2 border-bio-500">
+                <select id="lang-switch" class="bg-transparent text-slate-700 font-bold focus:outline-none cursor-pointer border-b-2 border-bio-500 pb-1">
                     <option value="kk">ҚАЗ</option>
                     <option value="ru">РУС</option>
                     <option value="en">ENG</option>
@@ -151,20 +151,52 @@
         </section>
     </main>
 
-    <footer class="bg-slate-900 text-slate-400 py-12">
-        <div class="container mx-auto px-6 text-center md:text-left grid md:grid-cols-3 gap-8 items-center">
-            <div>
-                <a href="index.html" class="text-2xl font-extrabold text-white flex items-center justify-center md:justify-start gap-2 mb-4">
-                    <i class="fa-solid fa-leaf text-bio-500"></i> BioQadam AI
-                </a>
-                <p class="text-sm" data-i18n="footer_desc">Жасанды интеллект күшімен биологияны үйренудің жаңа форматы.</p>
+    <footer id="contacts" class="bg-[#060A14] py-14 border-t border-slate-800/50">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-12 gap-10 mb-12 items-start">
+                
+                <div class="md:col-span-4">
+                    <a href="index.html" class="text-2xl font-bold text-white flex items-center gap-3 mb-5">
+                        <i class="fa-solid fa-leaf text-bio-400"></i> BioQadam AI
+                    </a>
+                    <p class="text-[15px] text-slate-400 leading-relaxed max-w-xs font-medium" data-i18n="footer_desc_full">
+                        Жасанды интеллект күшімен биологияны үйренудің жаңа форматы. Білімді бағалау емес, түсіндіру маңызды.
+                    </p>
+                </div>
+                
+                <div class="md:col-span-3">
+                    <h4 class="text-white font-bold mb-5 uppercase tracking-wider text-sm" data-i18n="footer_platform">Платформа</h4>
+                    <ul class="space-y-4 text-[15px] text-slate-400 font-medium">
+                        <li><a href="expedition.html" class="hover:text-bio-400 transition" data-i18n="footer_link_1">Оқушыларға (Қадам)</a></li>
+                        <li><a href="teacher.html" class="hover:text-bio-400 transition" data-i18n="footer_link_2">Ұстаздарға</a></li>
+                        <li><a href="videos.html" class="hover:text-bio-400 transition" data-i18n="footer_link_3">Бейнесабақтар</a></li>
+                        <li><a href="tests.html" class="hover:text-bio-400 transition" data-i18n="footer_link_4">Тесттер</a></li>
+                    </ul>
+                </div>
+
+                <div class="md:col-span-5 bg-[#10172A] p-7 rounded-2xl shadow-lg border border-slate-800/60">
+                    <h4 class="text-white font-bold mb-6 uppercase tracking-wider text-sm" data-i18n="footer_contact">Бізбен байланыс</h4>
+                    <div class="space-y-5">
+                        <a href="https://instagram.com/kubaydullinaaaaa" target="_blank" class="flex items-center gap-5 hover:opacity-80 transition group">
+                            <div class="w-11 h-11 bg-slate-800/80 rounded-full flex items-center justify-center text-slate-300">
+                                <i class="fa-brands fa-instagram text-xl"></i>
+                            </div>
+                            <span class="font-medium text-[15px] text-slate-400">@kubaydullinaaaaa</span>
+                        </a>
+                        <a href="mailto:kubajdullina@inbox.ru" class="flex items-center gap-5 hover:opacity-80 transition group">
+                            <div class="w-11 h-11 bg-slate-800/80 rounded-full flex items-center justify-center text-slate-300">
+                                <i class="fa-solid fa-envelope text-lg"></i>
+                            </div>
+                            <span class="font-medium text-[15px] text-slate-400">kubajdullina@inbox.ru</span>
+                        </a>
+                    </div>
+                </div>
+
             </div>
-            <div class="flex justify-center gap-6 text-lg">
-                <a href="https://instagram.com/kubaydullinaaaaa" target="_blank" class="hover:text-white transition"><i class="fa-brands fa-instagram"></i></a>
-                <a href="mailto:kubajdullina@inbox.ru" class="hover:text-white transition"><i class="fa-solid fa-envelope"></i></a>
-            </div>
-            <div class="text-center md:text-right text-sm">
-                <p>&copy; 2026 BioQadam AI.</p>
+            
+            <div class="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center text-sm text-slate-500 font-medium">
+                <p data-i18n="footer_copy">&copy; 2026 BioQadam AI. Барлық құқықтар қорғалған.</p>
+                <p class="mt-4 md:mt-0">Designed with <i class="fa-solid fa-heart text-red-500 mx-1"></i> for Biology.</p>
             </div>
         </div>
     </footer>
@@ -195,7 +227,14 @@
                 feat_3_desc: "Алған біліміңді бекітуге арналған интеллектуалды тесттер. Жүйе сенің әлсіз тұстарыңды анықтап, соған сәйкес жеке сұрақтар жинағын құрастырады.",
                 cta_title: "Өз қадамыңызды бастауға дайынсыз ба?",
                 cta_btn: "Қадамды бастау 🚀",
-                footer_desc: "Жасанды интеллект күшімен биологияны үйренудің жаңа форматы."
+                footer_desc_full: "Жасанды интеллект күшімен биологияны үйренудің жаңа форматы. Білімді бағалау емес, түсіндіру маңызды.",
+                footer_platform: "ПЛАТФОРМА",
+                footer_link_1: "Оқушыларға (Қадам)",
+                footer_link_2: "Ұстаздарға",
+                footer_link_3: "Бейнесабақтар",
+                footer_link_4: "Тесттер",
+                footer_contact: "БІЗБЕН БАЙЛАНЫС",
+                footer_copy: "© 2026 BioQadam AI. Барлық құқықтар қорғалған."
             },
             ru: {
                 nav_features: "Возможности",
@@ -221,7 +260,14 @@
                 feat_3_desc: "Умные тесты для закрепления знаний. Система выявляет ваши слабые места и составляет индивидуальные вопросы.",
                 cta_title: "Готовы сделать свой шаг?",
                 cta_btn: "Начать шаг 🚀",
-                footer_desc: "Новый формат изучения биологии с помощью искусственного интеллекта."
+                footer_desc_full: "Новый формат изучения биологии с ИИ. Главное не оценка, а понимание.",
+                footer_platform: "ПЛАТФОРМА",
+                footer_link_1: "Ученикам (Шаг)",
+                footer_link_2: "Учителям",
+                footer_link_3: "Видеоуроки",
+                footer_link_4: "Тесты",
+                footer_contact: "СВЯЗЬ С НАМИ",
+                footer_copy: "© 2026 BioQadam AI. Все права защищены."
             },
             en: {
                 nav_features: "Features",
@@ -247,7 +293,14 @@
                 feat_3_desc: "Smart tests to consolidate your knowledge. The system identifies your weak points and compiles individual questions.",
                 cta_title: "Ready to take your step?",
                 cta_btn: "Start Step 🚀",
-                footer_desc: "A new format for learning biology powered by artificial intelligence."
+                footer_desc_full: "A new format for learning biology with AI. Understanding matters more than grading.",
+                footer_platform: "PLATFORM",
+                footer_link_1: "For Students (Step)",
+                footer_link_2: "For Teachers",
+                footer_link_3: "Video Lessons",
+                footer_link_4: "Quizzes",
+                footer_contact: "CONTACT US",
+                footer_copy: "© 2026 BioQadam AI. All rights reserved."
             }
         };
 
