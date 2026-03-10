@@ -9,13 +9,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Montserrat', sans-serif; }
+        .hidden-view { display: none !important; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
 
-    <header class="bg-white shadow-sm py-4">
+    <header class="bg-white shadow-sm py-4 sticky top-0 z-50">
         <div class="container mx-auto px-6">
-            <a href="index.html" class="text-blue-600 font-bold hover:text-blue-700">
+            <a href="index.html" class="text-blue-600 font-bold hover:text-blue-700 transition">
                 <i class="fa-solid fa-arrow-left mr-2"></i> Басты бетке қайту
             </a>
         </div>
@@ -31,7 +32,7 @@
                 <p class="text-slate-500 mt-2">AI арқылы оқушыларыңызға арнайы тапсырмалар жасаңыз.</p>
             </div>
 
-            <form action="#" class="space-y-6">
+            <form id="builder-form" class="space-y-6">
                 <div>
                     <label class="block text-sm font-bold text-slate-700 mb-2">Оқытатын сынып:</label>
                     <select class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-50">
@@ -45,24 +46,104 @@
 
                 <div>
                     <label class="block text-sm font-bold text-slate-700 mb-2">Қай сабақ тақырыбын немесе оқу мақсатын қамтимыз?</label>
-                    <input type="text" placeholder="Мысалы: Фотосинтез фазалары..." class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-50">
+                    <input type="text" id="topic-input" placeholder="Мысалы: Фотосинтез фазалары..." class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-50">
                 </div>
 
                 <div>
                     <label class="block text-sm font-bold text-slate-700 mb-2">Генерация форматы:</label>
                     <select class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-50">
                         <option>Сюжеттік кейс (Детектив)</option>
-                        <option>Далалық зерттеу (Экспедиция)</option>
+                        <option>Далалық зерттеу (Қадам)</option>
                         <option>Стандартты тест сұрақтары</option>
                     </select>
                 </div>
 
-                <button type="button" class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl hover:bg-blue-500 transition shadow-lg shadow-blue-500/30">
+                <button type="button" id="generate-btn" onclick="generateLesson()" class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl hover:bg-blue-500 transition shadow-lg shadow-blue-500/30 flex items-center justify-center">
                     <i class="fa-solid fa-wand-magic-sparkles mr-2"></i> ИИ арқылы генерациялау
                 </button>
             </form>
+
+            <div id="result-area" class="hidden-view mt-8 pt-6 border-t border-slate-200 animate-fade-in">
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5 mb-4 relative">
+                    <span class="absolute -top-3 left-4 bg-blue-100 text-blue-800 text-xs font-bold px-2 py-1 rounded">ИИ Нәтижесі:</span>
+                    <h4 class="font-bold text-slate-800 mb-2">Сабақ дайын!</h4>
+                    <p class="text-sm text-slate-600 mb-3">
+                        Кейс: "Жасыл жапырақ ішіндегі химиялық зауыт". Оқушылар фотолизге қатысатын ферменттерді анықтауы керек.
+                    </p>
+                    <p class="text-xs text-slate-400 font-medium">Станция саны: 3 | Деңгей: Орташа</p>
+                </div>
+
+                <label class="block text-sm font-bold text-slate-700 mb-2">Оқушыларға жіберетін сілтеме:</label>
+                <div class="flex items-center gap-2">
+                    <input type="text" id="lesson-link" readonly value="https://bioqadam.kz/task/A7B9K2" class="w-full bg-slate-100 border border-slate-300 rounded-xl p-3 text-slate-600 font-mono text-sm focus:outline-none">
+                    <button id="copy-btn" onclick="copyLink()" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-xl transition font-bold flex items-center shrink-0">
+                        <i class="fa-regular fa-copy"></i>
+                    </button>
+                </div>
+                <p class="text-xs text-center text-slate-400 mt-3">Оқушылар осы сілтеме арқылы тікелей тапсырмаға кіреді.</p>
+            </div>
         </div>
     </main>
-</body>
 
+    <script>
+        function generateLesson() {
+            const btn = document.getElementById('generate-btn');
+            const resultArea = document.getElementById('result-area');
+            const topicInput = document.getElementById('topic-input').value;
+
+            // Егер тақырып жазылмаса, ескерту жасау (міндетті емес, бірақ жақсы UX)
+            if(topicInput.trim() === '') {
+                alert('Өтінемін, сабақ тақырыбын жазыңыз!');
+                return;
+            }
+
+            // Жүктелу анимациясы
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin mr-2"></i> Генерациялануда...';
+            btn.disabled = true;
+            btn.classList.add('opacity-75');
+            
+            // Нәтижені жасыра тұру (егер қайта басса)
+            resultArea.classList.add('hidden-view');
+
+            // 2 секундтан кейін нәтижені шығару (ИИ-ді симуляциялау)
+            setTimeout(() => {
+                // Батырманы қалпына келтіру
+                btn.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles mr-2"></i> Қайта генерациялау';
+                btn.disabled = false;
+                btn.classList.remove('opacity-75');
+
+                // Нәтижені көрсету
+                resultArea.classList.remove('hidden-view');
+                
+                // Кездейсоқ код генерациялау (сілтеме шынайы көрінуі үшін)
+                const randomCode = Math.random().toString(36).substring(2, 8).toUpperCase();
+                document.getElementById('lesson-link').value = `https://bioqadam.kz/step/${randomCode}`;
+                
+            }, 2000);
+        }
+
+        function copyLink() {
+            // Сілтемені алу
+            const linkInput = document.getElementById('lesson-link');
+            const copyBtn = document.getElementById('copy-btn');
+            
+            // Буферге (clipboard) көшіру
+            linkInput.select();
+            linkInput.setSelectionRange(0, 99999); // Мобильді құрылғылар үшін
+            navigator.clipboard.writeText(linkInput.value);
+
+            // Батырманың дизайнын "Көшірілді" деп өзгерту
+            copyBtn.innerHTML = '<i class="fa-solid fa-check"></i>';
+            copyBtn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+            copyBtn.classList.add('bg-emerald-500', 'hover:bg-emerald-600');
+
+            // 2 секундтан соң қалпына келтіру
+            setTimeout(() => {
+                copyBtn.innerHTML = '<i class="fa-regular fa-copy"></i>';
+                copyBtn.classList.remove('bg-emerald-500', 'hover:bg-emerald-600');
+                copyBtn.classList.add('bg-blue-600', 'hover:bg-blue-700');
+            }, 2000);
+        }
+    </script>
+</body>
 </html>
