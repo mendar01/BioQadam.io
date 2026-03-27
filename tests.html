@@ -3,76 +3,263 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Интеллектуалды Тесттер | BioQadam</title>
+    <title>BioQadam | Тесттер</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <style>body { font-family: 'Montserrat', sans-serif; }</style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Montserrat', sans-serif; }
+    </style>
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
 
-    <header class="bg-white shadow-sm py-4 sticky top-0 z-50">
+    <header class="bg-white shadow-sm py-4 sticky top-0 z-40">
         <div class="container mx-auto px-6 flex justify-between items-center">
-            <a href="index.html" class="text-amber-600 font-bold hover:text-amber-700 flex items-center">
-                <i class="fa-solid fa-arrow-left mr-2"></i> Басты бетке
+            <a href="index.html" class="text-emerald-600 font-bold hover:text-emerald-700 transition">
+                <i class="fa-solid fa-arrow-left mr-2"></i> Басты бет
             </a>
-            <div class="text-xl font-extrabold text-slate-800">
-                <i class="fa-solid fa-list-check text-amber-500 mr-2"></i> BioQadam <span class="text-amber-500">Quiz</span>
-            </div>
+            <a href="expedition.html" class="text-slate-600 font-semibold hover:text-emerald-600 transition">
+                Оқушы баптаулары
+            </a>
         </div>
     </header>
 
-    <main class="flex-grow flex items-center justify-center p-6">
-        <div class="w-full max-w-2xl">
-            <div class="bg-white rounded-3xl shadow-xl overflow-hidden border-t-4 border-amber-500">
-                <div class="p-8">
-                    <div class="flex justify-between items-center mb-6">
-                        <span class="bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1 rounded-full uppercase">Сұрақ 1 / 10</span>
-                        <span class="text-slate-400 font-bold text-sm"><i class="fa-regular fa-clock"></i> 00:45</span>
-                    </div>
-                    
-                    <h2 class="text-2xl font-bold text-slate-800 mb-6">
-                        Фотосинтездің жарық фазасында қандай процесс жүреді?
-                    </h2>
+    <main class="flex-grow py-10 px-4">
+        <div class="max-w-4xl mx-auto">
 
-                    <div class="space-y-4">
-                        <label class="flex items-center p-4 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition">
-                            <input type="radio" name="quiz" class="w-5 h-5 text-amber-500 focus:ring-amber-500">
-                            <span class="ml-3 text-lg text-slate-700">Глюкозаның синтезделуі</span>
-                        </label>
-                        <label class="flex items-center p-4 border border-amber-500 bg-amber-50 rounded-xl cursor-pointer transition">
-                            <input type="radio" name="quiz" class="w-5 h-5 text-amber-500 focus:ring-amber-500" checked>
-                            <span class="ml-3 text-lg font-semibold text-amber-900">Судың фотолизі (ыдырауы)</span>
-                        </label>
-                        <label class="flex items-center p-4 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition">
-                            <input type="radio" name="quiz" class="w-5 h-5 text-amber-500 focus:ring-amber-500">
-                            <span class="ml-3 text-lg text-slate-700">Көмірқышқыл газының сіңірілуі</span>
-                        </label>
-                        <label class="flex items-center p-4 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition">
-                            <input type="radio" name="quiz" class="w-5 h-5 text-amber-500 focus:ring-amber-500">
-                            <span class="ml-3 text-lg text-slate-700">Кальвин циклі</span>
-                        </label>
+            <section class="bg-white rounded-3xl shadow-xl p-8 border border-slate-100 mb-8">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                    <div>
+                        <p class="text-sm uppercase tracking-wider text-emerald-600 font-bold mb-2">BioQadam Test</p>
+                        <h1 class="text-3xl md:text-4xl font-extrabold text-slate-800 mb-3">Биология бойынша мини-тест</h1>
+                        <p id="student-info" class="text-slate-500">
+                            Оқушы деректері жүктелуде...
+                        </p>
                     </div>
 
-                    <div class="mt-8 flex justify-end">
-                        <button class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-8 rounded-xl transition shadow-lg shadow-amber-500/30 flex items-center">
-                            Келесі сұрақ <i class="fa-solid fa-arrow-right ml-2"></i>
-                        </button>
+                    <div class="bg-emerald-50 border border-emerald-200 rounded-2xl px-5 py-4 min-w-[220px]">
+                        <p class="text-sm text-slate-500 mb-1">Сұрақ саны</p>
+                        <p class="text-2xl font-extrabold text-emerald-700">5</p>
                     </div>
                 </div>
-            </div>
-            
-            <div class="mt-6 bg-blue-50 border border-blue-200 rounded-2xl p-4 flex gap-4 items-start shadow-sm">
-                <div class="bg-blue-100 text-blue-600 rounded-full w-10 h-10 flex items-center justify-center shrink-0">
-                    <i class="fa-solid fa-robot"></i>
+            </section>
+
+            <form id="quiz-form" class="space-y-6">
+
+                <div class="bg-white rounded-3xl shadow-md p-6 border border-slate-100">
+                    <p class="font-bold text-lg mb-4">1. Фотосинтез қай органоидта жүреді?</p>
+                    <div class="space-y-3">
+                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                            <input type="radio" name="q1" value="0">
+                            <span>Митохондрия</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                            <input type="radio" name="q1" value="1">
+                            <span>Хлоропласт</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                            <input type="radio" name="q1" value="0">
+                            <span>Рибосома</span>
+                        </label>
+                    </div>
                 </div>
-                <div>
-                    <h4 class="font-bold text-blue-800 text-sm mb-1">ИИ Көмекші:</h4>
-                    <p class="text-sm text-blue-900">Есіңізде болсын, жарық фазасы тек хлоропласттың тилакоидтарында жарықтың қатысуымен жүреді. Ол кезде оттегі бөлініп шығады!</p>
+
+                <div class="bg-white rounded-3xl shadow-md p-6 border border-slate-100">
+                    <p class="font-bold text-lg mb-4">2. Адам ағзасындағы негізгі тыныс алу мүшесі:</p>
+                    <div class="space-y-3">
+                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                            <input type="radio" name="q2" value="1">
+                            <span>Өкпе</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                            <input type="radio" name="q2" value="0">
+                            <span>Бауыр</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                            <input type="radio" name="q2" value="0">
+                            <span>Бүйрек</span>
+                        </label>
+                    </div>
                 </div>
-            </div>
+
+                <div class="bg-white rounded-3xl shadow-md p-6 border border-slate-100">
+                    <p class="font-bold text-lg mb-4">3. ДНҚ нені сақтайды?</p>
+                    <div class="space-y-3">
+                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                            <input type="radio" name="q3" value="1">
+                            <span>Генетикалық ақпаратты</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                            <input type="radio" name="q3" value="0">
+                            <span>Тек суды</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                            <input type="radio" name="q3" value="0">
+                            <span>Тек энергияны</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-3xl shadow-md p-6 border border-slate-100">
+                    <p class="font-bold text-lg mb-4">4. Қанның қызыл жасушалары қалай аталады?</p>
+                    <div class="space-y-3">
+                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                            <input type="radio" name="q4" value="0">
+                            <span>Лейкоциттер</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                            <input type="radio" name="q4" value="1">
+                            <span>Эритроциттер</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                            <input type="radio" name="q4" value="0">
+                            <span>Тромбоциттер</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-3xl shadow-md p-6 border border-slate-100">
+                    <p class="font-bold text-lg mb-4">5. Өсімдік жасушасында болмайтын бөлік:</p>
+                    <div class="space-y-3">
+                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                            <input type="radio" name="q5" value="0">
+                            <span>Жасуша қабықшасы</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                            <input type="radio" name="q5" value="0">
+                            <span>Хлоропласт</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                            <input type="radio" name="q5" value="1">
+                            <span>Кірпікше</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div id="quiz-error" class="hidden bg-red-50 border border-red-200 text-red-700 rounded-2xl px-5 py-4 font-medium">
+                    Барлық сұраққа жауап беріңіз.
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button type="submit" class="flex-1 bg-emerald-600 text-white font-bold py-4 rounded-2xl hover:bg-emerald-500 transition shadow-lg shadow-emerald-500/30">
+                        Нәтижені көру
+                    </button>
+                    <button type="button" id="reset-btn" class="flex-1 bg-slate-200 text-slate-700 font-bold py-4 rounded-2xl hover:bg-slate-300 transition">
+                        Қайта бастау
+                    </button>
+                </div>
+            </form>
+
+            <section id="result-section" class="hidden mt-8 bg-white rounded-3xl shadow-xl p-8 border border-slate-100">
+                <div class="text-center">
+                    <div class="w-20 h-20 mx-auto rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-3xl mb-5">
+                        <i class="fa-solid fa-award"></i>
+                    </div>
+
+                    <h2 class="text-3xl font-extrabold text-slate-800 mb-3">Сіздің нәтижеңіз</h2>
+                    <p id="score-text" class="text-2xl font-bold text-emerald-600 mb-4"></p>
+                    <p id="result-message" class="text-slate-600 max-w-2xl mx-auto mb-8"></p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="videos.html" class="bg-purple-600 text-white px-6 py-3 rounded-2xl font-bold hover:bg-purple-500 transition">
+                            Видеосабақтарға өту
+                        </a>
+                        <a href="expedition.html" class="bg-slate-200 text-slate-700 px-6 py-3 rounded-2xl font-bold hover:bg-slate-300 transition">
+                            Параметрлерге оралу
+                        </a>
+                    </div>
+                </div>
+            </section>
+
         </div>
     </main>
 
+    <script>
+        const studentInfo = document.getElementById('student-info');
+        const quizForm = document.getElementById('quiz-form');
+        const quizError = document.getElementById('quiz-error');
+        const resultSection = document.getElementById('result-section');
+        const scoreText = document.getElementById('score-text');
+        const resultMessage = document.getElementById('result-message');
+        const resetBtn = document.getElementById('reset-btn');
+
+        function loadStudentInfo() {
+            const savedData = localStorage.getItem('bioqadam_student');
+
+            if (!savedData) {
+                studentInfo.innerHTML = 'Оқушы деректері табылмады. Алдымен <a href="expedition.html" class="text-emerald-600 font-bold underline">параметрлерді енгізіңіз</a>.';
+                return;
+            }
+
+            try {
+                const student = JSON.parse(savedData);
+                studentInfo.textContent = `${student.name || 'Оқушы'} | ${student.grade || '-'} | Деңгей: ${student.difficulty || '-'}`;
+            } catch (error) {
+                studentInfo.textContent = 'Оқушы деректерін оқу мүмкін болмады.';
+            }
+        }
+
+        function getResultMessage(score) {
+            if (score === 5) {
+                return 'Керемет! Сіз барлық сұраққа дұрыс жауап бердіңіз. Биология тақырыбын өте жақсы меңгергенсіз.';
+            }
+            if (score >= 3) {
+                return 'Жақсы нәтиже! Сіз негізгі ұғымдарды түсінесіз. Енді видеосабақтар арқылы біліміңізді тереңдете аласыз.';
+            }
+            return 'Әлі де жаттығу керек. Уайымдамаңыз — BioQadam сізге көмектеседі. Видеосабақтар мен тапсырмалардан бастап көріңіз.';
+        }
+
+        quizForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            let score = 0;
+            const totalQuestions = 5;
+            const answers = [];
+
+            for (let i = 1; i <= totalQuestions; i++) {
+                const selected = document.querySelector(`input[name="q${i}"]:checked`);
+
+                if (!selected) {
+                    quizError.classList.remove('hidden');
+                    resultSection.classList.add('hidden');
+                    return;
+                }
+
+                answers.push(selected.value);
+                score += Number(selected.value);
+            }
+
+            quizError.classList.add('hidden');
+
+            scoreText.textContent = `${score} / ${totalQuestions}`;
+            resultMessage.textContent = getResultMessage(score);
+            resultSection.classList.remove('hidden');
+
+            const savedStudent = JSON.parse(localStorage.getItem('bioqadam_student') || '{}');
+
+            const resultData = {
+                studentName: savedStudent.name || 'Оқушы',
+                grade: savedStudent.grade || '',
+                difficulty: savedStudent.difficulty || '',
+                score: score,
+                total: totalQuestions,
+                answers: answers,
+                completedAt: new Date().toISOString()
+            };
+
+            localStorage.setItem('bioqadam_test_result', JSON.stringify(resultData));
+
+            resultSection.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        resetBtn.addEventListener('click', function () {
+            quizForm.reset();
+            quizError.classList.add('hidden');
+            resultSection.classList.add('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        loadStudentInfo();
+    </script>
 </body>
 </html>
