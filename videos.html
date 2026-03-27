@@ -7,7 +7,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <style>body { font-family: 'Montserrat', sans-serif; }</style>
+    <style>
+        body { font-family: 'Montserrat', sans-serif; }
+    </style>
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
 
@@ -23,75 +25,295 @@
     </header>
 
     <main class="flex-grow container mx-auto px-6 py-10">
-        <div class="bg-white p-6 rounded-2xl shadow-sm mb-10 flex flex-col md:flex-row gap-4 items-center justify-between border-t-4 border-purple-500">
-            <div class="flex gap-4 w-full md:w-auto">
-                <select class="border border-slate-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-purple-500 w-full md:w-48">
-                    <option>Барлық сыныптар</option>
-                    <option>7-сынып</option>
-                    <option>8-сынып</option>
-                    <option>9-сынып</option>
-                    <option>10-сынып</option>
-                    <option>11-сынып</option>
+        <section class="bg-white p-6 rounded-2xl shadow-sm mb-8 border-t-4 border-purple-500">
+            <div class="flex flex-col lg:flex-row gap-4 lg:items-center lg:justify-between">
+                <div>
+                    <h1 class="text-3xl font-extrabold text-slate-800 mb-2">ИИ Бейнесабақтар</h1>
+                    <p id="student-summary" class="text-slate-500">Ұсынылған видеоларды қарап, тақырыптарды тереңірек түсініңіз.</p>
+                </div>
+                <a href="tests.html" class="inline-flex items-center gap-2 bg-purple-100 text-purple-700 px-5 py-3 rounded-xl font-bold hover:bg-purple-200 transition">
+                    <i class="fa-solid fa-list-check"></i> Тестке оралу
+                </a>
+            </div>
+        </section>
+
+        <section class="bg-white p-6 rounded-2xl shadow-sm mb-10 flex flex-col md:flex-row gap-4 items-center justify-between border border-slate-200">
+            <div class="flex flex-col md:flex-row gap-4 w-full md:w-auto">
+                <select id="grade-filter" class="border border-slate-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-purple-500 w-full md:w-48">
+                    <option value="all">Барлық сыныптар</option>
+                    <option value="7">7-сынып</option>
+                    <option value="8">8-сынып</option>
+                    <option value="9">9-сынып</option>
+                    <option value="10">10-сынып</option>
+                    <option value="11">11-сынып</option>
                 </select>
-                <select class="border border-slate-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-purple-500 w-full md:w-48">
-                    <option>Барлық тақырыптар</option>
-                    <option>Жасуша</option>
-                    <option>Анатомия</option>
-                    <option>Генетика</option>
+
+                <select id="topic-filter" class="border border-slate-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-purple-500 w-full md:w-48">
+                    <option value="all">Барлық тақырыптар</option>
+                    <option value="Жасуша">Жасуша</option>
+                    <option value="Анатомия">Анатомия</option>
+                    <option value="Генетика">Генетика</option>
+                    <option value="Ботаника">Ботаника</option>
+                    <option value="Физиология">Физиология</option>
                 </select>
             </div>
-            <div class="relative w-full md:w-64">
-                <input type="text" placeholder="Видео іздеу..." class="w-full border border-slate-300 rounded-lg p-3 pl-10 focus:outline-none focus:ring-2 focus:ring-purple-500">
+
+            <div class="relative w-full md:w-72">
+                <input id="search-input" type="text" placeholder="Видео іздеу..." class="w-full border border-slate-300 rounded-lg p-3 pl-10 focus:outline-none focus:ring-2 focus:ring-purple-500">
                 <i class="fa-solid fa-search absolute left-3 top-3.5 text-slate-400"></i>
             </div>
-        </div>
+        </section>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow cursor-pointer group">
-                <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=800&auto=format&fit=crop" alt="Жасуша" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
-                    <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                        <i class="fa-solid fa-play text-4xl text-white"></i>
-                    </div>
-                    <span class="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">12:45</span>
-                </div>
-                <div class="p-5">
-                    <span class="text-xs font-bold text-purple-600 uppercase tracking-wider mb-2 block">8-сынып • Жасуша</span>
-                    <h3 class="text-lg font-bold text-slate-800 mb-2">Жасушаның құрылысы мен қызметі (3D анимация)</h3>
-                    <p class="text-sm text-slate-500">Митохондрия, ядро және рибосомалар қалай жұмыс істейді? ИИ түсіндіреді.</p>
-                </div>
-            </div>
+        <section id="recommend-box" class="hidden bg-purple-50 border border-purple-200 rounded-2xl p-5 mb-8">
+            <h2 class="text-lg font-bold text-purple-800 mb-2">
+                <i class="fa-solid fa-sparkles mr-2"></i> Жеке ұсыныс
+            </h2>
+            <p id="recommend-text" class="text-purple-700"></p>
+        </section>
 
-            <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow cursor-pointer group">
-                <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1628595351029-c2bf17511435?q=80&w=800&auto=format&fit=crop" alt="ДНҚ" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
-                    <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                        <i class="fa-solid fa-play text-4xl text-white"></i>
-                    </div>
-                    <span class="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">08:20</span>
-                </div>
-                <div class="p-5">
-                    <span class="text-xs font-bold text-purple-600 uppercase tracking-wider mb-2 block">10-сынып • Генетика</span>
-                    <h3 class="text-lg font-bold text-slate-800 mb-2">ДНҚ репликациясы: Өте қарапайым тілмен</h3>
-                    <p class="text-sm text-slate-500">Генетикалық ақпарат қалай көшіріледі? Ферменттердің рөлін қарастырамыз.</p>
-                </div>
+        <section id="videos-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></section>
+
+        <div id="empty-state" class="hidden bg-white rounded-2xl border border-slate-200 shadow-sm p-10 text-center mt-8">
+            <div class="text-5xl text-slate-300 mb-4">
+                <i class="fa-solid fa-video-slash"></i>
             </div>
-            
-            <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow cursor-pointer group">
-                <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1550828520-4cb496926fc9?q=80&w=800&auto=format&fit=crop" alt="Анатомия" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
-                    <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                        <i class="fa-solid fa-play text-4xl text-white"></i>
-                    </div>
-                    <span class="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">15:10</span>
-                </div>
-                <div class="p-5">
-                    <span class="text-xs font-bold text-purple-600 uppercase tracking-wider mb-2 block">9-сынып • Анатомия</span>
-                    <h3 class="text-lg font-bold text-slate-800 mb-2">Жүрек-қан тамырлар жүйесі</h3>
-                    <p class="text-sm text-slate-500">Қан айналым шеңберлері бойынша виртуалды саяхат.</p>
-                </div>
-            </div>
+            <h3 class="text-2xl font-bold text-slate-700 mb-2">Ештеңе табылмады</h3>
+            <p class="text-slate-500">Сүзгілерді немесе іздеу сөзін өзгертіп көріңіз.</p>
         </div>
     </main>
+
+    <div id="video-modal" class="hidden fixed inset-0 bg-black/70 z-[100] items-center justify-center p-4">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-3xl overflow-hidden">
+            <div class="flex items-center justify-between px-6 py-4 border-b border-slate-200">
+                <h3 id="modal-title" class="text-xl font-extrabold text-slate-800">Видео атауы</h3>
+                <button id="close-modal" class="text-slate-500 hover:text-slate-800 text-2xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="p-6">
+                <div class="aspect-video rounded-2xl overflow-hidden bg-slate-900 flex items-center justify-center mb-5">
+                    <iframe
+                        id="modal-iframe"
+                        class="w-full h-full"
+                        src=""
+                        title="BioQadam video"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+
+                <div class="space-y-3">
+                    <p id="modal-meta" class="text-sm font-bold text-purple-600 uppercase tracking-wider"></p>
+                    <p id="modal-desc" class="text-slate-600"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const videos = [
+            {
+                id: 1,
+                title: "Жасушаның құрылысы мен қызметі (3D анимация)",
+                description: "Митохондрия, ядро және рибосомалар қалай жұмыс істейді? ИИ түсіндіреді.",
+                grade: "8",
+                topic: "Жасуша",
+                duration: "12:45",
+                image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=800&auto=format&fit=crop",
+                embed: "https://www.youtube.com/embed/URUJD5NEXC8"
+            },
+            {
+                id: 2,
+                title: "ДНҚ репликациясы: Өте қарапайым тілмен",
+                description: "Генетикалық ақпарат қалай көшіріледі? Ферменттердің рөлін қарастырамыз.",
+                grade: "10",
+                topic: "Генетика",
+                duration: "08:20",
+                image: "https://images.unsplash.com/photo-1628595351029-c2bf17511435?q=80&w=800&auto=format&fit=crop",
+                embed: "https://www.youtube.com/embed/8kK2zwjRV0M"
+            },
+            {
+                id: 3,
+                title: "Жүрек-қан тамырлар жүйесі",
+                description: "Қан айналым шеңберлері бойынша виртуалды саяхат.",
+                grade: "9",
+                topic: "Анатомия",
+                duration: "15:10",
+                image: "https://images.unsplash.com/photo-1550828520-4cb496926fc9?q=80&w=800&auto=format&fit=crop",
+                embed: "https://www.youtube.com/embed/GlnFMS5d2eI"
+            },
+            {
+                id: 4,
+                title: "Өсімдіктің фотосинтез процесі",
+                description: "Күн сәулесі, хлорофилл және глюкоза түзілуі туралы түсінік.",
+                grade: "7",
+                topic: "Ботаника",
+                duration: "09:30",
+                image: "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?q=80&w=800&auto=format&fit=crop",
+                embed: "https://www.youtube.com/embed/sQK3Yr4Sc_k"
+            },
+            {
+                id: 5,
+                title: "Адамның тыныс алу жүйесі",
+                description: "Өкпе, бронх және газ алмасу процесін жеңіл тілмен түсіндіру.",
+                grade: "9",
+                topic: "Физиология",
+                duration: "11:05",
+                image: "https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=800&auto=format&fit=crop",
+                embed: "https://www.youtube.com/embed/h9oDTMXM7M8"
+            },
+            {
+                id: 6,
+                title: "Жасуша бөлінуі: митоз және мейоз",
+                description: "Екі процестің айырмашылығы мен маңызы.",
+                grade: "11",
+                topic: "Генетика",
+                duration: "13:40",
+                image: "https://images.unsplash.com/photo-1532187643603-ba119ca4109e?q=80&w=800&auto=format&fit=crop",
+                embed: "https://www.youtube.com/embed/DwAFZb8juMQ"
+            }
+        ];
+
+        const videosGrid = document.getElementById('videos-grid');
+        const gradeFilter = document.getElementById('grade-filter');
+        const topicFilter = document.getElementById('topic-filter');
+        const searchInput = document.getElementById('search-input');
+        const emptyState = document.getElementById('empty-state');
+
+        const modal = document.getElementById('video-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalMeta = document.getElementById('modal-meta');
+        const modalDesc = document.getElementById('modal-desc');
+        const modalIframe = document.getElementById('modal-iframe');
+        const closeModalBtn = document.getElementById('close-modal');
+
+        const studentSummary = document.getElementById('student-summary');
+        const recommendBox = document.getElementById('recommend-box');
+        const recommendText = document.getElementById('recommend-text');
+
+        function loadStudentData() {
+            const studentRaw = localStorage.getItem('bioqadam_student');
+            const resultRaw = localStorage.getItem('bioqadam_test_result');
+
+            if (studentRaw) {
+                try {
+                    const student = JSON.parse(studentRaw);
+                    studentSummary.textContent = `${student.name || 'Оқушы'}, сіз үшін бейнесабақтар ұсынылды. Сынып: ${student.grade || '-'}, деңгей: ${student.difficulty || '-'}.`;
+                } catch (error) {
+                    studentSummary.textContent = 'Ұсынылған видеоларды қарап, тақырыптарды тереңірек түсініңіз.';
+                }
+            }
+
+            if (resultRaw) {
+                try {
+                    const result = JSON.parse(resultRaw);
+                    recommendBox.classList.remove('hidden');
+
+                    if (result.score >= 4) {
+                        recommendText.textContent = 'Сіздің нәтижеңіз жақсы. Енді күрделірек тақырыптар мен тереңдетілген видеоларды қарауға болады.';
+                    } else if (result.score >= 2) {
+                        recommendText.textContent = 'Сізге негізгі тақырыптарды қайталау ұсынылады. Алдымен жасуша, анатомия және физиология бойынша видеоларды қарап шығыңыз.';
+                    } else {
+                        recommendText.textContent = 'Базалық түсініктерден бастау ұсынылады. Қарапайым және қысқа видеоларды таңдап, кейін тестті қайта өтіңіз.';
+                    }
+                } catch (error) {
+                    recommendBox.classList.add('hidden');
+                }
+            }
+        }
+
+        function createVideoCard(video) {
+            return `
+                <div class="video-card bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow cursor-pointer group"
+                     data-grade="${video.grade}"
+                     data-topic="${video.topic}"
+                     data-title="${video.title.toLowerCase()}"
+                     data-description="${video.description.toLowerCase()}"
+                     data-id="${video.id}">
+                    <div class="relative">
+                        <img src="${video.image}" alt="${video.title}" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <i class="fa-solid fa-play text-4xl text-white"></i>
+                        </div>
+                        <span class="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">${video.duration}</span>
+                    </div>
+                    <div class="p-5">
+                        <span class="text-xs font-bold text-purple-600 uppercase tracking-wider mb-2 block">${video.grade}-сынып • ${video.topic}</span>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2">${video.title}</h3>
+                        <p class="text-sm text-slate-500">${video.description}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderVideos(list) {
+            videosGrid.innerHTML = list.map(createVideoCard).join('');
+
+            const cards = document.querySelectorAll('.video-card');
+            cards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const id = Number(card.dataset.id);
+                    const video = videos.find(v => v.id === id);
+                    if (!video) return;
+
+                    modalTitle.textContent = video.title;
+                    modalMeta.textContent = `${video.grade}-сынып • ${video.topic} • ${video.duration}`;
+                    modalDesc.textContent = video.description;
+                    modalIframe.src = video.embed;
+                    modal.classList.remove('hidden');
+                    modal.classList.add('flex');
+                    document.body.classList.add('overflow-hidden');
+                });
+            });
+
+            emptyState.classList.toggle('hidden', list.length !== 0);
+        }
+
+        function filterVideos() {
+            const selectedGrade = gradeFilter.value;
+            const selectedTopic = topicFilter.value;
+            const searchValue = searchInput.value.trim().toLowerCase();
+
+            const filtered = videos.filter(video => {
+                const matchGrade = selectedGrade === 'all' || video.grade === selectedGrade;
+                const matchTopic = selectedTopic === 'all' || video.topic === selectedTopic;
+                const matchSearch =
+                    video.title.toLowerCase().includes(searchValue) ||
+                    video.description.toLowerCase().includes(searchValue);
+
+                return matchGrade && matchTopic && matchSearch;
+            });
+
+            renderVideos(filtered);
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            modalIframe.src = '';
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        gradeFilter.addEventListener('change', filterVideos);
+        topicFilter.addEventListener('change', filterVideos);
+        searchInput.addEventListener('input', filterVideos);
+        closeModalBtn.addEventListener('click', closeModal);
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        loadStudentData();
+        renderVideos(videos);
+    </script>
 </body>
 </html>
