@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
+
     <script>
         tailwind.config = {
             theme: {
@@ -21,6 +21,7 @@
                             100: '#d1fae5',
                             500: '#10b981',
                             600: '#059669',
+                            700: '#047857',
                             800: '#065f46',
                             900: '#064e3b',
                         }
@@ -29,13 +30,21 @@
             }
         }
     </script>
+
     <style>
         html { scroll-behavior: smooth; }
+
         .hero-bg {
             background-image: linear-gradient(rgba(6, 78, 59, 0.7), rgba(6, 78, 59, 0.8)), url('https://images.unsplash.com/photo-1530213786676-41224f8d29b1?q=80&w=2000&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+        }
+
+        @media (max-width: 768px) {
+            .hero-bg {
+                background-attachment: scroll;
+            }
         }
     </style>
 </head>
@@ -46,10 +55,11 @@
             <a href="index.html" class="text-2xl font-extrabold text-bio-800 flex items-center gap-2">
                 <i class="fa-solid fa-leaf text-bio-500"></i> BioQadam <span class="text-bio-500 text-sm align-top">AI</span>
             </a>
-            
+
             <nav class="hidden md:flex gap-8 font-semibold text-slate-600">
                 <a href="#features" class="hover:text-bio-600 transition" data-i18n="nav_features">Мүмкіндіктер</a>
                 <a href="#how-it-works" class="hover:text-bio-600 transition" data-i18n="nav_how_it_works">Қалай жұмыс істейді?</a>
+                <a href="#contacts" class="hover:text-bio-600 transition" data-i18n="nav_contacts">Байланыс</a>
             </nav>
 
             <div class="flex items-center gap-4">
@@ -58,34 +68,48 @@
                     <option value="ru">РУС</option>
                     <option value="en">ENG</option>
                 </select>
-                
+
                 <div class="hidden md:flex gap-4 ml-4">
                     <a href="expedition.html" class="bg-bio-100 text-bio-800 px-5 py-2 rounded-full font-bold hover:bg-bio-200 transition" data-i18n="nav_student">Оқушы</a>
                     <a href="teacher.html" class="bg-bio-600 text-white px-5 py-2 rounded-full font-bold hover:bg-bio-700 transition shadow-lg shadow-bio-600/30" data-i18n="nav_teacher">Мұғалім</a>
                 </div>
+
+                <button id="menu-btn" class="md:hidden text-2xl text-bio-800">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 bg-white border-t border-slate-200">
+            <div class="flex flex-col gap-3 pt-4 font-semibold text-slate-700">
+                <a href="#features" class="hover:text-bio-600 transition" data-i18n="nav_features">Мүмкіндіктер</a>
+                <a href="#how-it-works" class="hover:text-bio-600 transition" data-i18n="nav_how_it_works">Қалай жұмыс істейді?</a>
+                <a href="#contacts" class="hover:text-bio-600 transition" data-i18n="nav_contacts">Байланыс</a>
+                <a href="expedition.html" class="text-bio-700" data-i18n="nav_student">Оқушы</a>
+                <a href="teacher.html" class="text-bio-700" data-i18n="nav_teacher">Мұғалім</a>
             </div>
         </div>
     </header>
 
     <main class="flex-grow">
-        <section class="hero-bg h-screen flex items-center justify-center text-center px-4 pt-20">
+        <section class="hero-bg min-h-screen flex items-center justify-center text-center px-4 pt-24">
             <div class="max-w-5xl">
                 <div class="inline-block bg-bio-500/20 text-bio-100 border border-bio-400/30 backdrop-blur-sm px-4 py-1 rounded-full text-sm font-bold tracking-wide mb-6 uppercase" data-i18n="hero_badge">
                     Биологияны жаңаша оқы
                 </div>
                 <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight" data-i18n="hero_title">
-                    Қош келдіңіз, <span class="text-bio-400">биолог!</span>
+                    Қош келдіңіз, <span class="text-bio-400">жас биолог!</span>
                 </h1>
                 <p class="text-xl md:text-2xl text-slate-200 mb-10 max-w-3xl mx-auto font-light" data-i18n="hero_desc">
                     BioQadam платформасында биологияны қызықты жолмен зерттеуге дайын болыңыз. AI тапсырмаларымен білімді тәжірибеге айналдырыңыз, видеосабақтар арқылы тақырыптарды терең түсініңіз және әр қадамыңызды BioQadam-мен бірге жасаңыз!
                 </p>
-                
+
                 <div class="flex flex-col sm:flex-row justify-center gap-4 flex-wrap">
                     <a href="expedition.html" class="group relative flex flex-col items-center justify-center px-8 py-3 text-white bg-bio-600 rounded-2xl overflow-hidden transition-all hover:bg-bio-500 hover:scale-105 shadow-xl shadow-bio-900/50 flex-1 min-w-[250px] max-w-[300px]">
                         <span class="text-xl font-bold"><i class="fa-solid fa-compass mr-2 group-hover:animate-spin"></i> <span data-i18n="btn_step">Қадам басу</span></span>
                         <span class="text-sm text-bio-100 mt-1 font-medium" data-i18n="btn_step_sub">оқушыларға арналған</span>
                     </a>
-                    
+
                     <a href="teacher.html" class="group relative flex flex-col items-center justify-center px-8 py-3 text-bio-900 bg-white rounded-2xl overflow-hidden transition-all hover:bg-slate-100 hover:scale-105 shadow-xl flex-1 min-w-[250px] max-w-[300px]">
                         <span class="text-xl font-bold"><i class="fa-solid fa-chalkboard-user mr-2"></i> <span data-i18n="btn_build">Қадамды құрастыру</span></span>
                         <span class="text-sm text-slate-500 mt-1 font-medium" data-i18n="btn_build_sub">мұғалімдерге арналған</span>
@@ -105,7 +129,7 @@
                     <h2 class="text-3xl md:text-4xl font-extrabold text-slate-800 mb-4" data-i18n="feat_title">BioQadam мүмкіндіктері</h2>
                     <p class="text-lg text-slate-500 max-w-2xl mx-auto" data-i18n="feat_desc">BioQadam – тек сұраққа жауап беретін чат емес. Мұнда сіздерге биологияны терең түсіндіретін интерактивті тапсырмалар, видеосабақтар және AI құралдары ұсынылады.</p>
                 </div>
-                
+
                 <div class="grid md:grid-cols-3 gap-10">
                     <a href="expedition.html" class="block p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group">
                         <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-inner group-hover:bg-blue-600 group-hover:text-white transition-colors">
@@ -140,6 +164,35 @@
             </div>
         </section>
 
+        <section id="how-it-works" class="py-24 bg-slate-100">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-slate-800 mb-4" data-i18n="how_title">Қалай жұмыс істейді?</h2>
+                    <p class="text-lg text-slate-500 max-w-2xl mx-auto" data-i18n="how_desc">BioQadam көмегімен оқу процесі қарапайым, түсінікті және қызықты болады.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 text-center">
+                        <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-bio-100 text-bio-700 flex items-center justify-center text-2xl font-bold">1</div>
+                        <h3 class="text-xl font-bold mb-3" data-i18n="how_1_title">Тақырыпты таңда</h3>
+                        <p class="text-slate-600" data-i18n="how_1_desc">Саған қызық биология бөлімін ашып, жаңа материалмен таныс.</p>
+                    </div>
+
+                    <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 text-center">
+                        <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-bio-100 text-bio-700 flex items-center justify-center text-2xl font-bold">2</div>
+                        <h3 class="text-xl font-bold mb-3" data-i18n="how_2_title">Тапсырма орында</h3>
+                        <p class="text-slate-600" data-i18n="how_2_desc">Интерактивті тапсырмалар мен тесттер арқылы біліміңді тексер.</p>
+                    </div>
+
+                    <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 text-center">
+                        <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-bio-100 text-bio-700 flex items-center justify-center text-2xl font-bold">3</div>
+                        <h3 class="text-xl font-bold mb-3" data-i18n="how_3_title">AI кері байланыс ал</h3>
+                        <p class="text-slate-600" data-i18n="how_3_desc">Жүйе сенің жауаптарыңды талдап, қай бағытта даму керегін көрсетеді.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="py-20 bg-bio-900 relative overflow-hidden">
             <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
             <div class="container mx-auto px-6 relative z-10 text-center">
@@ -154,7 +207,6 @@
     <footer id="contacts" class="bg-[#060A14] py-14 border-t border-slate-800/50">
         <div class="container mx-auto px-6">
             <div class="grid md:grid-cols-12 gap-10 mb-12 items-start">
-                
                 <div class="md:col-span-4">
                     <a href="index.html" class="text-2xl font-bold text-white flex items-center gap-3 mb-5">
                         <i class="fa-solid fa-leaf text-bio-400"></i> BioQadam AI
@@ -163,9 +215,9 @@
                         Жасанды интеллект күшімен биологияны үйренудің жаңа форматы. Білімді бағалау емес, түсіндіру маңызды.
                     </p>
                 </div>
-                
+
                 <div class="md:col-span-3">
-                    <h4 class="text-white font-bold mb-5 uppercase tracking-wider text-sm" data-i18n="footer_platform">Платформа</h4>
+                    <h4 class="text-white font-bold mb-5 uppercase tracking-wider text-sm" data-i18n="footer_platform">ПЛАТФОРМА</h4>
                     <ul class="space-y-4 text-[15px] text-slate-400 font-medium">
                         <li><a href="expedition.html" class="hover:text-bio-400 transition" data-i18n="footer_link_1">Оқушыларға (Қадам)</a></li>
                         <li><a href="teacher.html" class="hover:text-bio-400 transition" data-i18n="footer_link_2">Мұғалімдерге</a></li>
@@ -191,9 +243,8 @@
                         </a>
                     </div>
                 </div>
-
             </div>
-            
+
             <div class="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center text-sm text-slate-500 font-medium">
                 <p data-i18n="footer_copy">&copy; 2026 BioQadam AI. Барлық құқықтар қорғалған.</p>
                 <p class="mt-4 md:mt-0">Designed with <i class="fa-solid fa-heart text-red-500 mx-1"></i> for Biology.</p>
@@ -206,6 +257,7 @@
             kk: {
                 nav_features: "Мүмкіндіктер",
                 nav_how_it_works: "Қалай жұмыс істейді?",
+                nav_contacts: "Байланыс",
                 nav_student: "Оқушы",
                 nav_teacher: "Мұғалім",
                 hero_badge: "Биологияны жаңаша оқы",
@@ -225,6 +277,14 @@
                 feat_2_desc: "Күрделі биологиялық процестерді визуалды түрде түсінуге арналған интерактивті видеосабақтар. AI әр оқушының деңгейіне қарай бейнематериал ұсынады.",
                 feat_3_title: "Тест сұрақтары",
                 feat_3_desc: "Алған біліміңді бекітуге арналған интеллектуалды тесттер. Жүйе сенің әлсіз тұстарыңды анықтап, соған сәйкес жеке сұрақтар жинағын құрастырады.",
+                how_title: "Қалай жұмыс істейді?",
+                how_desc: "BioQadam көмегімен оқу процесі қарапайым, түсінікті және қызықты болады.",
+                how_1_title: "Тақырыпты таңда",
+                how_1_desc: "Саған қызық биология бөлімін ашып, жаңа материалмен таныс.",
+                how_2_title: "Тапсырма орында",
+                how_2_desc: "Интерактивті тапсырмалар мен тесттер арқылы біліміңді тексер.",
+                how_3_title: "AI кері байланыс ал",
+                how_3_desc: "Жүйе сенің жауаптарыңды талдап, қай бағытта даму керегін көрсетеді.",
                 cta_title: "Өз қадамыңызды бастауға дайынсыз ба?",
                 cta_btn: "Қадамды бастау 🚀",
                 footer_desc_full: "Жасанды интеллект күшімен биологияны үйренудің жаңа форматы. Білімді бағалау емес, түсіндіру маңызды.",
@@ -239,6 +299,7 @@
             ru: {
                 nav_features: "Возможности",
                 nav_how_it_works: "Как это работает?",
+                nav_contacts: "Контакты",
                 nav_student: "Ученик",
                 nav_teacher: "Учитель",
                 hero_badge: "Изучай биологию по-новому",
@@ -258,6 +319,14 @@
                 feat_2_desc: "Интерактивные видеоуроки для визуального понимания сложных процессов. ИИ подбирает материал под уровень ученика.",
                 feat_3_title: "Тесты",
                 feat_3_desc: "Умные тесты для закрепления знаний. Система выявляет ваши слабые места и составляет индивидуальные вопросы.",
+                how_title: "Как это работает?",
+                how_desc: "С BioQadam процесс обучения становится простым, понятным и интересным.",
+                how_1_title: "Выберите тему",
+                how_1_desc: "Откройте интересующий раздел биологии и начните изучение материала.",
+                how_2_title: "Выполните задания",
+                how_2_desc: "Проверьте свои знания с помощью интерактивных заданий и тестов.",
+                how_3_title: "Получите AI-обратную связь",
+                how_3_desc: "Система анализирует ваши ответы и показывает, в каком направлении развиваться.",
                 cta_title: "Готовы сделать свой шаг?",
                 cta_btn: "Начать шаг 🚀",
                 footer_desc_full: "Новый формат изучения биологии с ИИ. Главное не оценка, а понимание.",
@@ -272,6 +341,7 @@
             en: {
                 nav_features: "Features",
                 nav_how_it_works: "How it works?",
+                nav_contacts: "Contacts",
                 nav_student: "Student",
                 nav_teacher: "Teacher",
                 hero_badge: "Learn biology in a new way",
@@ -291,6 +361,14 @@
                 feat_2_desc: "Interactive video lessons to visually understand complex processes. AI recommends materials based on the student's level.",
                 feat_3_title: "Quizzes",
                 feat_3_desc: "Smart tests to consolidate your knowledge. The system identifies your weak points and compiles individual questions.",
+                how_title: "How does it work?",
+                how_desc: "With BioQadam, the learning process becomes simple, clear, and engaging.",
+                how_1_title: "Choose a topic",
+                how_1_desc: "Open a biology section that interests you and start learning.",
+                how_2_title: "Complete tasks",
+                how_2_desc: "Test your knowledge through interactive assignments and quizzes.",
+                how_3_title: "Get AI feedback",
+                how_3_desc: "The system analyzes your answers and shows where to improve.",
                 cta_title: "Ready to take your step?",
                 cta_btn: "Start Step 🚀",
                 footer_desc_full: "A new format for learning biology with AI. Understanding matters more than grading.",
@@ -305,21 +383,39 @@
         };
 
         const langSwitch = document.getElementById('lang-switch');
-        
-        langSwitch.addEventListener('change', (e) => {
-            const lang = e.target.value;
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function applyLanguage(lang) {
+            document.documentElement.lang = lang;
+            langSwitch.value = lang;
+
             document.querySelectorAll('[data-i18n]').forEach(element => {
                 const key = element.getAttribute('data-i18n');
-                if (translations[lang][key]) {
+                if (translations[lang] && translations[lang][key]) {
                     element.innerHTML = translations[lang][key];
                 }
             });
+
+            localStorage.setItem('site-lang', lang);
+        }
+
+        langSwitch.addEventListener('change', (e) => {
+            applyLanguage(e.target.value);
         });
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        const savedLang = localStorage.getItem('site-lang') || 'kk';
+        applyLanguage(savedLang);
     </script>
 </body>
 </html>
-
-
-
-
-
