@@ -3,147 +3,467 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ұстаз: Қадам құрастыру | BioQadam</title>
+    <title>BioQadam AI | Мұғалімге арналған бөлім</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        bio: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        body { font-family: 'Montserrat', sans-serif; }
-        .hidden-view { display: none !important; }
+        html { scroll-behavior: smooth; }
+
+        .teacher-bg {
+            background-image: linear-gradient(rgba(6, 95, 70, 0.85), rgba(15, 23, 42, 0.88)), url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2000&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        @media (max-width: 768px) {
+            .teacher-bg {
+                background-attachment: scroll;
+            }
+        }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+<body class="bg-slate-50 text-slate-800 font-sans antialiased flex flex-col min-h-screen">
 
-    <header class="bg-white shadow-sm py-4 sticky top-0 z-50">
-        <div class="container mx-auto px-6">
-            <a href="index.html" class="text-blue-600 font-bold hover:text-blue-700 transition">
-                <i class="fa-solid fa-arrow-left mr-2"></i> Басты бетке қайту
+    <header class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-extrabold text-bio-800 flex items-center gap-2">
+                <i class="fa-solid fa-leaf text-bio-500"></i> BioQadam <span class="text-bio-500 text-sm align-top">AI</span>
             </a>
+
+            <nav class="hidden md:flex gap-8 font-semibold text-slate-600">
+                <a href="#tools" class="hover:text-bio-600 transition" data-i18n="nav_tools">Құралдар</a>
+                <a href="#plans" class="hover:text-bio-600 transition" data-i18n="nav_plans">Сабақ жоспарлары</a>
+                <a href="#contacts" class="hover:text-bio-600 transition" data-i18n="nav_contacts">Байланыс</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <select id="lang-switch" class="bg-transparent text-slate-700 font-bold focus:outline-none cursor-pointer border-b-2 border-bio-500 pb-1">
+                    <option value="kk">ҚАЗ</option>
+                    <option value="ru">РУС</option>
+                    <option value="en">ENG</option>
+                </select>
+
+                <div class="hidden md:flex gap-4 ml-4">
+                    <a href="expedition.html" class="bg-bio-100 text-bio-800 px-5 py-2 rounded-full font-bold hover:bg-bio-200 transition" data-i18n="nav_student">Оқушы</a>
+                    <a href="teacher.html" class="bg-bio-600 text-white px-5 py-2 rounded-full font-bold hover:bg-bio-700 transition shadow-lg shadow-bio-600/30" data-i18n="nav_teacher">Мұғалім</a>
+                </div>
+
+                <button id="menu-btn" class="md:hidden text-2xl text-bio-800">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 bg-white border-t border-slate-200">
+            <div class="flex flex-col gap-3 pt-4 font-semibold text-slate-700">
+                <a href="#tools" data-i18n="nav_tools">Құралдар</a>
+                <a href="#plans" data-i18n="nav_plans">Сабақ жоспарлары</a>
+                <a href="#contacts" data-i18n="nav_contacts">Байланыс</a>
+                <a href="expedition.html" class="text-bio-700" data-i18n="nav_student">Оқушы</a>
+                <a href="teacher.html" class="text-bio-700" data-i18n="nav_teacher">Мұғалім</a>
+            </div>
         </div>
     </header>
 
-    <main class="flex-grow flex items-center justify-center p-6">
-        <div class="bg-white p-8 rounded-3xl shadow-xl max-w-lg w-full border-t-4 border-blue-500">
-            <div class="text-center mb-8">
-                <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-2xl mx-auto mb-4">
-                    <i class="fa-solid fa-chalkboard-user"></i>
+    <main class="flex-grow">
+        <section class="teacher-bg min-h-[90vh] flex items-center justify-center text-center px-4 pt-24">
+            <div class="max-w-5xl">
+                <div class="inline-block bg-white/10 text-bio-100 border border-white/20 backdrop-blur-sm px-4 py-1 rounded-full text-sm font-bold tracking-wide mb-6 uppercase" data-i18n="hero_badge">
+                    Мұғалімдерге арналған AI көмекші
                 </div>
-                <h2 class="text-3xl font-bold text-slate-800">Сабақ құрастыру</h2>
-                <p class="text-slate-500 mt-2">AI арқылы оқушыларыңызға арнайы тапсырмалар жасаңыз.</p>
+
+                <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight" data-i18n="hero_title">
+                    Сабақты <span class="text-bio-400">жылдам құрастырыңыз</span>
+                </h1>
+
+                <p class="text-xl md:text-2xl text-slate-200 mb-10 max-w-3xl mx-auto font-light" data-i18n="hero_desc">
+                    BioQadam AI мұғалімдерге сабақ жоспарын құруға, тапсырма дайындауға, тест жасауға және оқушыға бейімделген материалдар ұсынуға көмектеседі.
+                </p>
+
+                <div class="flex flex-col sm:flex-row justify-center gap-4 flex-wrap">
+                    <a href="#tools" class="bg-bio-600 text-white px-8 py-4 rounded-2xl font-bold hover:bg-bio-500 transition shadow-xl" data-i18n="hero_btn_1">
+                        Құралдарды қарау
+                    </a>
+                    <a href="ultra-generator.html" class="bg-white text-bio-900 px-8 py-4 rounded-2xl font-bold hover:bg-slate-100 transition shadow-xl" data-i18n="hero_btn_2">
+                        Ультра генератор ашу
+                    </a>
+                </div>
             </div>
+        </section>
 
-            <form id="builder-form" class="space-y-6">
-                <div>
-                    <label class="block text-sm font-bold text-slate-700 mb-2">Оқытатын сынып:</label>
-                    <select class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-50">
-                        <option>7-сынып</option>
-                        <option>8-сынып</option>
-                        <option>9-сынып</option>
-                        <option>10-сынып (ЖМБ)</option>
-                        <option>11-сынып (ЖМБ)</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label class="block text-sm font-bold text-slate-700 mb-2">Қай сабақ тақырыбын немесе оқу мақсатын қамтимыз?</label>
-                    <input type="text" id="topic-input" placeholder="Мысалы: Фотосинтез фазалары..." class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-50">
-                </div>
-
-                <div>
-                    <label class="block text-sm font-bold text-slate-700 mb-2">Генерация форматы:</label>
-                    <select class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-50">
-                        <option>Сюжеттік кейс (Детектив)</option>
-                        <option>Далалық зерттеу (Қадам)</option>
-                        <option>Стандартты тест сұрақтары</option>
-                    </select>
-                </div>
-
-                <button type="button" id="generate-btn" onclick="generateLesson()" class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl hover:bg-blue-500 transition shadow-lg shadow-blue-500/30 flex items-center justify-center">
-                    <i class="fa-solid fa-wand-magic-sparkles mr-2"></i> ИИ арқылы генерациялау
-                </button>
-            </form>
-
-            <div id="result-area" class="hidden-view mt-8 pt-6 border-t border-slate-200 animate-fade-in">
-                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5 mb-4 relative">
-                    <span class="absolute -top-3 left-4 bg-blue-100 text-blue-800 text-xs font-bold px-2 py-1 rounded">ИИ Нәтижесі:</span>
-                    <h4 class="font-bold text-slate-800 mb-2">Сабақ дайын!</h4>
-                    <p class="text-sm text-slate-600 mb-3">
-                        Кейс: "Жасыл жапырақ ішіндегі химиялық зауыт". Оқушылар фотолизге қатысатын ферменттерді анықтауы керек.
+        <section id="tools" class="py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-slate-800 mb-4" data-i18n="tools_title">Мұғалімге арналған құралдар</h2>
+                    <p class="text-lg text-slate-500 max-w-2xl mx-auto" data-i18n="tools_desc">
+                        Уақытты үнемдеп, сабақты заманауи форматта өткізуге арналған негізгі мүмкіндіктер.
                     </p>
-                    <p class="text-xs text-slate-400 font-medium">Станция саны: 3 | Деңгей: Орташа</p>
                 </div>
 
-                <label class="block text-sm font-bold text-slate-700 mb-2">Оқушыларға жіберетін сілтеме:</label>
-                <div class="flex items-center gap-2">
-                    <input type="text" id="lesson-link" readonly value="https://bioqadam.kz/task/A7B9K2" class="w-full bg-slate-100 border border-slate-300 rounded-xl p-3 text-slate-600 font-mono text-sm focus:outline-none">
-                    <button id="copy-btn" onclick="copyLink()" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-xl transition font-bold flex items-center shrink-0">
-                        <i class="fa-regular fa-copy"></i>
-                    </button>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-slate-50 rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-xl transition">
+                        <div class="w-16 h-16 bg-bio-100 text-bio-700 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-solid fa-file-lines"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3" data-i18n="tool_1_title">Сабақ жоспары</h3>
+                        <p class="text-slate-600" data-i18n="tool_1_desc">
+                            Тақырыпқа сай кіріспе, мақсат, тапсырма және қорытындысы бар жоспар құру.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-xl transition">
+                        <div class="w-16 h-16 bg-purple-100 text-purple-700 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3" data-i18n="tool_2_title">AI генерация</h3>
+                        <p class="text-slate-600" data-i18n="tool_2_desc">
+                            Бірнеше секунд ішінде тапсырма, сұрақтар және қысқа түсіндірме жасау.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-3xl p-8 border border-slate-100 shadow-sm hover:shadow-xl transition">
+                        <div class="w-16 h-16 bg-amber-100 text-amber-700 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3" data-i18n="tool_3_title">Оқушы прогресі</h3>
+                        <p class="text-slate-600" data-i18n="tool_3_desc">
+                            Әлсіз және күшті тұстарды көруге арналған демо-аналитика.
+                        </p>
+                    </div>
                 </div>
-                <p class="text-xs text-center text-slate-400 mt-3">Оқушылар осы сілтеме арқылы тікелей тапсырмаға кіреді.</p>
             </div>
-        </div>
+        </section>
+
+        <section id="plans" class="py-24 bg-slate-100">
+            <div class="container mx-auto px-6">
+                <div class="grid lg:grid-cols-2 gap-10 items-start">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-extrabold text-slate-800 mb-6" data-i18n="plans_title">Сабақ жоспарын тез құру</h2>
+                        <p class="text-lg text-slate-600 mb-8" data-i18n="plans_desc">
+                            Бұл форма әзірше демо-нұсқа. Бірақ пайдаланушы үшін толық жұмыс істейтіндей көрінеді.
+                        </p>
+
+                        <form id="lesson-form" class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200 space-y-5">
+                            <div>
+                                <label class="block font-semibold mb-2" data-i18n="form_topic">Тақырып</label>
+                                <input type="text" id="topic" class="w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-bio-500" placeholder="Мысалы: Фотосинтез">
+                            </div>
+
+                            <div>
+                                <label class="block font-semibold mb-2" data-i18n="form_grade">Сынып</label>
+                                <select id="grade" class="w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-bio-500">
+                                    <option>7 сынып</option>
+                                    <option>8 сынып</option>
+                                    <option>9 сынып</option>
+                                    <option>10 сынып</option>
+                                    <option>11 сынып</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block font-semibold mb-2" data-i18n="form_type">Сабақ форматы</label>
+                                <select id="lesson-type" class="w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-bio-500">
+                                    <option>Жаңа тақырып</option>
+                                    <option>Қайталау</option>
+                                    <option>Зертханалық жұмыс</option>
+                                    <option>Тест сабағы</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="w-full bg-bio-600 text-white py-3 rounded-xl font-bold hover:bg-bio-700 transition" data-i18n="form_btn">
+                                AI жоспар құру
+                            </button>
+                        </form>
+                    </div>
+
+                    <div>
+                        <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200 min-h-[420px]">
+                            <div class="flex items-center justify-between mb-6">
+                                <h3 class="text-2xl font-bold text-slate-800" data-i18n="result_title">Дайын сабақ құрылымы</h3>
+                                <span class="text-xs bg-bio-100 text-bio-800 px-3 py-1 rounded-full font-bold">DEMO</span>
+                            </div>
+
+                            <div id="result-box" class="text-slate-600 space-y-4">
+                                <p data-i18n="result_placeholder">
+                                    Тақырып енгізіп, “AI жоспар құру” батырмасын басыңыз. Мұнда дайын жоспар көрсетіледі.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 bg-bio-900">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6" data-i18n="cta_title">Сабақ дайындауды жеңілдетіңіз</h2>
+                <a href="ultra-generator.html" class="inline-block bg-amber-400 text-amber-900 px-10 py-4 rounded-full text-xl font-bold hover:bg-amber-300 transition-all" data-i18n="cta_btn">
+                    Ультра генераторға өту
+                </a>
+            </div>
+        </section>
     </main>
 
+    <footer id="contacts" class="bg-[#060A14] py-14 border-t border-slate-800/50">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-12 gap-10 mb-12 items-start">
+                <div class="md:col-span-4">
+                    <a href="index.html" class="text-2xl font-bold text-white flex items-center gap-3 mb-5">
+                        <i class="fa-solid fa-leaf text-bio-400"></i> BioQadam AI
+                    </a>
+                    <p class="text-[15px] text-slate-400 leading-relaxed max-w-xs font-medium" data-i18n="footer_desc_full">
+                        Жасанды интеллект күшімен биологияны үйренудің жаңа форматы. Білімді бағалау емес, түсіндіру маңызды.
+                    </p>
+                </div>
+
+                <div class="md:col-span-3">
+                    <h4 class="text-white font-bold mb-5 uppercase tracking-wider text-sm" data-i18n="footer_platform">ПЛАТФОРМА</h4>
+                    <ul class="space-y-4 text-[15px] text-slate-400 font-medium">
+                        <li><a href="index.html" class="hover:text-bio-400 transition">Home</a></li>
+                        <li><a href="expedition.html" class="hover:text-bio-400 transition" data-i18n="footer_link_1">Оқушыларға</a></li>
+                        <li><a href="videos.html" class="hover:text-bio-400 transition" data-i18n="footer_link_2">Бейнесабақтар</a></li>
+                        <li><a href="tests.html" class="hover:text-bio-400 transition" data-i18n="footer_link_3">Тесттер</a></li>
+                    </ul>
+                </div>
+
+                <div class="md:col-span-5 bg-[#10172A] p-7 rounded-2xl shadow-lg border border-slate-800/60">
+                    <h4 class="text-white font-bold mb-6 uppercase tracking-wider text-sm" data-i18n="footer_contact">Бізбен байланыс</h4>
+                    <div class="space-y-5">
+                        <a href="https://instagram.com/kubaydullinaaaaa" target="_blank" class="flex items-center gap-5 hover:opacity-80 transition">
+                            <div class="w-11 h-11 bg-slate-800/80 rounded-full flex items-center justify-center text-slate-300">
+                                <i class="fa-brands fa-instagram text-xl"></i>
+                            </div>
+                            <span class="font-medium text-[15px] text-slate-400">@kubaydullinaaaaa</span>
+                        </a>
+                        <a href="mailto:kubajdullina@inbox.ru" class="flex items-center gap-5 hover:opacity-80 transition">
+                            <div class="w-11 h-11 bg-slate-800/80 rounded-full flex items-center justify-center text-slate-300">
+                                <i class="fa-solid fa-envelope text-lg"></i>
+                            </div>
+                            <span class="font-medium text-[15px] text-slate-400">kubajdullina@inbox.ru</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center text-sm text-slate-500 font-medium">
+                <p data-i18n="footer_copy">&copy; 2026 BioQadam AI. Барлық құқықтар қорғалған.</p>
+                <p class="mt-4 md:mt-0">Designed with <i class="fa-solid fa-heart text-red-500 mx-1"></i> for Biology.</p>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        function generateLesson() {
-            const btn = document.getElementById('generate-btn');
-            const resultArea = document.getElementById('result-area');
-            const topicInput = document.getElementById('topic-input').value;
-
-            // Егер тақырып жазылмаса, ескерту жасау (міндетті емес, бірақ жақсы UX)
-            if(topicInput.trim() === '') {
-                alert('Өтінемін, сабақ тақырыбын жазыңыз!');
-                return;
+        const translations = {
+            kk: {
+                nav_tools: "Құралдар",
+                nav_plans: "Сабақ жоспарлары",
+                nav_contacts: "Байланыс",
+                nav_student: "Оқушы",
+                nav_teacher: "Мұғалім",
+                hero_badge: "Мұғалімдерге арналған AI көмекші",
+                hero_title: "Сабақты <span class='text-bio-400'>жылдам құрастырыңыз</span>",
+                hero_desc: "BioQadam AI мұғалімдерге сабақ жоспарын құруға, тапсырма дайындауға, тест жасауға және оқушыға бейімделген материалдар ұсынуға көмектеседі.",
+                hero_btn_1: "Құралдарды қарау",
+                hero_btn_2: "Ультра генератор ашу",
+                tools_title: "Мұғалімге арналған құралдар",
+                tools_desc: "Уақытты үнемдеп, сабақты заманауи форматта өткізуге арналған негізгі мүмкіндіктер.",
+                tool_1_title: "Сабақ жоспары",
+                tool_1_desc: "Тақырыпқа сай кіріспе, мақсат, тапсырма және қорытындысы бар жоспар құру.",
+                tool_2_title: "AI генерация",
+                tool_2_desc: "Бірнеше секунд ішінде тапсырма, сұрақтар және қысқа түсіндірме жасау.",
+                tool_3_title: "Оқушы прогресі",
+                tool_3_desc: "Әлсіз және күшті тұстарды көруге арналған демо-аналитика.",
+                plans_title: "Сабақ жоспарын тез құру",
+                plans_desc: "Бұл форма әзірше демо-нұсқа. Бірақ пайдаланушы үшін толық жұмыс істейтіндей көрінеді.",
+                form_topic: "Тақырып",
+                form_grade: "Сынып",
+                form_type: "Сабақ форматы",
+                form_btn: "AI жоспар құру",
+                result_title: "Дайын сабақ құрылымы",
+                result_placeholder: "Тақырып енгізіп, “AI жоспар құру” батырмасын басыңыз. Мұнда дайын жоспар көрсетіледі.",
+                cta_title: "Сабақ дайындауды жеңілдетіңіз",
+                cta_btn: "Ультра генераторға өту",
+                footer_desc_full: "Жасанды интеллект күшімен биологияны үйренудің жаңа форматы. Білімді бағалау емес, түсіндіру маңызды.",
+                footer_platform: "ПЛАТФОРМА",
+                footer_link_1: "Оқушыларға",
+                footer_link_2: "Бейнесабақтар",
+                footer_link_3: "Тесттер",
+                footer_contact: "БІЗБЕН БАЙЛАНЫС",
+                footer_copy: "© 2026 BioQadam AI. Барлық құқықтар қорғалған."
+            },
+            ru: {
+                nav_tools: "Инструменты",
+                nav_plans: "Планы уроков",
+                nav_contacts: "Контакты",
+                nav_student: "Ученик",
+                nav_teacher: "Учитель",
+                hero_badge: "AI-помощник для учителей",
+                hero_title: "Создавайте уроки <span class='text-bio-400'>быстро и удобно</span>",
+                hero_desc: "BioQadam AI помогает учителям составлять планы уроков, генерировать задания, делать тесты и подбирать материалы под ученика.",
+                hero_btn_1: "Посмотреть инструменты",
+                hero_btn_2: "Открыть ультра генератор",
+                tools_title: "Инструменты для учителя",
+                tools_desc: "Основные возможности для экономии времени и проведения современных уроков.",
+                tool_1_title: "План урока",
+                tool_1_desc: "Создание структуры урока: вступление, цели, задания и итог.",
+                tool_2_title: "AI генерация",
+                tool_2_desc: "Создание заданий, вопросов и объяснений за несколько секунд.",
+                tool_3_title: "Прогресс ученика",
+                tool_3_desc: "Демо-аналитика для просмотра сильных и слабых сторон.",
+                plans_title: "Быстрое создание плана урока",
+                plans_desc: "Форма пока демо, но для пользователя выглядит как рабочий инструмент.",
+                form_topic: "Тема",
+                form_grade: "Класс",
+                form_type: "Формат урока",
+                form_btn: "Создать AI-план",
+                result_title: "Готовая структура урока",
+                result_placeholder: "Введите тему и нажмите кнопку. Здесь появится готовый план урока.",
+                cta_title: "Сделайте подготовку к уроку проще",
+                cta_btn: "Перейти в ультра генератор",
+                footer_desc_full: "Новый формат изучения биологии с ИИ. Главное не оценка, а понимание.",
+                footer_platform: "ПЛАТФОРМА",
+                footer_link_1: "Ученикам",
+                footer_link_2: "Видеоуроки",
+                footer_link_3: "Тесты",
+                footer_contact: "СВЯЗЬ С НАМИ",
+                footer_copy: "© 2026 BioQadam AI. Все права защищены."
+            },
+            en: {
+                nav_tools: "Tools",
+                nav_plans: "Lesson Plans",
+                nav_contacts: "Contacts",
+                nav_student: "Student",
+                nav_teacher: "Teacher",
+                hero_badge: "AI assistant for teachers",
+                hero_title: "Build lessons <span class='text-bio-400'>fast and easily</span>",
+                hero_desc: "BioQadam AI helps teachers create lesson plans, generate tasks, build quizzes, and adapt content for students.",
+                hero_btn_1: "View tools",
+                hero_btn_2: "Open Ultra Generator",
+                tools_title: "Tools for teachers",
+                tools_desc: "Key features to save time and deliver modern lessons.",
+                tool_1_title: "Lesson Plan",
+                tool_1_desc: "Create a structured lesson with intro, goals, tasks, and summary.",
+                tool_2_title: "AI Generation",
+                tool_2_desc: "Generate activities, questions, and explanations in seconds.",
+                tool_3_title: "Student Progress",
+                tool_3_desc: "Demo analytics to view strengths and weak points.",
+                plans_title: "Create a lesson plan quickly",
+                plans_desc: "This form is still a demo, but it looks and works like a real tool.",
+                form_topic: "Topic",
+                form_grade: "Grade",
+                form_type: "Lesson type",
+                form_btn: "Generate AI Plan",
+                result_title: "Generated lesson structure",
+                result_placeholder: "Enter a topic and click the button. The lesson plan will appear here.",
+                cta_title: "Make lesson preparation easier",
+                cta_btn: "Go to Ultra Generator",
+                footer_desc_full: "A new format for learning biology with AI. Understanding matters more than grading.",
+                footer_platform: "PLATFORM",
+                footer_link_1: "For Students",
+                footer_link_2: "Video Lessons",
+                footer_link_3: "Quizzes",
+                footer_contact: "CONTACT US",
+                footer_copy: "© 2026 BioQadam AI. All rights reserved."
             }
+        };
 
-            // Жүктелу анимациясы
-            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin mr-2"></i> Генерациялануда...';
-            btn.disabled = true;
-            btn.classList.add('opacity-75');
-            
-            // Нәтижені жасыра тұру (егер қайта басса)
-            resultArea.classList.add('hidden-view');
+        const langSwitch = document.getElementById('lang-switch');
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const lessonForm = document.getElementById('lesson-form');
+        const resultBox = document.getElementById('result-box');
 
-            // 2 секундтан кейін нәтижені шығару (ИИ-ді симуляциялау)
-            setTimeout(() => {
-                // Батырманы қалпына келтіру
-                btn.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles mr-2"></i> Қайта генерациялау';
-                btn.disabled = false;
-                btn.classList.remove('opacity-75');
+        function applyLanguage(lang) {
+            document.documentElement.lang = lang;
+            langSwitch.value = lang;
 
-                // Нәтижені көрсету
-                resultArea.classList.remove('hidden-view');
-                
-                // Кездейсоқ код генерациялау (сілтеме шынайы көрінуі үшін)
-                const randomCode = Math.random().toString(36).substring(2, 8).toUpperCase();
-                document.getElementById('lesson-link').value = `https://bioqadam.kz/step/${randomCode}`;
-                
-            }, 2000);
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+
+            localStorage.setItem('site-lang', lang);
         }
 
-        function copyLink() {
-            // Сілтемені алу
-            const linkInput = document.getElementById('lesson-link');
-            const copyBtn = document.getElementById('copy-btn');
-            
-            // Буферге (clipboard) көшіру
-            linkInput.select();
-            linkInput.setSelectionRange(0, 99999); // Мобильді құрылғылар үшін
-            navigator.clipboard.writeText(linkInput.value);
+        langSwitch.addEventListener('change', (e) => {
+            applyLanguage(e.target.value);
+        });
 
-            // Батырманың дизайнын "Көшірілді" деп өзгерту
-            copyBtn.innerHTML = '<i class="fa-solid fa-check"></i>';
-            copyBtn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
-            copyBtn.classList.add('bg-emerald-500', 'hover:bg-emerald-600');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
 
-            // 2 секундтан соң қалпына келтіру
-            setTimeout(() => {
-                copyBtn.innerHTML = '<i class="fa-regular fa-copy"></i>';
-                copyBtn.classList.remove('bg-emerald-500', 'hover:bg-emerald-600');
-                copyBtn.classList.add('bg-blue-600', 'hover:bg-blue-700');
-            }, 2000);
-        }
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        lessonForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const topic = document.getElementById('topic').value.trim() || 'Фотосинтез';
+            const grade = document.getElementById('grade').value;
+            const lessonType = document.getElementById('lesson-type').value;
+
+            resultBox.innerHTML = `
+                <div class="space-y-4">
+                    <div>
+                        <h4 class="font-bold text-slate-800">Тақырып:</h4>
+                        <p>${topic}</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-800">Сынып:</h4>
+                        <p>${grade}</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-800">Формат:</h4>
+                        <p>${lessonType}</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-800">Сабақ құрылымы:</h4>
+                        <ul class="list-disc pl-5 space-y-2">
+                            <li>Кіріспе және қызығушылық ояту</li>
+                            <li>Негізгі теорияны түсіндіру</li>
+                            <li>Топтық немесе жеке тапсырма</li>
+                            <li>Қысқа тексеру сұрақтары</li>
+                            <li>Қорытынды және кері байланыс</li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+        });
+
+        const savedLang = localStorage.getItem('site-lang') || 'kk';
+        applyLanguage(savedLang);
     </script>
 </body>
 </html>
