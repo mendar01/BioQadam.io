@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-    
+
     <script>
         tailwind.config = {
             theme: {
@@ -20,6 +20,7 @@
             }
         }
     </script>
+
     <style>
         body { font-family: 'Montserrat', sans-serif; background-color: #0f172a; }
         .glass-panel {
@@ -29,11 +30,11 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
         .hidden-view { display: none !important; }
-        /* Әдемі торлы фон */
         .grid-bg {
             background-size: 40px 40px;
-            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-image:
+                linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
         }
     </style>
 </head>
@@ -53,7 +54,7 @@
 
     <main class="flex-grow flex items-center justify-center p-6 relative z-10">
         <div class="glass-panel p-8 md:p-10 rounded-[2rem] shadow-2xl max-w-2xl w-full">
-            
+
             <div class="text-center mb-10">
                 <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-purple-600 to-pink-500 text-white text-3xl mb-6 shadow-[0_0_30px_rgba(168,85,247,0.5)]">
                     <i class="fa-solid fa-bolt"></i>
@@ -66,33 +67,39 @@
                 <div>
                     <label class="block text-sm font-bold text-slate-300 mb-2">Биологиялық тақырыпты жазыңыз:</label>
                     <div class="relative">
-                        <input type="text" id="topic-input" placeholder="Мысалы: Адам жүрегінің құрылысы 3D..." class="w-full bg-slate-900/80 border border-slate-700 rounded-xl p-4 pl-12 text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition">
-                        <i class="fa-solid fa-dna absolute left-4 top-4.5 text-slate-500 text-lg" style="top: 17px;"></i>
+                        <input
+                            type="text"
+                            id="topic-input"
+                            placeholder="Мысалы: Адам жүрегінің құрылысы 3D..."
+                            class="w-full bg-slate-900/80 border border-slate-700 rounded-xl p-4 pl-12 text-white placeholder-slate-500 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition"
+                        >
+                        <i class="fa-solid fa-dna absolute left-4 text-slate-500 text-lg" style="top: 17px;"></i>
                     </div>
+                    <p id="topic-error" class="hidden mt-2 text-sm text-red-400 font-medium">Өтінемін, генерациялау үшін тақырыпты жазыңыз.</p>
                 </div>
 
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-sm font-bold text-slate-300 mb-2">Сынып:</label>
-                        <select class="w-full bg-slate-900/80 border border-slate-700 rounded-xl p-4 text-white focus:outline-none focus:border-purple-500 transition appearance-none">
-                            <option>Барлық сыныптар</option>
-                            <option>8-сынып</option>
-                            <option>9-сынып</option>
-                            <option>10-сынып</option>
-                            <option>11-сынып</option>
+                        <select id="grade-select" class="w-full bg-slate-900/80 border border-slate-700 rounded-xl p-4 text-white focus:outline-none focus:border-purple-500 transition appearance-none">
+                            <option value="Барлық сыныптар">Барлық сыныптар</option>
+                            <option value="8-сынып">8-сынып</option>
+                            <option value="9-сынып">9-сынып</option>
+                            <option value="10-сынып">10-сынып</option>
+                            <option value="11-сынып">11-сынып</option>
                         </select>
                     </div>
                     <div>
                         <label class="block text-sm font-bold text-slate-300 mb-2">Формат:</label>
-                        <select class="w-full bg-slate-900/80 border border-slate-700 rounded-xl p-4 text-white focus:outline-none focus:border-purple-500 transition appearance-none">
-                            <option>Интерактивті 3D модель</option>
-                            <option>VR / AR сабақ</option>
-                            <option>Анимациялық видео</option>
+                        <select id="format-select" class="w-full bg-slate-900/80 border border-slate-700 rounded-xl p-4 text-white focus:outline-none focus:border-purple-500 transition appearance-none">
+                            <option value="Интерактивті 3D модель">Интерактивті 3D модель</option>
+                            <option value="VR / AR сабақ">VR / AR сабақ</option>
+                            <option value="Анимациялық видео">Анимациялық видео</option>
                         </select>
                     </div>
                 </div>
 
-                <button type="button" onclick="startGeneration()" class="w-full relative group overflow-hidden rounded-xl mt-4">
+                <button id="generate-btn" type="button" class="w-full relative group overflow-hidden rounded-xl mt-4">
                     <div class="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-500 to-purple-600 bg-[length:200%_auto] animate-pulse-fast group-hover:bg-right transition-all duration-500"></div>
                     <div class="relative px-6 py-4 font-bold text-white text-lg flex items-center justify-center">
                         <i class="fa-solid fa-wand-magic-sparkles mr-3"></i> 3D Сабақты Генерациялау
@@ -108,44 +115,57 @@
                 </div>
                 <h3 id="loading-text" class="text-2xl font-bold text-white mb-2">Мәліметтер талдануда...</h3>
                 <p class="text-slate-400 text-sm">BioQadam AI нейрожелісі жұмыс істеп жатыр</p>
-                
+
                 <div class="w-full bg-slate-800 rounded-full h-2.5 mt-8 overflow-hidden">
-                    <div id="progress-bar" class="bg-gradient-to-r from-purple-500 to-pink-500 h-2.5 rounded-full transition-all duration-300" style="width: 5%"></div>
+                    <div id="progress-bar" class="bg-gradient-to-r from-purple-500 to-pink-500 h-2.5 rounded-full transition-all duration-500" style="width: 5%"></div>
                 </div>
             </div>
 
-            <div id="result-area" class="hidden-view mt-4 animate-fade-in">
+            <div id="result-area" class="hidden-view mt-4">
                 <div class="bg-slate-900/80 rounded-2xl border border-slate-700 overflow-hidden mb-6 relative group">
                     <img src="https://images.unsplash.com/photo-1614935151651-0bea6508ab6b?q=80&w=1000&auto=format&fit=crop" alt="3D Model" class="w-full h-56 object-cover opacity-80 group-hover:opacity-100 transition duration-500">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent flex flex-col justify-end p-5">
                         <div class="flex items-center gap-3">
-                            <div class="bg-pink-500 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition">
+                            <button id="preview-btn" type="button" class="bg-pink-500 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition">
                                 <i class="fa-solid fa-play ml-1"></i>
-                            </div>
+                            </button>
                             <div>
                                 <h4 class="text-white font-bold" id="result-title">Адам жүрегінің құрылысы</h4>
-                                <p class="text-pink-300 text-xs font-semibold">Интерактивті 3D форматы • 100% Дайын</p>
+                                <p class="text-pink-300 text-xs font-semibold" id="result-meta">Интерактивті 3D форматы • 100% Дайын</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="bg-purple-900/30 border border-purple-500/30 rounded-xl p-5 mb-6">
-                    <h4 class="text-purple-300 font-bold mb-2 text-sm uppercase tracking-wide"><i class="fa-solid fa-robot mr-2"></i> ИИ Қорытындысы:</h4>
-                    <p class="text-slate-300 text-sm leading-relaxed">
-                        Модель сәтті генерацияланды! Оқушылар жүректі 360 градусқа бұрып, қарыншалар мен жүрекшелердің жұмысын виртуалды түрде көре алады. Әр бөлікке ИИ түсіндірмелері қосылды.
+                    <h4 class="text-purple-300 font-bold mb-2 text-sm uppercase tracking-wide">
+                        <i class="fa-solid fa-robot mr-2"></i> ИИ Қорытындысы:
+                    </h4>
+                    <p id="result-summary" class="text-slate-300 text-sm leading-relaxed">
+                        Модель сәтті генерацияланды!
                     </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-4">
+                        <p class="text-xs uppercase tracking-wide text-slate-400 mb-2">Сынып</p>
+                        <p id="result-grade" class="font-bold text-white">Барлық сыныптар</p>
+                    </div>
+                    <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-4">
+                        <p class="text-xs uppercase tracking-wide text-slate-400 mb-2">Формат</p>
+                        <p id="result-format" class="font-bold text-white">Интерактивті 3D модель</p>
+                    </div>
                 </div>
 
                 <label class="block text-sm font-bold text-slate-300 mb-2">Оқушыларға жіберетін сілтеме:</label>
                 <div class="flex items-center gap-2">
                     <input type="text" id="ultra-link" readonly value="https://bioqadam.kz/3d-lesson/X9V2M1" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-4 text-pink-400 font-mono text-sm focus:outline-none shadow-inner">
-                    <button id="copy-btn" onclick="copyUltraLink()" class="bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-500 hover:to-pink-400 text-white w-14 h-[54px] rounded-xl transition flex items-center justify-center shrink-0 shadow-lg">
+                    <button id="copy-btn" type="button" class="bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-500 hover:to-pink-400 text-white w-14 h-[54px] rounded-xl transition flex items-center justify-center shrink-0 shadow-lg">
                         <i class="fa-regular fa-copy text-xl"></i>
                     </button>
                 </div>
-                
-                <button onclick="resetGenerator()" class="w-full mt-6 text-slate-400 hover:text-white text-sm font-semibold transition">
+
+                <button id="reset-btn" type="button" class="w-full mt-6 text-slate-400 hover:text-white text-sm font-semibold transition">
                     <i class="fa-solid fa-rotate-right mr-1"></i> Жаңа сабақ генерациялау
                 </button>
             </div>
@@ -154,66 +174,207 @@
     </main>
 
     <script>
+        const topicInput = document.getElementById('topic-input');
+        const gradeSelect = document.getElementById('grade-select');
+        const formatSelect = document.getElementById('format-select');
+        const topicError = document.getElementById('topic-error');
+
+        const generatorForm = document.getElementById('generator-form');
+        const loadingArea = document.getElementById('loading-area');
+        const resultArea = document.getElementById('result-area');
+
+        const loadingText = document.getElementById('loading-text');
+        const progressBar = document.getElementById('progress-bar');
+        const generateBtn = document.getElementById('generate-btn');
+        const copyBtn = document.getElementById('copy-btn');
+        const resetBtn = document.getElementById('reset-btn');
+        const previewBtn = document.getElementById('preview-btn');
+
+        const resultTitle = document.getElementById('result-title');
+        const resultMeta = document.getElementById('result-meta');
+        const resultSummary = document.getElementById('result-summary');
+        const resultGrade = document.getElementById('result-grade');
+        const resultFormat = document.getElementById('result-format');
+        const ultraLink = document.getElementById('ultra-link');
+
+        let generationInProgress = false;
+        let timers = [];
+
+        function createRandomCode() {
+            return Math.random().toString(36).substring(2, 8).toUpperCase();
+        }
+
+        function buildSummary(topic, grade, format) {
+            return `${topic} тақырыбы бойынша ${format.toLowerCase()} сәтті дайындалды. Бұл материал ${grade} үшін бейімделген. Оқушылар интерактивті элементтер арқылы тақырыпты визуалды түрде түсініп, негізгі биологиялық процестерді қадам-қадаммен зерттей алады.`;
+        }
+
+        function clearTimers() {
+            timers.forEach(timer => clearTimeout(timer));
+            timers = [];
+        }
+
+        function setButtonLoadingState(disabled) {
+            generateBtn.disabled = disabled;
+            generateBtn.classList.toggle('opacity-70', disabled);
+            generateBtn.classList.toggle('cursor-not-allowed', disabled);
+        }
+
         function startGeneration() {
-            const topic = document.getElementById('topic-input').value;
-            if(!topic.trim()) {
-                alert('Өтінемін, генерациялау үшін тақырыпты жазыңыз!');
+            if (generationInProgress) return;
+
+            const topic = topicInput.value.trim();
+            const grade = gradeSelect.value;
+            const format = formatSelect.value;
+
+            if (!topic) {
+                topicError.classList.remove('hidden');
+                topicInput.classList.add('border-red-500', 'ring-1', 'ring-red-500');
+                topicInput.focus();
                 return;
             }
 
-            document.getElementById('result-title').innerText = topic;
+            topicError.classList.add('hidden');
+            topicInput.classList.remove('border-red-500', 'ring-1', 'ring-red-500');
 
-            // Форманы жасырып, жүктелуді көрсету
-            document.getElementById('generator-form').classList.add('hidden-view');
-            const loadingArea = document.getElementById('loading-area');
+            generationInProgress = true;
+            setButtonLoadingState(true);
+
+            resultTitle.innerText = topic;
+            resultGrade.innerText = grade;
+            resultFormat.innerText = format;
+            resultMeta.innerText = `${format} • 100% Дайын`;
+            resultSummary.innerText = buildSummary(topic, grade, format);
+
+            generatorForm.classList.add('hidden-view');
+            resultArea.classList.add('hidden-view');
             loadingArea.classList.remove('hidden-view');
 
-            const loadingText = document.getElementById('loading-text');
-            const progressBar = document.getElementById('progress-bar');
+            progressBar.style.width = '5%';
+            loadingText.innerText = 'Мәліметтер талдануда...';
 
-            // Анимация кезеңдері
-            setTimeout(() => { loadingText.innerText = 'Мәтіндік деректер жиналуда...'; progressBar.style.width = '30%'; }, 1500);
-            setTimeout(() => { loadingText.innerText = '3D объектілер құрастырылуда...'; progressBar.style.width = '60%'; }, 3500);
-            setTimeout(() => { loadingText.innerText = 'Интерактивті элементтер қосылуда...'; progressBar.style.width = '85%'; }, 5500);
-            
-            setTimeout(() => { 
-                progressBar.style.width = '100%'; 
+            clearTimers();
+
+            timers.push(setTimeout(() => {
+                loadingText.innerText = 'Мәтіндік деректер жиналуда...';
+                progressBar.style.width = '30%';
+            }, 1200));
+
+            timers.push(setTimeout(() => {
+                loadingText.innerText = '3D объектілер құрастырылуда...';
+                progressBar.style.width = '60%';
+            }, 2800));
+
+            timers.push(setTimeout(() => {
+                loadingText.innerText = 'Интерактивті элементтер қосылуда...';
+                progressBar.style.width = '85%';
+            }, 4300));
+
+            timers.push(setTimeout(() => {
                 loadingText.innerText = 'Дайын!';
-                
-                // Нәтижені көрсету
-                setTimeout(() => {
-                    loadingArea.classList.add('hidden-view');
-                    document.getElementById('result-area').classList.remove('hidden-view');
-                    
-                    // Кездейсоқ код жасау
-                    const randomCode = Math.random().toString(36).substring(2, 8).toUpperCase();
-                    document.getElementById('ultra-link').value = `https://bioqadam.kz/3d-lesson/${randomCode}`;
-                }, 500);
+                progressBar.style.width = '100%';
+            }, 5800));
 
-            }, 7000); // Толық генерация уақыты (7 секунд)
+            timers.push(setTimeout(() => {
+                const generatedLink = `https://bioqadam.kz/3d-lesson/${createRandomCode()}`;
+                ultraLink.value = generatedLink;
+
+                const savedData = {
+                    topic,
+                    grade,
+                    format,
+                    summary: buildSummary(topic, grade, format),
+                    link: generatedLink,
+                    createdAt: new Date().toISOString()
+                };
+
+                localStorage.setItem('bioqadam_ultra_lesson', JSON.stringify(savedData));
+
+                loadingArea.classList.add('hidden-view');
+                resultArea.classList.remove('hidden-view');
+
+                generationInProgress = false;
+                setButtonLoadingState(false);
+            }, 6500));
         }
 
-        function copyUltraLink() {
-            const linkInput = document.getElementById('ultra-link');
-            const copyBtn = document.getElementById('copy-btn');
-            
-            linkInput.select();
-            document.execCommand('copy');
+        async function copyUltraLink() {
+            const link = ultraLink.value;
 
-            copyBtn.innerHTML = '<i class="fa-solid fa-check text-xl"></i>';
-            
+            try {
+                await navigator.clipboard.writeText(link);
+                copyBtn.innerHTML = '<i class="fa-solid fa-check text-xl"></i>';
+            } catch (error) {
+                ultraLink.select();
+                ultraLink.setSelectionRange(0, 99999);
+                document.execCommand('copy');
+                copyBtn.innerHTML = '<i class="fa-solid fa-check text-xl"></i>';
+            }
+
             setTimeout(() => {
                 copyBtn.innerHTML = '<i class="fa-regular fa-copy text-xl"></i>';
-            }, 2000);
+            }, 1800);
         }
 
         function resetGenerator() {
-            document.getElementById('result-area').classList.add('hidden-view');
-            document.getElementById('topic-input').value = '';
-            document.getElementById('progress-bar').style.width = '5%';
-            document.getElementById('loading-text').innerText = 'Мәліметтер талдануда...';
-            document.getElementById('generator-form').classList.remove('hidden-view');
+            clearTimers();
+            generationInProgress = false;
+            setButtonLoadingState(false);
+
+            resultArea.classList.add('hidden-view');
+            loadingArea.classList.add('hidden-view');
+            generatorForm.classList.remove('hidden-view');
+
+            topicInput.value = '';
+            gradeSelect.value = 'Барлық сыныптар';
+            formatSelect.value = 'Интерактивті 3D модель';
+
+            progressBar.style.width = '5%';
+            loadingText.innerText = 'Мәліметтер талдануда...';
+            topicError.classList.add('hidden');
+            topicInput.classList.remove('border-red-500', 'ring-1', 'ring-red-500');
         }
+
+        function loadLastGeneratedLesson() {
+            const raw = localStorage.getItem('bioqadam_ultra_lesson');
+            if (!raw) return;
+
+            try {
+                const data = JSON.parse(raw);
+
+                resultTitle.innerText = data.topic || 'Дайын сабақ';
+                resultGrade.innerText = data.grade || 'Барлық сыныптар';
+                resultFormat.innerText = data.format || 'Интерактивті 3D модель';
+                resultMeta.innerText = `${data.format || 'Интерактивті 3D модель'} • 100% Дайын`;
+                resultSummary.innerText = data.summary || 'Модель сәтті генерацияланды.';
+                ultraLink.value = data.link || `https://bioqadam.kz/3d-lesson/${createRandomCode()}`;
+            } catch (error) {
+                console.error('Сақталған сабақты жүктеу мүмкін болмады:', error);
+            }
+        }
+
+        generateBtn.addEventListener('click', startGeneration);
+        copyBtn.addEventListener('click', copyUltraLink);
+        resetBtn.addEventListener('click', resetGenerator);
+
+        previewBtn.addEventListener('click', () => {
+            alert('Демо режим: бұл жерде 3D сабақтың алдын ала көрінісі ашылады.');
+        });
+
+        topicInput.addEventListener('input', () => {
+            if (topicInput.value.trim()) {
+                topicError.classList.add('hidden');
+                topicInput.classList.remove('border-red-500', 'ring-1', 'ring-red-500');
+            }
+        });
+
+        topicInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                startGeneration();
+            }
+        });
+
+        loadLastGeneratedLesson();
     </script>
 </body>
 </html>
