@@ -42,7 +42,6 @@
                 <select id="grade-filter" class="border border-slate-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-purple-500 w-full md:w-48">
                     <option value="all">Барлық сыныптар</option>
                     <option value="7">7-сынып</option>
-                    <option value="8">8-сынып</option>
                     <option value="9">9-сынып</option>
                     <option value="10">10-сынып</option>
                     <option value="11">11-сынып</option>
@@ -50,11 +49,7 @@
 
                 <select id="topic-filter" class="border border-slate-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-purple-500 w-full md:w-48">
                     <option value="all">Барлық тақырыптар</option>
-                    <option value="Жасуша">Жасуша</option>
-                    <option value="Анатомия">Анатомия</option>
-                    <option value="Генетика">Генетика</option>
-                    <option value="Ботаника">Ботаника</option>
-                    <option value="Физиология">Физиология</option>
+                    <option value="Биология">Биология</option>
                 </select>
             </div>
 
@@ -115,63 +110,206 @@
         const videos = [
             {
                 id: 1,
-                title: "Жасушаның құрылысы мен қызметі (3D анимация)",
-                description: "Митохондрия, ядро және рибосомалар қалай жұмыс істейді? ИИ түсіндіреді.",
-                grade: "8",
-                topic: "Жасуша",
-                duration: "12:45",
-                image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=800&auto=format&fit=crop",
-                embed: "https://www.youtube.com/embed/URUJD5NEXC8"
+                title: "7-сынып видео 1",
+                description: "7-сыныпқа арналған қысқа биология видеосабағы.",
+                grade: "7",
+                topic: "Биология",
+                duration: "Shorts",
+                image: "https://images.unsplash.com/photo-1530213786676-41224f8d29b1?q=80&w=800&auto=format&fit=crop",
+                embed: "https://www.youtube.com/embed/tTm9ma2BnBQ"
             },
             {
                 id: 2,
-                title: "ДНҚ репликациясы: Өте қарапайым тілмен",
-                description: "Генетикалық ақпарат қалай көшіріледі? Ферменттердің рөлін қарастырамыз.",
-                grade: "10",
-                topic: "Генетика",
-                duration: "08:20",
-                image: "https://images.unsplash.com/photo-1628595351029-c2bf17511435?q=80&w=800&auto=format&fit=crop",
-                embed: "https://www.youtube.com/embed/8kK2zwjRV0M"
+                title: "7-сынып видео 2",
+                description: "7-сыныпқа арналған қысқа биология видеосабағы.",
+                grade: "7",
+                topic: "Биология",
+                duration: "Shorts",
+                image: "https://images.unsplash.com/photo-1530213786676-41224f8d29b1?q=80&w=800&auto=format&fit=crop",
+                embed: "https://www.youtube.com/embed/RzInmGHJREc"
             },
             {
                 id: 3,
-                title: "Жүрек-қан тамырлар жүйесі",
-                description: "Қан айналым шеңберлері бойынша виртуалды саяхат.",
-                grade: "9",
-                topic: "Анатомия",
-                duration: "15:10",
-                image: "https://images.unsplash.com/photo-1550828520-4cb496926fc9?q=80&w=800&auto=format&fit=crop",
-                embed: "https://www.youtube.com/embed/GlnFMS5d2eI"
+                title: "7-сынып видео 3",
+                description: "7-сыныпқа арналған қысқа биология видеосабағы.",
+                grade: "7",
+                topic: "Биология",
+                duration: "Shorts",
+                image: "https://images.unsplash.com/photo-1530213786676-41224f8d29b1?q=80&w=800&auto=format&fit=crop",
+                embed: "https://www.youtube.com/embed/42jfix0H0q8"
             },
             {
                 id: 4,
-                title: "Өсімдіктің фотосинтез процесі",
-                description: "Күн сәулесі, хлорофилл және глюкоза түзілуі туралы түсінік.",
+                title: "7-сынып видео 4",
+                description: "7-сыныпқа арналған қысқа биология видеосабағы.",
                 grade: "7",
-                topic: "Ботаника",
-                duration: "09:30",
-                image: "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?q=80&w=800&auto=format&fit=crop",
-                embed: "https://www.youtube.com/embed/sQK3Yr4Sc_k"
+                topic: "Биология",
+                duration: "Shorts",
+                image: "https://images.unsplash.com/photo-1530213786676-41224f8d29b1?q=80&w=800&auto=format&fit=crop",
+                embed: "https://www.youtube.com/embed/cXiVchFSzLs"
             },
             {
                 id: 5,
-                title: "Адамның тыныс алу жүйесі",
-                description: "Өкпе, бронх және газ алмасу процесін жеңіл тілмен түсіндіру.",
-                grade: "9",
-                topic: "Физиология",
-                duration: "11:05",
-                image: "https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=800&auto=format&fit=crop",
-                embed: "https://www.youtube.com/embed/h9oDTMXM7M8"
+                title: "7-сынып видео 5",
+                description: "7-сыныпқа арналған қысқа биология видеосабағы.",
+                grade: "7",
+                topic: "Биология",
+                duration: "Shorts",
+                image: "https://images.unsplash.com/photo-1530213786676-41224f8d29b1?q=80&w=800&auto=format&fit=crop",
+                embed: "https://www.youtube.com/embed/W4Nv7VhB72Y"
             },
+
             {
                 id: 6,
-                title: "Жасуша бөлінуі: митоз және мейоз",
-                description: "Екі процестің айырмашылығы мен маңызы.",
+                title: "9-сынып видео 1",
+                description: "9-сыныпқа арналған биология видеосабағы.",
+                grade: "9",
+                topic: "Биология",
+                duration: "Видео",
+                image: "https://images.unsplash.com/photo-1628595351029-c2bf17511435?q=80&w=800&auto=format&fit=crop",
+                embed: "https://www.youtube.com/embed/FyqCC9RTRrI"
+            },
+            {
+                id: 7,
+                title: "9-сынып видео 2",
+                description: "9-сыныпқа арналған биология видеосабағы.",
+                grade: "9",
+                topic: "Биология",
+                duration: "Видео",
+                image: "https://images.unsplash.com/photo-1628595351029-c2bf17511435?q=80&w=800&auto=format&fit=crop",
+                embed: "https://www.youtube.com/embed/Ku-S71pSZ-k"
+            },
+            {
+                id: 8,
+                title: "9-сынып видео 3",
+                description: "9-сыныпқа арналған қысқа биология видеосабағы.",
+                grade: "9",
+                topic: "Биология",
+                duration: "Shorts",
+                image: "https://images.unsplash.com/photo-1628595351029-c2bf17511435?q=80&w=800&auto=format&fit=crop",
+                embed: "https://www.youtube.com/embed/Cb9mWpt-Kho"
+            },
+            {
+                id: 9,
+                title: "9-сынып видео 4",
+                description: "9-сыныпқа арналған қысқа биология видеосабағы.",
+                grade: "9",
+                topic: "Биология",
+                duration: "Shorts",
+                image: "https://images.unsplash.com/photo-1628595351029-c2bf17511435?q=80&w=800&auto=format&fit=crop",
+                embed: "https://www.youtube.com/embed/kjkedEuWciY"
+            },
+            {
+                id: 10,
+                title: "9-сынып видео 5",
+                description: "9-сыныпқа арналған қысқа биология видеосабағы.",
+                grade: "9",
+                topic: "Биология",
+                duration: "Shorts",
+                image: "https://images.unsplash.com/photo-1628595351029-c2bf17511435?q=80&w=800&auto=format&fit=crop",
+                embed: "https://www.youtube.com/embed/iqD0ZdcPk8o"
+            },
+
+            {
+                id: 11,
+                title: "10-сынып видео 1",
+                description: "10-сыныпқа арналған қысқа биология видеосабағы.",
+                grade: "10",
+                topic: "Биология",
+                duration: "Shorts",
+                image: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?q=80&w=800&auto=format&fit=crop",
+                embed: "https://www.youtube.com/embed/bfXwPKL7L10"
+            },
+            {
+                id: 12,
+                title: "10-сынып видео 2",
+                description: "10-сыныпқа арналған қысқа биология видеосабағы.",
+                grade: "10",
+                topic: "Биология",
+                duration: "Shorts",
+                image: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?q=80&w=800&auto=format&fit=crop",
+                embed: "https://www.youtube.com/embed/QN8eBnGCxFM"
+            },
+            {
+                id: 13,
+                title: "10-сынып видео 3",
+                description: "10-сыныпқа арналған қысқа биология видеосабағы.",
+                grade: "10",
+                topic: "Биология",
+                duration: "Shorts",
+                image: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?q=80&w=800&auto=format&fit=crop",
+                embed: "https://www.youtube.com/embed/ncfjgyzQpt8"
+            },
+            {
+                id: 14,
+                title: "10-сынып видео 4",
+                description: "10-сыныпқа арналған қысқа биология видеосабағы.",
+                grade: "10",
+                topic: "Биология",
+                duration: "Shorts",
+                image: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?q=80&w=800&auto=format&fit=crop",
+                embed: "https://www.youtube.com/embed/qZLaB7taDRg"
+            },
+            {
+                id: 15,
+                title: "10-сынып видео 5",
+                description: "10-сыныпқа арналған қысқа биология видеосабағы.",
+                grade: "10",
+                topic: "Биология",
+                duration: "Shorts",
+                image: "https://images.unsplash.com/photo-1559757175-0eb30cd8c063?q=80&w=800&auto=format&fit=crop",
+                embed: "https://www.youtube.com/embed/A9oNe0JXVhw"
+            },
+
+            {
+                id: 16,
+                title: "11-сынып видео 1",
+                description: "11-сыныпқа арналған қысқа биология видеосабағы.",
                 grade: "11",
-                topic: "Генетика",
-                duration: "13:40",
-                image: "https://images.unsplash.com/photo-1532187643603-ba119ca4109e?q=80&w=800&auto=format&fit=crop",
-                embed: "https://www.youtube.com/embed/DwAFZb8juMQ"
+                topic: "Биология",
+                duration: "Shorts",
+                image: "https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=800&auto=format&fit=crop",
+                embed: "https://www.youtube.com/embed/DOcaHfKe_Ro"
+            },
+            {
+                id: 17,
+                title: "11-сынып видео 2",
+                description: "11-сыныпқа арналған қысқа биология видеосабағы.",
+                grade: "11",
+                topic: "Биология",
+                duration: "Shorts",
+                image: "https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=800&auto=format&fit=crop",
+                embed: "https://www.youtube.com/embed/FhbUpIBrTjo"
+            },
+            {
+                id: 18,
+                title: "11-сынып видео 3",
+                description: "11-сыныпқа арналған қысқа биология видеосабағы.",
+                grade: "11",
+                topic: "Биология",
+                duration: "Shorts",
+                image: "https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=800&auto=format&fit=crop",
+                embed: "https://www.youtube.com/embed/lHM0-K2W6mg"
+            },
+            {
+                id: 19,
+                title: "11-сынып видео 4",
+                description: "11-сыныпқа арналған қысқа биология видеосабағы.",
+                grade: "11",
+                topic: "Биология",
+                duration: "Shorts",
+                image: "https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=800&auto=format&fit=crop",
+                embed: "https://www.youtube.com/embed/D8VkcMKNcZw"
+            },
+            {
+                id: 20,
+                title: "11-сынып видео 5",
+                description: "11-сыныпқа арналған қысқа биология видеосабағы.",
+                grade: "11",
+                topic: "Биология",
+                duration: "Shorts",
+                image: "https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=800&auto=format&fit=crop",
+                embed: "https://www.youtube.com/embed/ebC0z8-gQxE"
             }
         ];
 
@@ -200,6 +338,13 @@
                 try {
                     const student = JSON.parse(studentRaw);
                     studentSummary.textContent = `${student.name || 'Оқушы'}, сіз үшін бейнесабақтар ұсынылды. Сынып: ${student.grade || '-'}, деңгей: ${student.difficulty || '-'}.`;
+
+                    const gradeNumber = String(student.grade || '').replace('-сынып', '').trim();
+                    if (gradeNumber) {
+                        gradeFilter.value = gradeNumber;
+                    }
+
+                    topicFilter.value = 'Биология';
                 } catch (error) {
                     studentSummary.textContent = 'Ұсынылған видеоларды қарап, тақырыптарды тереңірек түсініңіз.';
                 }
@@ -213,7 +358,7 @@
                     if (result.score >= 4) {
                         recommendText.textContent = 'Сіздің нәтижеңіз жақсы. Енді күрделірек тақырыптар мен тереңдетілген видеоларды қарауға болады.';
                     } else if (result.score >= 2) {
-                        recommendText.textContent = 'Сізге негізгі тақырыптарды қайталау ұсынылады. Алдымен жасуша, анатомия және физиология бойынша видеоларды қарап шығыңыз.';
+                        recommendText.textContent = 'Сізге негізгі тақырыптарды қайталау ұсынылады. Алдымен өз сыныбыңызға сәйкес видеоларды қарап шығыңыз.';
                     } else {
                         recommendText.textContent = 'Базалық түсініктерден бастау ұсынылады. Қарапайым және қысқа видеоларды таңдап, кейін тестті қайта өтіңіз.';
                     }
@@ -313,7 +458,7 @@
         });
 
         loadStudentData();
-        renderVideos(videos);
+        filterVideos();
     </script>
 </body>
 </html>
