@@ -14,12 +14,12 @@
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
 
     <header class="bg-white shadow-sm py-4 sticky top-0 z-40">
-        <div class="container mx-auto px-6 flex justify-between items-center">
+        <div class="container mx-auto px-6 flex justify-between items-center gap-4">
             <a href="index.html" class="text-emerald-600 font-bold hover:text-emerald-700 transition">
                 <i class="fa-solid fa-arrow-left mr-2"></i> Басты бет
             </a>
-            <a href="expedition.html" class="text-slate-600 font-semibold hover:text-emerald-600 transition">
-                Оқушы баптаулары
+            <a href="expedition.html" class="text-slate-600 font-semibold hover:text-emerald-600 transition text-right">
+                Параметрлерге оралу
             </a>
         </div>
     </header>
@@ -28,127 +28,42 @@
         <div class="max-w-4xl mx-auto">
 
             <section class="bg-white rounded-3xl shadow-xl p-8 border border-slate-100 mb-8">
-                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
                     <div>
                         <p class="text-sm uppercase tracking-wider text-emerald-600 font-bold mb-2">BioQadam Test</p>
-                        <h1 class="text-3xl md:text-4xl font-extrabold text-slate-800 mb-3">Биология бойынша мини-тест</h1>
-                        <p id="student-info" class="text-slate-500">
-                            Оқушы деректері жүктелуде...
-                        </p>
+                        <h1 id="test-title" class="text-3xl md:text-4xl font-extrabold text-slate-800 mb-3">Тест жүктелуде...</h1>
+                        <p id="student-info" class="text-slate-500">Оқушы деректері жүктелуде...</p>
                     </div>
-
                     <div class="bg-emerald-50 border border-emerald-200 rounded-2xl px-5 py-4 min-w-[220px]">
                         <p class="text-sm text-slate-500 mb-1">Сұрақ саны</p>
-                        <p class="text-2xl font-extrabold text-emerald-700">5</p>
+                        <p id="question-count" class="text-2xl font-extrabold text-emerald-700">0</p>
                     </div>
                 </div>
             </section>
 
-            <form id="quiz-form" class="space-y-6">
+            <div id="no-student-message" class="hidden bg-yellow-50 border border-yellow-200 text-yellow-800 rounded-2xl p-6 mb-8">
+                Оқушы деректері табылмады. Алдымен
+                <a href="expedition.html" class="font-bold underline">параметрлерді енгізіңіз</a>.
+            </div>
 
-                <div class="bg-white rounded-3xl shadow-md p-6 border border-slate-100">
-                    <p class="font-bold text-lg mb-4">1. Фотосинтез қай органоидта жүреді?</p>
-                    <div class="space-y-3">
-                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
-                            <input type="radio" name="q1" value="0">
-                            <span>Митохондрия</span>
-                        </label>
-                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
-                            <input type="radio" name="q1" value="1">
-                            <span>Хлоропласт</span>
-                        </label>
-                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
-                            <input type="radio" name="q1" value="0">
-                            <span>Рибосома</span>
-                        </label>
-                    </div>
-                </div>
+            <div id="no-test-message" class="hidden bg-yellow-50 border border-yellow-200 text-yellow-800 rounded-2xl p-6 mb-8">
+                Бұл бөлім тақырыбы бойынша тест әлі қосылмаған. Басқа бөлімді таңдаңыз немесе кейінірек қайта кіріңіз.
+            </div>
 
-                <div class="bg-white rounded-3xl shadow-md p-6 border border-slate-100">
-                    <p class="font-bold text-lg mb-4">2. Адам ағзасындағы негізгі тыныс алу мүшесі:</p>
-                    <div class="space-y-3">
-                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
-                            <input type="radio" name="q2" value="1">
-                            <span>Өкпе</span>
-                        </label>
-                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
-                            <input type="radio" name="q2" value="0">
-                            <span>Бауыр</span>
-                        </label>
-                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
-                            <input type="radio" name="q2" value="0">
-                            <span>Бүйрек</span>
-                        </label>
-                    </div>
-                </div>
+            <form id="quiz-form" class="space-y-6 hidden"></form>
 
-                <div class="bg-white rounded-3xl shadow-md p-6 border border-slate-100">
-                    <p class="font-bold text-lg mb-4">3. ДНҚ нені сақтайды?</p>
-                    <div class="space-y-3">
-                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
-                            <input type="radio" name="q3" value="1">
-                            <span>Генетикалық ақпаратты</span>
-                        </label>
-                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
-                            <input type="radio" name="q3" value="0">
-                            <span>Тек суды</span>
-                        </label>
-                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
-                            <input type="radio" name="q3" value="0">
-                            <span>Тек энергияны</span>
-                        </label>
-                    </div>
-                </div>
+            <div id="quiz-error" class="hidden bg-red-50 border border-red-200 text-red-700 rounded-2xl px-5 py-4 font-medium mt-6">
+                Барлық сұраққа жауап беріңіз.
+            </div>
 
-                <div class="bg-white rounded-3xl shadow-md p-6 border border-slate-100">
-                    <p class="font-bold text-lg mb-4">4. Қанның қызыл жасушалары қалай аталады?</p>
-                    <div class="space-y-3">
-                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
-                            <input type="radio" name="q4" value="0">
-                            <span>Лейкоциттер</span>
-                        </label>
-                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
-                            <input type="radio" name="q4" value="1">
-                            <span>Эритроциттер</span>
-                        </label>
-                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
-                            <input type="radio" name="q4" value="0">
-                            <span>Тромбоциттер</span>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-3xl shadow-md p-6 border border-slate-100">
-                    <p class="font-bold text-lg mb-4">5. Өсімдік жасушасында болмайтын бөлік:</p>
-                    <div class="space-y-3">
-                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
-                            <input type="radio" name="q5" value="0">
-                            <span>Жасуша қабықшасы</span>
-                        </label>
-                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
-                            <input type="radio" name="q5" value="0">
-                            <span>Хлоропласт</span>
-                        </label>
-                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
-                            <input type="radio" name="q5" value="1">
-                            <span>Кірпікше</span>
-                        </label>
-                    </div>
-                </div>
-
-                <div id="quiz-error" class="hidden bg-red-50 border border-red-200 text-red-700 rounded-2xl px-5 py-4 font-medium">
-                    Барлық сұраққа жауап беріңіз.
-                </div>
-
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <button type="submit" class="flex-1 bg-emerald-600 text-white font-bold py-4 rounded-2xl hover:bg-emerald-500 transition shadow-lg shadow-emerald-500/30">
-                        Нәтижені көру
-                    </button>
-                    <button type="button" id="reset-btn" class="flex-1 bg-slate-200 text-slate-700 font-bold py-4 rounded-2xl hover:bg-slate-300 transition">
-                        Қайта бастау
-                    </button>
-                </div>
-            </form>
+            <div id="action-buttons" class="hidden flex flex-col sm:flex-row gap-4 mt-6">
+                <button type="submit" form="quiz-form" class="flex-1 bg-emerald-600 text-white font-bold py-4 rounded-2xl hover:bg-emerald-500 transition shadow-lg shadow-emerald-500/30">
+                    Нәтижені көру
+                </button>
+                <button type="button" id="reset-btn" class="flex-1 bg-slate-200 text-slate-700 font-bold py-4 rounded-2xl hover:bg-slate-300 transition">
+                    Қайта бастау
+                </button>
+            </div>
 
             <section id="result-section" class="hidden mt-8 bg-white rounded-3xl shadow-xl p-8 border border-slate-100">
                 <div class="text-center">
@@ -157,7 +72,8 @@
                     </div>
 
                     <h2 class="text-3xl font-extrabold text-slate-800 mb-3">Сіздің нәтижеңіз</h2>
-                    <p id="score-text" class="text-2xl font-bold text-emerald-600 mb-4"></p>
+                    <p id="score-text" class="text-2xl font-bold text-emerald-600 mb-2"></p>
+                    <p id="percent-text" class="text-lg font-semibold text-slate-500 mb-4"></p>
                     <p id="result-message" class="text-slate-600 max-w-2xl mx-auto mb-8"></p>
 
                     <div class="flex flex-col sm:flex-row gap-4 justify-center">
@@ -175,48 +91,543 @@
     </main>
 
     <script>
+        const testsBySection = {
+            "7.3А Бөліп шығару": [
+                {
+                    question: "Бөліп шығару жүйесінің негізгі қызметі:",
+                    options: [
+                        "Қоректік заттарды қорыту",
+                        "Зиянды заттарды ағзадан шығару",
+                        "Оттегін тасымалдау",
+                        "Энергия өндіру"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Адам ағзасындағы негізгі бөліп шығару мүшесі:",
+                    options: [
+                        "Өкпе",
+                        "Жүрек",
+                        "Бүйрек",
+                        "Ішек"
+                    ],
+                    correct: 2
+                },
+                {
+                    question: "Бүйректің қызметтік бірлігі:",
+                    options: [
+                        "Альвеола",
+                        "Нефрон",
+                        "Нейрон",
+                        "Митохондрия"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Зәр түзілуінің бірінші кезеңі:",
+                    options: [
+                        "Секреция",
+                        "Реабсорбция",
+                        "Сүзілу (фильтрация)",
+                        "Тасымалдау"
+                    ],
+                    correct: 2
+                },
+                {
+                    question: "Алғашқы зәр қай жерде түзіледі?",
+                    options: [
+                        "Несепағар",
+                        "Қуық",
+                        "Шумақшада",
+                        "Жинағыш түтікшеде"
+                    ],
+                    correct: 2
+                }
+            ],
+
+            "7.3В Қозғалыс": [
+                {
+                    question: "Қозғалыс дегеніміз не?",
+                    options: [
+                        "Тек өсу процесі",
+                        "Ағзаның орын ауыстыруы немесе бөліктерінің қозғалысы",
+                        "Қоректену процесі",
+                        "Тыныс алу процесі"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Тірі ағзалардың қозғалу қабілеті қалай аталады?",
+                    options: [
+                        "Тітіркенгіштік",
+                        "Қозғалғыштық",
+                        "Өсу",
+                        "Көбею"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Адамда қозғалысқа жауап беретін жүйе:",
+                    options: [
+                        "Асқорыту жүйесі",
+                        "Тыныс алу жүйесі",
+                        "Тірек-қимыл жүйесі",
+                        "Зәр шығару жүйесі"
+                    ],
+                    correct: 2
+                },
+                {
+                    question: "Тірек-қимыл жүйесі қандай бөліктерден тұрады?",
+                    options: [
+                        "Қан және лимфа",
+                        "Бұлшық еттер мен сүйектер",
+                        "Өкпе мен жүрек",
+                        "Ми мен жұлын"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Сүйектердің байланысу түріне жатпайды:",
+                    options: [
+                        "Қозғалмайтын",
+                        "Жартылай қозғалатын",
+                        "Қозғалатын",
+                        "Сұйық байланыс"
+                    ],
+                    correct: 3
+                }
+            ],
+
+            "7.3С Координация және реттелу": [
+                {
+                    question: "Координация дегеніміз не?",
+                    options: [
+                        "Қоректену процесі",
+                        "Ағза мүшелерінің үйлесімді жұмыс істеуі",
+                        "Тыныс алу",
+                        "Зәр шығару"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Ағзадағы реттелу қандай жүйелер арқылы жүзеге асады?",
+                    options: [
+                        "Асқорыту және тыныс алу",
+                        "Жүйке және эндокриндік жүйе",
+                        "Қан және лимфа",
+                        "Бұлшық ет және сүйек"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Жүйке жүйесінің негізгі қызметі:",
+                    options: [
+                        "Қоректендіру",
+                        "Қозғалыс",
+                        "Ақпаратты қабылдау және өңдеу",
+                        "Зәр шығару"
+                    ],
+                    correct: 2
+                },
+                {
+                    question: "Жүйке жүйесінің негізгі құрылымдық бірлігі:",
+                    options: [
+                        "Нефрон",
+                        "Нейрон",
+                        "Гормон",
+                        "Рецептор"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Рецепторлардың қызметі:",
+                    options: [
+                        "Қозғалыс жасау",
+                        "Ақпаратты қабылдау",
+                        "Қан айдау",
+                        "Зәр түзу"
+                    ],
+                    correct: 1
+                }
+            ],
+
+            "8.3А Бөліп шығару": [
+                {
+                    question: "Бөліп шығару жүйесінің негізгі қызметі:",
+                    options: [
+                        "Қоректік заттарды қорыту",
+                        "Зиянды заттарды ағзадан шығару",
+                        "Оттегін тасымалдау",
+                        "Энергия өндіру"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Адам ағзасындағы негізгі бөліп шығару мүшесі:",
+                    options: [
+                        "Өкпе",
+                        "Жүрек",
+                        "Бүйрек",
+                        "Ішек"
+                    ],
+                    correct: 2
+                },
+                {
+                    question: "Бүйректің қызметтік бірлігі:",
+                    options: [
+                        "Альвеола",
+                        "Нефрон",
+                        "Нейрон",
+                        "Митохондрия"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Зәр түзілуінің бірінші кезеңі:",
+                    options: [
+                        "Секреция",
+                        "Реабсорбция",
+                        "Сүзілу (фильтрация)",
+                        "Тасымалдау"
+                    ],
+                    correct: 2
+                },
+                {
+                    question: "Алғашқы зәр қай жерде түзіледі?",
+                    options: [
+                        "Несепағар",
+                        "Қуық",
+                        "Шумақшада",
+                        "Жинағыш түтікшеде"
+                    ],
+                    correct: 2
+                }
+            ],
+
+            "8.3В Қозғалыс": [
+                {
+                    question: "Тірек-қимыл жүйесінің негізгі қызметтеріне жатады:",
+                    options: [
+                        "Тек қозғалыс",
+                        "Қорғаныш, тірек, қозғалыс, қан түзу",
+                        "Тек қорғаныш",
+                        "Тек тірек"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Адам қаңқасы қанша сүйектен тұрады?",
+                    options: [
+                        "150",
+                        "180",
+                        "206",
+                        "300"
+                    ],
+                    correct: 2
+                },
+                {
+                    question: "Сүйек ұлпасының негізгі жасушалары:",
+                    options: [
+                        "Нейрондар",
+                        "Остеоциттер",
+                        "Эритроциттер",
+                        "Гепатоциттер"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Сүйек құрамындағы бейорганикалық зат:",
+                    options: [
+                        "Коллаген",
+                        "Кальций тұздары",
+                        "Нәруыз",
+                        "Май"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Сүйекке серпімділік беретін зат:",
+                    options: [
+                        "Кальций",
+                        "Фосфор",
+                        "Коллаген",
+                        "Темір"
+                    ],
+                    correct: 2
+                }
+            ],
+
+            "8.3С Координация және реттелу": [
+                {
+                    question: "Көздің жарықты қабылдайтын бөлігі:",
+                    options: [
+                        "Қасаң қабық",
+                        "Тор қабық",
+                        "Нұрлы қабық",
+                        "Ақ қабық"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Тор қабықта орналасқан жарық қабылдағыш жасушалар:",
+                    options: [
+                        "Нейрондар",
+                        "Таяқшалар мен сауытшалар",
+                        "Эритроциттер",
+                        "Гормондар"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Көздің түсін анықтайтын бөлік:",
+                    options: [
+                        "Қасаң қабық",
+                        "Тор қабық",
+                        "Нұрлы қабық (ирис)",
+                        "Шыны тәрізді дене"
+                    ],
+                    correct: 2
+                },
+                {
+                    question: "Көз бұршағының қызметі:",
+                    options: [
+                        "Жарықты өткізбеу",
+                        "Жарықты сындыру және фокустау",
+                        "Қорғаныш",
+                        "Қан тасымалдау"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Жақыннан көргіштік (миопия) кезінде кескін қай жерде түзіледі?",
+                    options: [
+                        "Тор қабықта",
+                        "Тор қабықтың алдында",
+                        "Тор қабықтың артында",
+                        "Көз бұршағында"
+                    ],
+                    correct: 1
+                }
+            ],
+
+            "9.3А Қозғалыс": [
+                {
+                    question: "Бұлшық еттің қажуы дегеніміз:",
+                    options: [
+                        "Бұлшық еттің өсуі",
+                        "Жұмыс қабілетінің уақытша төмендеуі",
+                        "Қан айналымының күшеюі",
+                        "Қозғалыстың артуы"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Статикалық жұмыс дегеніміз:",
+                    options: [
+                        "Қозғалыспен орындалатын жұмыс",
+                        "Қозғалыссыз орындалатын жұмыс",
+                        "Тек жүгіру",
+                        "Тек секіру"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Динамикалық жұмыс:",
+                    options: [
+                        "Қозғалмай тұру",
+                        "Қозғалыспен орындалатын жұмыс",
+                        "Ұйықтау",
+                        "Демалу"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Қай жағдайда бұлшық ет тез қажиды?",
+                    options: [
+                        "Динамикалық",
+                        "Статикалық",
+                        "Ұйқы кезінде",
+                        "Демалғанда"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Қажудың негізгі себебі:",
+                    options: [
+                        "Су жетіспеуі",
+                        "Сүт қышқылының жиналуы",
+                        "Оттегінің артық болуы",
+                        "Қанның көбеюі"
+                    ],
+                    correct: 1
+                }
+            ],
+
+            "9.3В Молекулалық биология": [
+                {
+                    question: "Молекулалық биология нені зерттейді?",
+                    options: [
+                        "Ағзалардың сыртқы құрылысы",
+                        "Жасушадағы молекулалық процестер",
+                        "Экожүйелер",
+                        "Жануарлардың мінез-құлқы"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Тірі ағзалардың негізгі органикалық заттары:",
+                    options: [
+                        "Су мен тұздар",
+                        "Нәруыздар, майлар, көмірсулар, нуклеин қышқылдары",
+                        "Оттегі мен көмірқышқыл газы",
+                        "Минералдар"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "Нәруыздардың мономері:",
+                    options: [
+                        "Нуклеотид",
+                        "Глюкоза",
+                        "Аминқышқыл",
+                        "Май қышқылы"
+                    ],
+                    correct: 2
+                },
+                {
+                    question: "ДНҚ молекуласының қызметі:",
+                    options: [
+                        "Энергия сақтау",
+                        "Генетикалық ақпаратты сақтау",
+                        "Қорғаныш",
+                        "Қозғалыс"
+                    ],
+                    correct: 1
+                },
+                {
+                    question: "ДНҚ-ның құрылымы:",
+                    options: [
+                        "Бір тізбекті",
+                        "Қос спираль",
+                        "Сақина тәрізді",
+                        "Түзу"
+                    ],
+                    correct: 1
+                }
+            ]
+        };
+
         const studentInfo = document.getElementById('student-info');
+        const testTitle = document.getElementById('test-title');
+        const questionCount = document.getElementById('question-count');
         const quizForm = document.getElementById('quiz-form');
         const quizError = document.getElementById('quiz-error');
         const resultSection = document.getElementById('result-section');
         const scoreText = document.getElementById('score-text');
+        const percentText = document.getElementById('percent-text');
         const resultMessage = document.getElementById('result-message');
         const resetBtn = document.getElementById('reset-btn');
+        const noTestMessage = document.getElementById('no-test-message');
+        const noStudentMessage = document.getElementById('no-student-message');
+        const actionButtons = document.getElementById('action-buttons');
 
-        function loadStudentInfo() {
+        let currentTest = [];
+        let currentStudent = null;
+
+        function loadStudentData() {
             const savedData = localStorage.getItem('bioqadam_student');
 
             if (!savedData) {
-                studentInfo.innerHTML = 'Оқушы деректері табылмады. Алдымен <a href="expedition.html" class="text-emerald-600 font-bold underline">параметрлерді енгізіңіз</a>.';
+                noStudentMessage.classList.remove('hidden');
+                testTitle.textContent = 'Тест табылмады';
+                studentInfo.textContent = 'Алдымен параметрлерді енгізу қажет.';
+                questionCount.textContent = '0';
                 return;
             }
 
             try {
-                const student = JSON.parse(savedData);
-                studentInfo.textContent = `${student.name || 'Оқушы'} | ${student.grade || '-'} | Деңгей: ${student.difficulty || '-'}`;
+                currentStudent = JSON.parse(savedData);
+
+                studentInfo.textContent = `${currentStudent.name || 'Оқушы'} | ${currentStudent.grade || '-'} | ${currentStudent.sectionTopic || '-'} | ${currentStudent.lessonTopic || '-'} | Деңгей: ${currentStudent.difficulty || '-'}`;
+                testTitle.textContent = currentStudent.sectionTopic || 'Тест';
+
+                loadTestByTopic(currentStudent.sectionTopic);
             } catch (error) {
+                noStudentMessage.classList.remove('hidden');
                 studentInfo.textContent = 'Оқушы деректерін оқу мүмкін болмады.';
+                testTitle.textContent = 'Қате';
+                questionCount.textContent = '0';
             }
         }
 
-        function getResultMessage(score) {
-            if (score === 5) {
-                return 'Керемет! Сіз барлық сұраққа дұрыс жауап бердіңіз. Биология тақырыбын өте жақсы меңгергенсіз.';
+        function loadTestByTopic(sectionTopic) {
+            if (!testsBySection[sectionTopic]) {
+                currentTest = [];
+                questionCount.textContent = '0';
+                quizForm.classList.add('hidden');
+                actionButtons.classList.add('hidden');
+                noTestMessage.classList.remove('hidden');
+                return;
             }
-            if (score >= 3) {
-                return 'Жақсы нәтиже! Сіз негізгі ұғымдарды түсінесіз. Енді видеосабақтар арқылы біліміңізді тереңдете аласыз.';
+
+            currentTest = testsBySection[sectionTopic];
+            questionCount.textContent = currentTest.length;
+            noTestMessage.classList.add('hidden');
+            quizForm.classList.remove('hidden');
+            actionButtons.classList.remove('hidden');
+
+            renderTest(currentTest);
+        }
+
+        function renderTest(questions) {
+            quizForm.innerHTML = '';
+
+            questions.forEach((item, index) => {
+                const questionBlock = document.createElement('div');
+                questionBlock.className = 'bg-white rounded-3xl shadow-md p-6 border border-slate-100';
+
+                let optionsHtml = '';
+
+                item.options.forEach((option, optionIndex) => {
+                    optionsHtml += `
+                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                            <input type="radio" name="q${index}" value="${optionIndex}">
+                            <span>${option}</span>
+                        </label>
+                    `;
+                });
+
+                questionBlock.innerHTML = `
+                    <p class="font-bold text-lg mb-4">${index + 1}. ${item.question}</p>
+                    <div class="space-y-3">${optionsHtml}</div>
+                `;
+
+                quizForm.appendChild(questionBlock);
+            });
+        }
+
+        function getResultMessage(score, total) {
+            if (score === total) {
+                return 'Керемет! Сіз барлық сұраққа дұрыс жауап бердіңіз.';
             }
-            return 'Әлі де жаттығу керек. Уайымдамаңыз — BioQadam сізге көмектеседі. Видеосабақтар мен тапсырмалардан бастап көріңіз.';
+            if (score >= Math.ceil(total * 0.6)) {
+                return 'Жақсы нәтиже! Тақырып бойынша біліміңіз жаман емес.';
+            }
+            return 'Қайталап шығу керек. Видеосабақтар мен теорияны қарап, тестті қайта өтіп көріңіз.';
+        }
+
+        function getPercent(score, total) {
+            return total ? Math.round((score / total) * 100) : 0;
         }
 
         quizForm.addEventListener('submit', function (e) {
             e.preventDefault();
 
-            let score = 0;
-            const totalQuestions = 5;
-            const answers = [];
+            if (!currentTest.length) return;
 
-            for (let i = 1; i <= totalQuestions; i++) {
+            let score = 0;
+
+            for (let i = 0; i < currentTest.length; i++) {
                 const selected = document.querySelector(`input[name="q${i}"]:checked`);
 
                 if (!selected) {
@@ -225,30 +636,33 @@
                     return;
                 }
 
-                answers.push(selected.value);
-                score += Number(selected.value);
+                if (Number(selected.value) === currentTest[i].correct) {
+                    score++;
+                }
             }
+
+            const percent = getPercent(score, currentTest.length);
 
             quizError.classList.add('hidden');
 
-            scoreText.textContent = `${score} / ${totalQuestions}`;
-            resultMessage.textContent = getResultMessage(score);
+            scoreText.textContent = `${score} / ${currentTest.length}`;
+            percentText.textContent = `${percent}%`;
+            resultMessage.textContent = getResultMessage(score, currentTest.length);
             resultSection.classList.remove('hidden');
 
-            const savedStudent = JSON.parse(localStorage.getItem('bioqadam_student') || '{}');
-
             const resultData = {
-                studentName: savedStudent.name || 'Оқушы',
-                grade: savedStudent.grade || '',
-                difficulty: savedStudent.difficulty || '',
+                studentName: currentStudent?.name || 'Оқушы',
+                grade: currentStudent?.grade || '',
+                sectionTopic: currentStudent?.sectionTopic || '',
+                lessonTopic: currentStudent?.lessonTopic || '',
+                difficulty: currentStudent?.difficulty || '',
                 score: score,
-                total: totalQuestions,
-                answers: answers,
+                total: currentTest.length,
+                percent: percent,
                 completedAt: new Date().toISOString()
             };
 
             localStorage.setItem('bioqadam_test_result', JSON.stringify(resultData));
-
             resultSection.scrollIntoView({ behavior: 'smooth' });
         });
 
@@ -259,7 +673,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        loadStudentInfo();
+        loadStudentData();
     </script>
 </body>
 </html>
