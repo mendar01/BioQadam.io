@@ -58,21 +58,21 @@
                 </div>
 
                 <div>
-                    <label for="student-topic" class="block text-sm font-bold text-slate-700 mb-2">Оқу тақырыбы:</label>
+                    <label for="section-topic" class="block text-sm font-bold text-slate-700 mb-2">Бөлім тақырыбы:</label>
                     <select 
-                        id="student-topic"
+                        id="section-topic"
                         class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-slate-50"
                     ></select>
-                    <p id="topic-error" class="text-red-500 text-sm mt-2 hidden">Тақырыпты таңдаңыз.</p>
+                    <p id="section-error" class="text-red-500 text-sm mt-2 hidden">Бөлім тақырыбын таңдаңыз.</p>
                 </div>
 
                 <div>
-                    <label for="student-goal" class="block text-sm font-bold text-slate-700 mb-2">Оқу мақсаты:</label>
+                    <label for="lesson-topic" class="block text-sm font-bold text-slate-700 mb-2">Сабақ тақырыбы:</label>
                     <select 
-                        id="student-goal"
+                        id="lesson-topic"
                         class="w-full border border-slate-300 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-slate-50"
                     ></select>
-                    <p id="goal-error" class="text-red-500 text-sm mt-2 hidden">Мақсатты таңдаңыз.</p>
+                    <p id="lesson-error" class="text-red-500 text-sm mt-2 hidden">Сабақ тақырыбын таңдаңыз.</p>
                 </div>
 
                 <div>
@@ -115,96 +115,96 @@
     </main>
 
     <script>
-       const topicsByGrade = {
-    "7-сынып": {
-        "7.3А Бөліп шығару": [
-            "Бөліп шығару мүшелерінің құрылысын сипаттау",
-            "Бөліп шығару үдерісінің маңызын түсіндіру"
-        ],
-        "7.3В Қозғалыс": [
-            "Ағзалардың қозғалыс түрлерін сипаттау",
-            "Тірі ағзалардағы қозғалыстың маңызын түсіндіру"
-        ],
-        "7.3С Координация және реттелу": [
-            "Жүйке жүйесінің қызметін түсіндіру",
-            "Координация және реттелу ұғымдарын сипаттау"
-        ]
-    },
+        const topicsByGrade = {
+            "7-сынып": {
+                "7.3А Бөліп шығару": [
+                    "Бөліп шығару мүшелерінің құрылысын сипаттау",
+                    "Бөліп шығару үдерісінің маңызын түсіндіру"
+                ],
+                "7.3В Қозғалыс": [
+                    "Ағзалардың қозғалыс түрлерін сипаттау",
+                    "Тірі ағзалардағы қозғалыстың маңызын түсіндіру"
+                ],
+                "7.3С Координация және реттелу": [
+                    "Жүйке жүйесінің қызметін түсіндіру",
+                    "Координация және реттелу ұғымдарын сипаттау"
+                ]
+            },
 
-    "8-сынып": {
-        "8.3А Бөліп шығару": [
-            "Бүйректің құрылысын сипаттау",
-            "Зәр түзілу үдерісін түсіндіру"
-        ],
-        "8.3В Қозғалыс": [
-            "Тірек-қимыл жүйесінің қызметін сипаттау",
-            "Бұлшықет пен сүйектің байланысын түсіндіру"
-        ],
-        "8.3С Координация және реттелу": [
-            "Рецепторлардың қызметін түсіндіру",
-            "Жүйке және гуморальдық реттелуді салыстыру"
-        ]
-    },
+            "8-сынып": {
+                "8.3А Бөліп шығару": [
+                    "Бүйректің құрылысын сипаттау",
+                    "Зәр түзілу үдерісін түсіндіру"
+                ],
+                "8.3В Қозғалыс": [
+                    "Тірек-қимыл жүйесінің қызметін сипаттау",
+                    "Бұлшықет пен сүйектің байланысын түсіндіру"
+                ],
+                "8.3С Координация және реттелу": [
+                    "Рецепторлардың қызметін түсіндіру",
+                    "Жүйке және гуморальдық реттелуді салыстыру"
+                ]
+            },
 
-    "9-сынып": {
-        "9.3А Қозғалыс": [
-            "Бұлшықет ұлпасының құрылысын сипаттау",
-            "Қозғалыстың биологиялық маңызын түсіндіру"
-        ],
-        "9.3В Молекулалық биология": [
-            "ДНҚ құрылысын сипаттау",
-            "Ақуыз биосинтезін түсіндіру"
-        ],
-        "9.3С Жасушалық цикл": [
-            "Жасушалық цикл кезеңдерін сипаттау",
-            "Митоз үдерісін түсіндіру"
-        ],
-        "9.3D Тұқымқуалаушылық пен өзгергіштік": [
-            "Тұқымқуалаушылық ұғымын түсіндіру",
-            "Өзгергіштік түрлерін сипаттау"
-        ]
-    },
+            "9-сынып": {
+                "9.3А Қозғалыс": [
+                    "Бұлшықет ұлпасының құрылысын сипаттау",
+                    "Қозғалыстың биологиялық маңызын түсіндіру"
+                ],
+                "9.3В Молекулалық биология": [
+                    "ДНҚ құрылысын сипаттау",
+                    "Ақуыз биосинтезін түсіндіру"
+                ],
+                "9.3С Жасушалық цикл": [
+                    "Жасушалық цикл кезеңдерін сипаттау",
+                    "Митоз үдерісін түсіндіру"
+                ],
+                "9.3D Тұқымқуалаушылық пен өзгергіштік": [
+                    "Тұқымқуалаушылық ұғымын түсіндіру",
+                    "Өзгергіштік түрлерін сипаттау"
+                ]
+            },
 
-    "10-сынып": {
-        "10.3А Жасушалық биология": [
-            "Жасуша құрылымдарының қызметін сипаттау",
-            "Жасуша мембранасы арқылы тасымалды түсіндіру"
-        ],
-        "10.3В Тұқымқуалаушылық пен өзгергіштік": [
-            "Генетикалық ақпараттың берілуін түсіндіру",
-            "Мутация мен өзгергіштікті сипаттау"
-        ],
-        "10.3С Эволюциялық даму. Селекция. Тірі ағзалардың көптүрлілігі": [
-            "Эволюциялық дамуды түсіндіру",
-            "Селекцияның маңызын сипаттау"
-        ]
-    },
+            "10-сынып": {
+                "10.3А Жасушалық биология": [
+                    "Жасуша құрылымдарының қызметін сипаттау",
+                    "Жасуша мембранасы арқылы тасымалды түсіндіру"
+                ],
+                "10.3В Тұқымқуалаушылық пен өзгергіштік": [
+                    "Генетикалық ақпараттың берілуін түсіндіру",
+                    "Мутация мен өзгергіштікті сипаттау"
+                ],
+                "10.3С Эволюциялық даму. Селекция. Тірі ағзалардың көптүрлілігі": [
+                    "Эволюциялық дамуды түсіндіру",
+                    "Селекцияның маңызын сипаттау"
+                ]
+            },
 
-    "11-сынып": {
-        "11.3А Жасушалық биология": [
-            "Жасушаның молекулалық деңгейін түсіндіру",
-            "Жасушалық үдерістерді талдау"
-        ],
-        "11.3В Биотехнология": [
-            "Биотехнологияның қолданылуын сипаттау",
-            "Гендік инженерия негіздерін түсіндіру"
-        ],
-        "11.3С Биомедицина және биоинформатика": [
-            "Биомедицинаның маңызын түсіндіру",
-            "Биоинформатиканың рөлін сипаттау"
-        ]
-    }
-};
+            "11-сынып": {
+                "11.3А Жасушалық биология": [
+                    "Жасушаның молекулалық деңгейін түсіндіру",
+                    "Жасушалық үдерістерді талдау"
+                ],
+                "11.3В Биотехнология": [
+                    "Биотехнологияның қолданылуын сипаттау",
+                    "Гендік инженерия негіздерін түсіндіру"
+                ],
+                "11.3С Биомедицина және биоинформатика": [
+                    "Биомедицинаның маңызын түсіндіру",
+                    "Биоинформатиканың рөлін сипаттау"
+                ]
+            }
+        };
 
         const form = document.getElementById('student-form');
         const nameInput = document.getElementById('student-name');
         const gradeSelect = document.getElementById('student-grade');
-        const topicSelect = document.getElementById('student-topic');
-        const goalSelect = document.getElementById('student-goal');
+        const sectionTopicSelect = document.getElementById('section-topic');
+        const lessonTopicSelect = document.getElementById('lesson-topic');
 
         const nameError = document.getElementById('name-error');
-        const topicError = document.getElementById('topic-error');
-        const goalError = document.getElementById('goal-error');
+        const sectionError = document.getElementById('section-error');
+        const lessonError = document.getElementById('lesson-error');
         const successMessage = document.getElementById('success-message');
         const startBtn = document.getElementById('start-btn');
 
@@ -213,35 +213,35 @@
             return selected ? selected.value : 'Оңай';
         }
 
-        function populateTopics() {
+        function populateSectionTopics() {
             const selectedGrade = gradeSelect.value;
             const gradeTopics = topicsByGrade[selectedGrade];
 
-            topicSelect.innerHTML = '';
-            goalSelect.innerHTML = '';
+            sectionTopicSelect.innerHTML = '';
+            lessonTopicSelect.innerHTML = '';
 
             Object.keys(gradeTopics).forEach(topic => {
                 const option = document.createElement('option');
                 option.value = topic;
                 option.textContent = topic;
-                topicSelect.appendChild(option);
+                sectionTopicSelect.appendChild(option);
             });
 
-            populateGoals();
+            populateLessonTopics();
         }
 
-        function populateGoals() {
+        function populateLessonTopics() {
             const selectedGrade = gradeSelect.value;
-            const selectedTopic = topicSelect.value;
-            const goals = topicsByGrade[selectedGrade][selectedTopic];
+            const selectedSection = sectionTopicSelect.value;
+            const lessonTopics = topicsByGrade[selectedGrade][selectedSection];
 
-            goalSelect.innerHTML = '';
+            lessonTopicSelect.innerHTML = '';
 
-            goals.forEach(goal => {
+            lessonTopics.forEach(topic => {
                 const option = document.createElement('option');
-                option.value = goal;
-                option.textContent = goal;
-                goalSelect.appendChild(option);
+                option.value = topic;
+                option.textContent = topic;
+                lessonTopicSelect.appendChild(option);
             });
         }
 
@@ -249,8 +249,8 @@
             const studentData = {
                 name: nameInput.value.trim(),
                 grade: gradeSelect.value,
-                topic: topicSelect.value,
-                goal: goalSelect.value,
+                sectionTopic: sectionTopicSelect.value,
+                lessonTopic: lessonTopicSelect.value,
                 difficulty: getSelectedDifficulty(),
                 savedAt: new Date().toISOString()
             };
@@ -263,7 +263,6 @@
             e.preventDefault();
 
             const name = nameInput.value.trim();
-
             let hasError = false;
 
             if (!name) {
@@ -276,18 +275,18 @@
                 nameInput.classList.remove('border-red-400', 'ring-2', 'ring-red-200');
             }
 
-            if (!topicSelect.value) {
-                topicError.classList.remove('hidden');
+            if (!sectionTopicSelect.value) {
+                sectionError.classList.remove('hidden');
                 hasError = true;
             } else {
-                topicError.classList.add('hidden');
+                sectionError.classList.add('hidden');
             }
 
-            if (!goalSelect.value) {
-                goalError.classList.remove('hidden');
+            if (!lessonTopicSelect.value) {
+                lessonError.classList.remove('hidden');
                 hasError = true;
             } else {
-                goalError.classList.add('hidden');
+                lessonError.classList.add('hidden');
             }
 
             if (hasError) return;
@@ -305,11 +304,11 @@
             }, 1200);
         });
 
-        gradeSelect.addEventListener('change', populateTopics);
-        topicSelect.addEventListener('change', populateGoals);
+        gradeSelect.addEventListener('change', populateSectionTopics);
+        sectionTopicSelect.addEventListener('change', populateLessonTopics);
 
         window.addEventListener('DOMContentLoaded', () => {
-            populateTopics();
+            populateSectionTopics();
 
             const savedData = localStorage.getItem('bioqadam_student');
 
@@ -320,12 +319,12 @@
                     if (parsed.name) nameInput.value = parsed.name;
                     if (parsed.grade) gradeSelect.value = parsed.grade;
 
-                    populateTopics();
+                    populateSectionTopics();
 
-                    if (parsed.topic) topicSelect.value = parsed.topic;
-                    populateGoals();
+                    if (parsed.sectionTopic) sectionTopicSelect.value = parsed.sectionTopic;
+                    populateLessonTopics();
 
-                    if (parsed.goal) goalSelect.value = parsed.goal;
+                    if (parsed.lessonTopic) lessonTopicSelect.value = parsed.lessonTopic;
 
                     if (parsed.difficulty) {
                         const radio = document.querySelector(`input[name="difficulty"][value="${parsed.difficulty}"]`);
