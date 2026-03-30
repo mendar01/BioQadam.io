@@ -53,19 +53,28 @@
     </header>
 
     <main class="flex-grow flex items-center justify-center p-6 relative z-10">
-        <div class="glass-panel p-8 md:p-10 rounded-[2rem] shadow-2xl max-w-2xl w-full">
+        <div class="glass-panel p-8 md:p-10 rounded-[2rem] shadow-2xl max-w-4xl w-full">
 
             <div class="text-center mb-10">
                 <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-purple-600 to-pink-500 text-white text-3xl mb-6 shadow-[0_0_30px_rgba(168,85,247,0.5)]">
                     <i class="fa-solid fa-bolt"></i>
                 </div>
                 <h2 class="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-300 mb-2">Ультра Генератор</h2>
-                <p class="text-slate-400">Тақырыпты жазыңыз, ИИ 1 минут ішінде 3D форматындағы интерактивті сабақ жасап береді.</p>
+                <p class="text-slate-400">3D сабақ немесе ИИ тест генерациялаңыз.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                <button id="mode-lesson" class="mode-btn bg-gradient-to-r from-purple-600 to-pink-500 text-white font-bold py-4 rounded-2xl shadow-lg">
+                    <i class="fa-solid fa-cube mr-2"></i> 3D сабақ генерациялау
+                </button>
+                <button id="mode-test" class="mode-btn bg-slate-800/80 border border-slate-700 text-slate-200 font-bold py-4 rounded-2xl">
+                    <i class="fa-solid fa-list-check mr-2"></i> ИИ тест генерациялау
+                </button>
             </div>
 
             <div id="generator-form" class="space-y-6">
                 <div>
-                    <label class="block text-sm font-bold text-slate-300 mb-2">Биологиялық тақырыпты жазыңыз:</label>
+                    <label id="topic-label" class="block text-sm font-bold text-slate-300 mb-2">Биологиялық тақырыпты жазыңыз:</label>
                     <div class="relative">
                         <input
                             type="text"
@@ -82,14 +91,14 @@
                     <div>
                         <label class="block text-sm font-bold text-slate-300 mb-2">Сынып:</label>
                         <select id="grade-select" class="w-full bg-slate-900/80 border border-slate-700 rounded-xl p-4 text-white focus:outline-none focus:border-purple-500 transition appearance-none">
-                            <option value="Барлық сыныптар">Барлық сыныптар</option>
+                            <option value="7-сынып">7-сынып</option>
                             <option value="8-сынып">8-сынып</option>
                             <option value="9-сынып">9-сынып</option>
                             <option value="10-сынып">10-сынып</option>
                             <option value="11-сынып">11-сынып</option>
                         </select>
                     </div>
-                    <div>
+                    <div id="format-block">
                         <label class="block text-sm font-bold text-slate-300 mb-2">Формат:</label>
                         <select id="format-select" class="w-full bg-slate-900/80 border border-slate-700 rounded-xl p-4 text-white focus:outline-none focus:border-purple-500 transition appearance-none">
                             <option value="Интерактивті 3D модель">Интерактивті 3D модель</option>
@@ -99,9 +108,23 @@
                     </div>
                 </div>
 
+                <div id="test-keywords-box" class="hidden-view bg-slate-900/60 border border-slate-700 rounded-2xl p-5">
+                    <h4 class="text-sm font-bold text-purple-300 mb-3 uppercase tracking-wide">
+                        <i class="fa-solid fa-lightbulb mr-2"></i> 7–8 сынып кілт тақырыптары
+                    </h4>
+                    <div class="grid md:grid-cols-2 gap-3 text-sm">
+                        <button type="button" class="keyword-btn bg-slate-800 hover:bg-slate-700 rounded-xl px-4 py-3 text-left" data-keyword="7.3А Бөліп шығару">7.3А Бөліп шығару</button>
+                        <button type="button" class="keyword-btn bg-slate-800 hover:bg-slate-700 rounded-xl px-4 py-3 text-left" data-keyword="7.3В Қозғалыс">7.3В Қозғалыс</button>
+                        <button type="button" class="keyword-btn bg-slate-800 hover:bg-slate-700 rounded-xl px-4 py-3 text-left" data-keyword="7.3С Координация және реттелу">7.3С Координация және реттелу</button>
+                        <button type="button" class="keyword-btn bg-slate-800 hover:bg-slate-700 rounded-xl px-4 py-3 text-left" data-keyword="8.3А Бөліп шығару">8.3А Бөліп шығару</button>
+                        <button type="button" class="keyword-btn bg-slate-800 hover:bg-slate-700 rounded-xl px-4 py-3 text-left" data-keyword="8.3В Қозғалыс">8.3В Қозғалыс</button>
+                        <button type="button" class="keyword-btn bg-slate-800 hover:bg-slate-700 rounded-xl px-4 py-3 text-left" data-keyword="8.3С Координация және реттелу">8.3С Координация және реттелу</button>
+                    </div>
+                </div>
+
                 <button id="generate-btn" type="button" class="w-full relative group overflow-hidden rounded-xl mt-4">
                     <div class="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-500 to-purple-600 bg-[length:200%_auto] animate-pulse-fast group-hover:bg-right transition-all duration-500"></div>
-                    <div class="relative px-6 py-4 font-bold text-white text-lg flex items-center justify-center">
+                    <div id="generate-btn-text" class="relative px-6 py-4 font-bold text-white text-lg flex items-center justify-center">
                         <i class="fa-solid fa-wand-magic-sparkles mr-3"></i> 3D Сабақты Генерациялау
                     </div>
                 </button>
@@ -122,51 +145,81 @@
             </div>
 
             <div id="result-area" class="hidden-view mt-4">
-                <div class="bg-slate-900/80 rounded-2xl border border-slate-700 overflow-hidden mb-6 relative group">
-                    <img src="https://images.unsplash.com/photo-1614935151651-0bea6508ab6b?q=80&w=1000&auto=format&fit=crop" alt="3D Model" class="w-full h-56 object-cover opacity-80 group-hover:opacity-100 transition duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent flex flex-col justify-end p-5">
-                        <div class="flex items-center gap-3">
-                            <button id="preview-btn" type="button" class="bg-pink-500 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition">
-                                <i class="fa-solid fa-play ml-1"></i>
-                            </button>
-                            <div>
-                                <h4 class="text-white font-bold" id="result-title">Адам жүрегінің құрылысы</h4>
-                                <p class="text-pink-300 text-xs font-semibold" id="result-meta">Интерактивті 3D форматы • 100% Дайын</p>
+                <div id="lesson-result-block">
+                    <div class="bg-slate-900/80 rounded-2xl border border-slate-700 overflow-hidden mb-6 relative group">
+                        <img src="https://images.unsplash.com/photo-1614935151651-0bea6508ab6b?q=80&w=1000&auto=format&fit=crop" alt="3D Model" class="w-full h-56 object-cover opacity-80 group-hover:opacity-100 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent flex flex-col justify-end p-5">
+                            <div class="flex items-center gap-3">
+                                <button id="preview-btn" type="button" class="bg-pink-500 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition">
+                                    <i class="fa-solid fa-play ml-1"></i>
+                                </button>
+                                <div>
+                                    <h4 class="text-white font-bold" id="result-title">Адам жүрегінің құрылысы</h4>
+                                    <p class="text-pink-300 text-xs font-semibold" id="result-meta">Интерактивті 3D форматы • 100% Дайын</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="bg-purple-900/30 border border-purple-500/30 rounded-xl p-5 mb-6">
-                    <h4 class="text-purple-300 font-bold mb-2 text-sm uppercase tracking-wide">
-                        <i class="fa-solid fa-robot mr-2"></i> ИИ Қорытындысы:
-                    </h4>
-                    <p id="result-summary" class="text-slate-300 text-sm leading-relaxed">
-                        Модель сәтті генерацияланды!
-                    </p>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-4 mb-6">
-                    <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-4">
-                        <p class="text-xs uppercase tracking-wide text-slate-400 mb-2">Сынып</p>
-                        <p id="result-grade" class="font-bold text-white">Барлық сыныптар</p>
+                    <div class="bg-purple-900/30 border border-purple-500/30 rounded-xl p-5 mb-6">
+                        <h4 class="text-purple-300 font-bold mb-2 text-sm uppercase tracking-wide">
+                            <i class="fa-solid fa-robot mr-2"></i> ИИ Қорытындысы:
+                        </h4>
+                        <p id="result-summary" class="text-slate-300 text-sm leading-relaxed">
+                            Модель сәтті генерацияланды!
+                        </p>
                     </div>
-                    <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-4">
-                        <p class="text-xs uppercase tracking-wide text-slate-400 mb-2">Формат</p>
-                        <p id="result-format" class="font-bold text-white">Интерактивті 3D модель</p>
+
+                    <div class="grid md:grid-cols-2 gap-4 mb-6">
+                        <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-4">
+                            <p class="text-xs uppercase tracking-wide text-slate-400 mb-2">Сынып</p>
+                            <p id="result-grade" class="font-bold text-white">Барлық сыныптар</p>
+                        </div>
+                        <div class="bg-slate-900/70 border border-slate-700 rounded-xl p-4">
+                            <p class="text-xs uppercase tracking-wide text-slate-400 mb-2">Формат</p>
+                            <p id="result-format" class="font-bold text-white">Интерактивті 3D модель</p>
+                        </div>
+                    </div>
+
+                    <label class="block text-sm font-bold text-slate-300 mb-2">Оқушыларға жіберетін сілтеме:</label>
+                    <div class="flex items-center gap-2">
+                        <input type="text" id="ultra-link" readonly value="https://bioqadam.kz/3d-lesson/X9V2M1" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-4 text-pink-400 font-mono text-sm focus:outline-none shadow-inner">
+                        <button id="copy-btn" type="button" class="bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-500 hover:to-pink-400 text-white w-14 h-[54px] rounded-xl transition flex items-center justify-center shrink-0 shadow-lg">
+                            <i class="fa-regular fa-copy text-xl"></i>
+                        </button>
                     </div>
                 </div>
 
-                <label class="block text-sm font-bold text-slate-300 mb-2">Оқушыларға жіберетін сілтеме:</label>
-                <div class="flex items-center gap-2">
-                    <input type="text" id="ultra-link" readonly value="https://bioqadam.kz/3d-lesson/X9V2M1" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-4 text-pink-400 font-mono text-sm focus:outline-none shadow-inner">
-                    <button id="copy-btn" type="button" class="bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-500 hover:to-pink-400 text-white w-14 h-[54px] rounded-xl transition flex items-center justify-center shrink-0 shadow-lg">
-                        <i class="fa-regular fa-copy text-xl"></i>
-                    </button>
+                <div id="test-result-block" class="hidden-view">
+                    <div class="bg-slate-900/80 rounded-2xl border border-slate-700 p-6 mb-6">
+                        <h3 id="ai-test-title" class="text-2xl font-extrabold text-white mb-2">ИИ тест дайын</h3>
+                        <p id="ai-test-subtitle" class="text-slate-400">Төмендегі тестті бірден қолдануға болады.</p>
+                    </div>
+
+                    <form id="ai-quiz-form" class="space-y-5"></form>
+
+                    <div id="ai-quiz-error" class="hidden mt-5 bg-red-500/10 border border-red-500/30 text-red-300 rounded-xl px-4 py-3">
+                        Барлық сұраққа жауап беріңіз.
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-4 mt-6">
+                        <button id="check-ai-test-btn" type="submit" form="ai-quiz-form" class="bg-gradient-to-r from-emerald-500 to-green-500 text-white font-bold py-4 rounded-xl hover:opacity-90 transition">
+                            Нәтижені көру
+                        </button>
+                        <button id="copy-ai-test-btn" type="button" class="bg-slate-800 border border-slate-700 text-white font-bold py-4 rounded-xl hover:bg-slate-700 transition">
+                            Тестті көшіру
+                        </button>
+                    </div>
+
+                    <div id="ai-test-score-box" class="hidden mt-6 bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-5">
+                        <p class="text-emerald-300 text-sm uppercase tracking-wide mb-2">Нәтиже</p>
+                        <p id="ai-test-score" class="text-2xl font-extrabold text-white"></p>
+                        <p id="ai-test-message" class="text-slate-300 mt-2"></p>
+                    </div>
                 </div>
 
                 <button id="reset-btn" type="button" class="w-full mt-6 text-slate-400 hover:text-white text-sm font-semibold transition">
-                    <i class="fa-solid fa-rotate-right mr-1"></i> Жаңа сабақ генерациялау
+                    <i class="fa-solid fa-rotate-right mr-1"></i> Қайта генерациялау
                 </button>
             </div>
 
@@ -186,6 +239,8 @@
         const loadingText = document.getElementById('loading-text');
         const progressBar = document.getElementById('progress-bar');
         const generateBtn = document.getElementById('generate-btn');
+        const generateBtnText = document.getElementById('generate-btn-text');
+
         const copyBtn = document.getElementById('copy-btn');
         const resetBtn = document.getElementById('reset-btn');
         const previewBtn = document.getElementById('preview-btn');
@@ -197,8 +252,95 @@
         const resultFormat = document.getElementById('result-format');
         const ultraLink = document.getElementById('ultra-link');
 
+        const modeLessonBtn = document.getElementById('mode-lesson');
+        const modeTestBtn = document.getElementById('mode-test');
+        const topicLabel = document.getElementById('topic-label');
+        const formatBlock = document.getElementById('format-block');
+        const testKeywordsBox = document.getElementById('test-keywords-box');
+
+        const lessonResultBlock = document.getElementById('lesson-result-block');
+        const testResultBlock = document.getElementById('test-result-block');
+
+        const aiQuizForm = document.getElementById('ai-quiz-form');
+        const aiQuizError = document.getElementById('ai-quiz-error');
+        const aiTestTitle = document.getElementById('ai-test-title');
+        const aiTestSubtitle = document.getElementById('ai-test-subtitle');
+        const aiTestScoreBox = document.getElementById('ai-test-score-box');
+        const aiTestScore = document.getElementById('ai-test-score');
+        const aiTestMessage = document.getElementById('ai-test-message');
+        const copyAiTestBtn = document.getElementById('copy-ai-test-btn');
+
         let generationInProgress = false;
         let timers = [];
+        let currentMode = 'lesson';
+        let currentAiTest = [];
+
+        const testDatabase = {
+            "7.3А Бөліп шығару": [
+                { question: "Бөліп шығару жүйесінің негізгі мүшесі?", options: ["Жүрек", "Бүйрек", "Өкпе", "Ми"], correct: 1 },
+                { question: "Зәр қай жерде түзіледі?", options: ["Бүйректе", "Жүректе", "Өкпеде", "Асқазанда"], correct: 0 },
+                { question: "Бүйректің қызметі қандай?", options: ["Қан айдау", "Артық заттарды шығару", "Ойлау", "Қорыту"], correct: 1 },
+                { question: "Бөліп шығару ағзаға не үшін қажет?", options: ["Өсу үшін", "Зиянды заттарды шығару үшін", "Көру үшін", "Есту үшін"], correct: 1 },
+                { question: "Зәр шығару жүйесіне не жатады?", options: ["Бүйрек", "Жүрек", "Асқазан", "Өкпе"], correct: 0 }
+            ],
+            "7.3В Қозғалыс": [
+                { question: "Адамда қозғалысты не қамтамасыз етеді?", options: ["Асқазан", "Тірек-қимыл жүйесі", "Бүйрек", "Өкпе"], correct: 1 },
+                { question: "Бұлшықет не үшін қажет?", options: ["Қозғалу үшін", "Қан түзу үшін", "Тыныс алу үшін", "Ойлау үшін"], correct: 0 },
+                { question: "Сүйек пен бұлшықет бірігіп не атқарады?", options: ["Қимыл жасайды", "Зәр шығарады", "Дыбыс шығарады", "Қан сүзеді"], correct: 0 },
+                { question: "Қозғалыс кімдерге тән?", options: ["Тек жануарларға", "Барлық тірі ағзаларға", "Тек адамға", "Тек өсімдікке"], correct: 1 },
+                { question: "Өсімдіктерде қозғалыс бола ма?", options: ["Иә", "Жоқ", "Тек түнде", "Тек суда"], correct: 0 }
+            ],
+            "7.3С Координация және реттелу": [
+                { question: "Жүйке жүйесінің негізгі қызметі?", options: ["Ас қорыту", "Ақпаратты қабылдау және өңдеу", "Қан айдау", "Зәр түзу"], correct: 1 },
+                { question: "Нейрон дегеніміз не?", options: ["Қан жасушасы", "Жүйке жасушасы", "Бұлшықет жасушасы", "Сүйек жасушасы"], correct: 1 },
+                { question: "Рецептордың қызметі қандай?", options: ["Ақпаратты қабылдау", "Қимыл жасау", "Қан тасымалдау", "Тыныс алу"], correct: 0 },
+                { question: "Координация дегеніміз?", options: ["Ағза мүшелерінің үйлесімді жұмысы", "Тек қозғалу", "Тек тыныс алу", "Тек көбею"], correct: 0 },
+                { question: "Реттелу қандай жүйелер арқылы іске асады?", options: ["Асқорыту және тыныс алу", "Жүйке және эндокриндік жүйе", "Қан және лимфа", "Сүйек және бұлшықет"], correct: 1 }
+            ],
+            "8.3А Бөліп шығару": [
+                { question: "Бүйректің қызметтік бірлігі?", options: ["Нейрон", "Нефрон", "Альвеола", "Рибосома"], correct: 1 },
+                { question: "Зәр түзілуінің бірінші кезеңі?", options: ["Реабсорбция", "Сүзілу", "Тыныс алу", "Қорыту"], correct: 1 },
+                { question: "Бөліп шығару жүйесінің негізгі қызметі?", options: ["Энергия өндіру", "Зиянды заттарды шығару", "Қан түзу", "Ойлау"], correct: 1 },
+                { question: "Алғашқы зәр қай жерде түзіледі?", options: ["Қуықта", "Шумақшада", "Несепағарда", "Өкпеде"], correct: 1 },
+                { question: "Адам ағзасындағы негізгі бөліп шығару мүшесі?", options: ["Жүрек", "Бүйрек", "Ми", "Ішек"], correct: 1 }
+            ],
+            "8.3В Қозғалыс": [
+                { question: "Адам қаңқасы неше сүйектен тұрады?", options: ["150", "180", "206", "300"], correct: 2 },
+                { question: "Сүйек ұлпасының негізгі жасушалары?", options: ["Эритроциттер", "Остеоциттер", "Нейрондар", "Лейкоциттер"], correct: 1 },
+                { question: "Сүйекке серпімділік беретін зат?", options: ["Темір", "Коллаген", "Фосфор", "Су"], correct: 1 },
+                { question: "Тірек-қимыл жүйесінің негізгі қызметі?", options: ["Қорғаныш, тірек, қозғалыс", "Тек тыныс алу", "Тек қорыту", "Тек көру"], correct: 0 },
+                { question: "Сүйек құрамындағы бейорганикалық зат?", options: ["Коллаген", "Кальций тұздары", "Май", "Глюкоза"], correct: 1 }
+            ],
+            "8.3С Координация және реттелу": [
+                { question: "Көздің жарықты қабылдайтын бөлігі?", options: ["Қасаң қабық", "Тор қабық", "Ақ қабық", "Нұрлы қабық"], correct: 1 },
+                { question: "Көздің түсін анықтайтын бөлік?", options: ["Тор қабық", "Нұрлы қабық", "Бұршақ", "Ақ қабық"], correct: 1 },
+                { question: "Көз бұршағының қызметі?", options: ["Қан тасымалдау", "Жарықты сындыру және фокустау", "Дыбыс қабылдау", "Тыныс алу"], correct: 1 },
+                { question: "Ішкі құлақтағы дыбыс қабылдайтын құрылым?", options: ["Балғашық", "Ұлу", "Дабыл жарғағы", "Евстахий түтігі"], correct: 1 },
+                { question: "Эндокриндік жүйе дегеніміз?", options: ["Гормон бөлетін бездер жүйесі", "Қан айналу жүйесі", "Асқорыту жүйесі", "Сүйек жүйесі"], correct: 0 }
+            ]
+        };
+
+        function setMode(mode) {
+            currentMode = mode;
+
+            if (mode === 'lesson') {
+                modeLessonBtn.className = 'mode-btn bg-gradient-to-r from-purple-600 to-pink-500 text-white font-bold py-4 rounded-2xl shadow-lg';
+                modeTestBtn.className = 'mode-btn bg-slate-800/80 border border-slate-700 text-slate-200 font-bold py-4 rounded-2xl';
+                topicLabel.textContent = 'Биологиялық тақырыпты жазыңыз:';
+                topicInput.placeholder = 'Мысалы: Адам жүрегінің құрылысы 3D...';
+                formatBlock.classList.remove('hidden-view');
+                testKeywordsBox.classList.add('hidden-view');
+                generateBtnText.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles mr-3"></i> 3D Сабақты Генерациялау';
+            } else {
+                modeTestBtn.className = 'mode-btn bg-gradient-to-r from-purple-600 to-pink-500 text-white font-bold py-4 rounded-2xl shadow-lg';
+                modeLessonBtn.className = 'mode-btn bg-slate-800/80 border border-slate-700 text-slate-200 font-bold py-4 rounded-2xl';
+                topicLabel.textContent = 'Тест тақырыбын жазыңыз немесе төменнен таңдаңыз:';
+                topicInput.placeholder = 'Мысалы: 8.3С Координация және реттелу';
+                formatBlock.classList.add('hidden-view');
+                testKeywordsBox.classList.remove('hidden-view');
+                generateBtnText.innerHTML = '<i class="fa-solid fa-list-check mr-3"></i> ИИ Тест Генерациялау';
+            }
+        }
 
         function createRandomCode() {
             return Math.random().toString(36).substring(2, 8).toUpperCase();
@@ -219,6 +361,60 @@
             generateBtn.classList.toggle('cursor-not-allowed', disabled);
         }
 
+        function findClosestTestTopic(topic, grade) {
+            const normalized = topic.toLowerCase().trim();
+            const entries = Object.keys(testDatabase);
+
+            const exact = entries.find(item => item.toLowerCase() === normalized);
+            if (exact) return exact;
+
+            const contains = entries.find(item => normalized.includes(item.toLowerCase()) || item.toLowerCase().includes(normalized));
+            if (contains) return contains;
+
+            const gradePrefix = grade === '7-сынып' ? '7.3' : grade === '8-сынып' ? '8.3' : '';
+            const byGrade = entries.filter(item => item.startsWith(gradePrefix));
+
+            if (normalized.includes('бөліп')) {
+                return byGrade.find(item => item.toLowerCase().includes('бөліп')) || null;
+            }
+            if (normalized.includes('қозғ')) {
+                return byGrade.find(item => item.toLowerCase().includes('қозғ')) || null;
+            }
+            if (normalized.includes('коор') || normalized.includes('реттел')) {
+                return byGrade.find(item => item.toLowerCase().includes('координация')) || null;
+            }
+
+            return byGrade[0] || null;
+        }
+
+        function renderAiQuiz(questions) {
+            aiQuizForm.innerHTML = '';
+            aiTestScoreBox.classList.add('hidden');
+            aiQuizError.classList.add('hidden');
+
+            questions.forEach((item, index) => {
+                const block = document.createElement('div');
+                block.className = 'bg-slate-900/70 border border-slate-700 rounded-2xl p-5';
+
+                let optionsHtml = '';
+                item.options.forEach((option, optionIndex) => {
+                    optionsHtml += `
+                        <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-700 hover:bg-slate-800 cursor-pointer">
+                            <input type="radio" name="aiq${index}" value="${optionIndex}">
+                            <span>${option}</span>
+                        </label>
+                    `;
+                });
+
+                block.innerHTML = `
+                    <p class="font-bold text-white text-lg mb-4">${index + 1}. ${item.question}</p>
+                    <div class="space-y-3">${optionsHtml}</div>
+                `;
+
+                aiQuizForm.appendChild(block);
+            });
+        }
+
         function startGeneration() {
             if (generationInProgress) return;
 
@@ -233,39 +429,41 @@
                 return;
             }
 
+            if (currentMode === 'test' && !['7-сынып', '8-сынып'].includes(grade)) {
+                topicError.classList.remove('hidden');
+                topicError.textContent = 'ИИ тест генераторы әзірге тек 7–8 сынып тақырыптарымен жұмыс істейді.';
+                topicInput.classList.add('border-red-500', 'ring-1', 'ring-red-500');
+                return;
+            }
+
             topicError.classList.add('hidden');
+            topicError.textContent = 'Өтінемін, генерациялау үшін тақырыпты жазыңыз.';
             topicInput.classList.remove('border-red-500', 'ring-1', 'ring-red-500');
 
             generationInProgress = true;
             setButtonLoadingState(true);
-
-            resultTitle.innerText = topic;
-            resultGrade.innerText = grade;
-            resultFormat.innerText = format;
-            resultMeta.innerText = `${format} • 100% Дайын`;
-            resultSummary.innerText = buildSummary(topic, grade, format);
 
             generatorForm.classList.add('hidden-view');
             resultArea.classList.add('hidden-view');
             loadingArea.classList.remove('hidden-view');
 
             progressBar.style.width = '5%';
-            loadingText.innerText = 'Мәліметтер талдануда...';
+            loadingText.innerText = currentMode === 'lesson' ? 'Мәліметтер талдануда...' : 'Тест құрылымы талдануда...';
 
             clearTimers();
 
             timers.push(setTimeout(() => {
-                loadingText.innerText = 'Мәтіндік деректер жиналуда...';
+                loadingText.innerText = currentMode === 'lesson' ? 'Мәтіндік деректер жиналуда...' : 'Сұрақтар генерациялануда...';
                 progressBar.style.width = '30%';
             }, 1200));
 
             timers.push(setTimeout(() => {
-                loadingText.innerText = '3D объектілер құрастырылуда...';
+                loadingText.innerText = currentMode === 'lesson' ? '3D объектілер құрастырылуда...' : 'Жауап нұсқалары дайындалуда...';
                 progressBar.style.width = '60%';
             }, 2800));
 
             timers.push(setTimeout(() => {
-                loadingText.innerText = 'Интерактивті элементтер қосылуда...';
+                loadingText.innerText = currentMode === 'lesson' ? 'Интерактивті элементтер қосылуда...' : 'Тексеру логикасы құрылуда...';
                 progressBar.style.width = '85%';
             }, 4300));
 
@@ -275,19 +473,56 @@
             }, 5800));
 
             timers.push(setTimeout(() => {
-                const generatedLink = `https://bioqadam.kz/3d-lesson/${createRandomCode()}`;
-                ultraLink.value = generatedLink;
+                if (currentMode === 'lesson') {
+                    lessonResultBlock.classList.remove('hidden-view');
+                    testResultBlock.classList.add('hidden-view');
 
-                const savedData = {
-                    topic,
-                    grade,
-                    format,
-                    summary: buildSummary(topic, grade, format),
-                    link: generatedLink,
-                    createdAt: new Date().toISOString()
-                };
+                    const generatedLink = `https://bioqadam.kz/3d-lesson/${createRandomCode()}`;
+                    ultraLink.value = generatedLink;
 
-                localStorage.setItem('bioqadam_ultra_lesson', JSON.stringify(savedData));
+                    resultTitle.innerText = topic;
+                    resultGrade.innerText = grade;
+                    resultFormat.innerText = format;
+                    resultMeta.innerText = `${format} • 100% Дайын`;
+                    resultSummary.innerText = buildSummary(topic, grade, format);
+
+                    const savedData = {
+                        mode: 'lesson',
+                        topic,
+                        grade,
+                        format,
+                        summary: buildSummary(topic, grade, format),
+                        link: generatedLink,
+                        createdAt: new Date().toISOString()
+                    };
+
+                    localStorage.setItem('bioqadam_ultra_lesson', JSON.stringify(savedData));
+                } else {
+                    lessonResultBlock.classList.add('hidden-view');
+                    testResultBlock.classList.remove('hidden-view');
+
+                    const foundTopic = findClosestTestTopic(topic, grade);
+
+                    if (!foundTopic || !testDatabase[foundTopic]) {
+                        aiTestTitle.textContent = 'Тест табылмады';
+                        aiTestSubtitle.textContent = 'Бұл тақырып бойынша дайын тест жоқ. 7–8 сынып кілт тақырыптарының бірін таңдаңыз.';
+                        aiQuizForm.innerHTML = '';
+                    } else {
+                        currentAiTest = testDatabase[foundTopic];
+                        aiTestTitle.textContent = `${foundTopic} бойынша ИИ тест`;
+                        aiTestSubtitle.textContent = `${grade} үшін автоматты түрде таңдалған 5 сұрақтан тұратын тест.`;
+                        renderAiQuiz(currentAiTest);
+
+                        localStorage.setItem('bioqadam_ultra_test', JSON.stringify({
+                            mode: 'test',
+                            grade,
+                            requestedTopic: topic,
+                            generatedTopic: foundTopic,
+                            questions: currentAiTest,
+                            createdAt: new Date().toISOString()
+                        }));
+                    }
+                }
 
                 loadingArea.classList.add('hidden-view');
                 resultArea.classList.remove('hidden-view');
@@ -315,6 +550,32 @@
             }, 1800);
         }
 
+        async function copyAiTest() {
+            if (!currentAiTest.length) return;
+
+            let text = `${aiTestTitle.textContent}\n\n`;
+
+            currentAiTest.forEach((q, index) => {
+                text += `${index + 1}. ${q.question}\n`;
+                q.options.forEach((opt, i) => {
+                    const letter = ['A', 'B', 'C', 'D'][i];
+                    text += `${letter}) ${opt}\n`;
+                });
+                text += '\n';
+            });
+
+            try {
+                await navigator.clipboard.writeText(text);
+                copyAiTestBtn.textContent = 'Көшірілді!';
+            } catch (error) {
+                copyAiTestBtn.textContent = 'Көшіру қатесі';
+            }
+
+            setTimeout(() => {
+                copyAiTestBtn.textContent = 'Тестті көшіру';
+            }, 1600);
+        }
+
         function resetGenerator() {
             clearTimers();
             generationInProgress = false;
@@ -325,36 +586,27 @@
             generatorForm.classList.remove('hidden-view');
 
             topicInput.value = '';
-            gradeSelect.value = 'Барлық сыныптар';
+            gradeSelect.value = '7-сынып';
             formatSelect.value = 'Интерактивті 3D модель';
 
             progressBar.style.width = '5%';
             loadingText.innerText = 'Мәліметтер талдануда...';
             topicError.classList.add('hidden');
+            topicError.textContent = 'Өтінемін, генерациялау үшін тақырыпты жазыңыз.';
             topicInput.classList.remove('border-red-500', 'ring-1', 'ring-red-500');
+
+            aiQuizForm.innerHTML = '';
+            aiTestScoreBox.classList.add('hidden');
+            aiQuizError.classList.add('hidden');
+            currentAiTest = [];
         }
 
-        function loadLastGeneratedLesson() {
-            const raw = localStorage.getItem('bioqadam_ultra_lesson');
-            if (!raw) return;
-
-            try {
-                const data = JSON.parse(raw);
-
-                resultTitle.innerText = data.topic || 'Дайын сабақ';
-                resultGrade.innerText = data.grade || 'Барлық сыныптар';
-                resultFormat.innerText = data.format || 'Интерактивті 3D модель';
-                resultMeta.innerText = `${data.format || 'Интерактивті 3D модель'} • 100% Дайын`;
-                resultSummary.innerText = data.summary || 'Модель сәтті генерацияланды.';
-                ultraLink.value = data.link || `https://bioqadam.kz/3d-lesson/${createRandomCode()}`;
-            } catch (error) {
-                console.error('Сақталған сабақты жүктеу мүмкін болмады:', error);
-            }
-        }
-
+        modeLessonBtn.addEventListener('click', () => setMode('lesson'));
+        modeTestBtn.addEventListener('click', () => setMode('test'));
         generateBtn.addEventListener('click', startGeneration);
         copyBtn.addEventListener('click', copyUltraLink);
         resetBtn.addEventListener('click', resetGenerator);
+        copyAiTestBtn.addEventListener('click', copyAiTest);
 
         previewBtn.addEventListener('click', () => {
             alert('Демо режим: бұл жерде 3D сабақтың алдын ала көрінісі ашылады.');
@@ -374,7 +626,55 @@
             }
         });
 
-        loadLastGeneratedLesson();
+        document.querySelectorAll('.keyword-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                topicInput.value = btn.dataset.keyword;
+                topicError.classList.add('hidden');
+                topicInput.classList.remove('border-red-500', 'ring-1', 'ring-red-500');
+
+                if (btn.dataset.keyword.startsWith('7.')) {
+                    gradeSelect.value = '7-сынып';
+                } else if (btn.dataset.keyword.startsWith('8.')) {
+                    gradeSelect.value = '8-сынып';
+                }
+            });
+        });
+
+        aiQuizForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            if (!currentAiTest.length) return;
+
+            let score = 0;
+
+            for (let i = 0; i < currentAiTest.length; i++) {
+                const selected = document.querySelector(`input[name="aiq${i}"]:checked`);
+
+                if (!selected) {
+                    aiQuizError.classList.remove('hidden');
+                    aiTestScoreBox.classList.add('hidden');
+                    return;
+                }
+
+                if (Number(selected.value) === currentAiTest[i].correct) {
+                    score++;
+                }
+            }
+
+            aiQuizError.classList.add('hidden');
+            aiTestScoreBox.classList.remove('hidden');
+            aiTestScore.textContent = `${score} / ${currentAiTest.length}`;
+
+            if (score === currentAiTest.length) {
+                aiTestMessage.textContent = 'Керемет! Барлық сұраққа дұрыс жауап бердіңіз.';
+            } else if (score >= 3) {
+                aiTestMessage.textContent = 'Жақсы нәтиже! Тағы бір қайталап өтсеңіз, нәтижеңіз одан да жақсы болады.';
+            } else {
+                aiTestMessage.textContent = 'Бұл тақырыпты тағы бір қайталап шыққан дұрыс.';
+            }
+        });
+
+        setMode('lesson');
     </script>
 </body>
 </html>
